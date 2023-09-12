@@ -1,1 +1,1 @@
-# Course_management_system
+# Course management system
