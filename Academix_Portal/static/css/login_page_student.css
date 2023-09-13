@@ -1,0 +1,140 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  
+  .background {
+    background: url("/static/images/img_01.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    filter: blur(5px);
+    min-height: 800px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* width: 300px; */
+    height: 400px;
+    margin: 10vh auto;
+    background-color: rgb(220, 214, 214);
+    box-shadow: 0 0 15px rgb(43, 42, 42);
+    opacity: 0.75 ;
+    border-radius: 25px;
+    transition: all ease-in-out .2s;
+  }
+
+  .container:hover {
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+  .material-icons-outlined{
+    color: white;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  .container button{
+    color: white;
+  }
+  
+  form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+  }
+  .form-item {
+    display: flex;
+    width: 90%;
+    background: transparent;
+    margin: 10px auto;
+    border-radius: 15px;
+    align-items: center;
+    border-bottom: 1px solid rgb(82, 81, 81);
+    border-left: 1px solid rgb(82, 81, 81);
+  }
+  .form-item:hover {
+    border: 2px solid rgb(46, 45, 45);
+  }
+  input {
+    background: transparent;
+    width: 80%;
+    height: 30px;
+    outline: none;
+    border: none;
+    margin: auto;
+    color: white;
+    font-size: 17px;
+  }
+  
+  span {
+    user-select: none;
+    margin: 5px;
+    color: rgb(172, 172, 172);
+    background: rgba(59, 59, 58, 0.72);
+    padding: 5px;
+    border-radius: 18px;
+  }
+  button[type="submit"] {
+    width: 180px;
+    font-size: 20px;
+    margin: 10px auto;
+    padding: 8px;
+    background: rgba(59, 59, 58, 0.72);
+    border: none;
+    color: white;
+  }
+  button[type="submit"]:hover {
+    background: rgba(192, 204, 14, 0.678);
+  }
+  p:first-of-type {
+    margin: 0;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 5px 16px;
+    margin: 5px 15px;
+    width: 180px;
+
+    color: white;
+    cursor: pointer;
+    transition: all 0.7s ease;
+  }
+  
+  p {
+    font-size: 18px;
+    margin: 5px;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    color: grey;
+  }
+
+  .form div{
+    display: flex;
+  }
+  
+  @media screen and (max-width: 550px) {
+    .container {
+      width: 90%;
+    }
+  }
+  
+
