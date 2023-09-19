@@ -25,8 +25,8 @@
   <!-- for form container -->
   <div class="container">
     <h2 style="margin-top:5px">STUDENT LOGIN</h2>
-    <form action="">
-
+    <form action="/studentlogin" method="post">
+      {% csrf_token %}
       <div class="form-item">
         <span class="material-icons-outlined">
           Username
@@ -43,7 +43,7 @@
       </div>
       &nbsp;
 
-      <button type="submit" onclick="login()">LOGIN</button>
+      <button type="submit">LOGIN</button>
       &nbsp;
 
       <div class="form-end">

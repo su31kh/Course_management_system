@@ -9,12 +9,7 @@
 
 <body>
     <div>
-        <form action="/ver_reg" method="post">
-            {% csrf_token %}
-            <input type="text" id="email" name="email">
-            <br>
-            <input type="submit" value="submit">
-        </form>
+        <h1>{{ user.email }}</h1>
     </div>
     
 </body>
