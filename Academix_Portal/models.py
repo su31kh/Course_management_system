@@ -11,4 +11,3 @@ class Profile(models.Model):
     batch = models.IntegerField(null=False)
     branch = models.CharField(max_length=50, null=False)
     program = models.CharField(max_length=50, null=False)
-    gender = models.CharField(max_length=1, null=False)
