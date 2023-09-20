@@ -4,7 +4,7 @@ import random
 from .utils import send_email_to_client
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import student_profile
 from django.template import loader
 from django.contrib.auth import authenticate
 
@@ -26,7 +26,7 @@ def studentlogin(request):
         return render(request , 'login_page_student.html')
 
 def adminlogin(request):
-    student_login = loader.get_template("login_page_admin.html")
+    #student_login = loader.get_template("login_page_admin.html")
     return render(request , 'login_page_admin.html')
 
 def reg_validate(request):
@@ -60,7 +60,7 @@ def register(request):
         ver_code = request.POST.get('ver_code')
         if code == ver_code:
             user = User.objects.create_user(username=username, email=email, password=password)
-            my_profile = Profile.objects.create(user=user, first_name=first_name, middle_name=middle_name, last_name=last_name, batch=batch, branch=branch, program=program)
+            my_profile = student_profile.objects.create(user=user, first_name=first_name, middle_name=middle_name, last_name=last_name, batch=batch, branch=branch, program=program)
             my_profile.save()
         else:
             return render(request,'register.html')
