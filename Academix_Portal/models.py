@@ -17,19 +17,17 @@ class student_profile(models.Model):
 
 class faculty_profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE) 
-    first_name = models.CharField(max_length=20, null=False)
-    middle_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=30, null=False , default = "Name")
     faculty_courses = models.ManyToManyField('Course', related_name='facultylist', blank=True)
 
     def __str__(self):
-        return self.first_name
+        return self.name
 
 class Course(models.Model):
     name = models.CharField(max_length=25, unique=True)
     course_code = models.CharField(max_length=25, unique=True)
     description = models.TextField(blank=True, null=True)
-    faculty = models.ManyToManyField('faculty_profile', related_name='course', blank=True)
+    faculty = models.CharField(max_length=25, unique=False)
     studentlist = models.ManyToManyField('student_profile', related_name='course', blank=True)
 
     def __str__(self):

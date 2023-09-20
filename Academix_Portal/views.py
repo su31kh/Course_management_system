@@ -5,9 +5,14 @@ from .utils import send_email_to_client
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
+from .models import faculty_profile
+from .models import Course
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 from django.template import loader
 from django.contrib.auth import authenticate
 
+from django.contrib import messages
 
 def home(request):
     return render(request , 'land.html')
@@ -65,3 +70,40 @@ def register(request):
         else:
             return render(request,'register.html')
         return render(request,'land.html')
+
+
+def addcourse(request):
+
+    if(request.method == 'POST'):
+        course_name = request.POST.get('coursename')
+        courseid = request.POST.get('courseid')
+        description = request.POST.get('description')
+        faculty = request.POST.get('faculty')
+        my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = faculty)
+
+        my_course.save()
+
+    return render(request , 'addcourse.html')
+
+
+
+def add_course_to_user(request, course_id):
+    try:
+        current_user = request.user
+        course = get_object_or_404(Course, course_code=course_id)
+
+        if course.studentlist.filter(user = current_user).exists():
+            return JsonResponse({'error': 'User is already enrolled in this course'}, status=400)
+
+        course.studentlist.add(current_user)
+        current_user.student_courses.add(course)
+
+        course.save()
+        current_user.save()
+
+        return JsonResponse({'message': 'User successfully enrolled in the course'})
+
+    except Exception as e:
+        
+        return JsonResponse({'error': str(e)}, status=500)
+        
