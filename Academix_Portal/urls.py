@@ -13,4 +13,5 @@ urlpatterns = [
     path('ver_reg', views.reg_validate, name="Reg_Validate"),
     path('addcourses' , views.addcourse , name = "Add_course"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll")
+    
 ]
