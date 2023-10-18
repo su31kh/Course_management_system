@@ -14,10 +14,14 @@ class student_profile(models.Model):
     program = models.CharField(max_length=50, null=False)
     student_courses = models.ManyToManyField('Course', related_name='studentslist', blank=True)
 
+    def __str__(self):
+        return self.first_name+self.last_name
+
 
 class faculty_profile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE) 
     name = models.CharField(max_length=30, null=False , default = "Name")
+
     faculty_courses = models.ManyToManyField('Course', related_name='facultylist', blank=True)
 
     def __str__(self):

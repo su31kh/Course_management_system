@@ -10,29 +10,33 @@ from .models import Course
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 from django.contrib import messages
 
 def home(request):
     return render(request , 'land.html')
 
-def studentlogin(request):
+def login(request, loginid):
     if request.method == "POST":
         username = request.POST['user']
         passwrd = request.POST['pass']
         user = authenticate(username=username, password=passwrd)
-        if user is not None:
-            context = {'user':user}
-            return render(request, 'check.html', context)
-        else:
+        if user is None:
+            messages.warning(request, "Please Enter the correct Credentials.")
             return redirect('/studentlogin')
+        if loginid == "faculty":
+            context = {'user':user}
+            return render(request, 'home.html', context)
+        elif loginid == "student":
+            context = {'user':user}
+            return render(request, 'home.html', context)
     else:
-        return render(request , 'login_page_student.html')
-
-def adminlogin(request):
-    #student_login = loader.get_template("login_page_admin.html")
-    return render(request , 'login_page_admin.html')
+        if loginid == "student":
+            return render(request , 'login_page_student.html')
+        else:
+            return render(request , 'login_page_admin.html')
+        
 
 def reg_validate(request):
     if request.method == "POST":
@@ -55,7 +59,7 @@ def register(request):
         code = request.session.get('code', None)
         code = str(code)
         username = request.POST.get('username')
-        password = request.POST.get('password')
+        password = request.POST.get('pass1')
         first_name = request.POST.get('first_name')
         middle_name = request.POST.get('middle_name')
         last_name = request.POST.get('last_name')
@@ -63,13 +67,23 @@ def register(request):
         branch = request.POST.get('branch')
         program = request.POST.get('program')
         ver_code = request.POST.get('ver_code')
+
+        if User.objects.filter(email=email).first is not None:
+            messages.warning(request, "Enter correct Email")
+            return redirect('/register')
+        if User.objects.filter(username=username).first is not None:
+            messages.warning(request, "Enter correct Email")
+            return redirect('/register')
+
         if code == ver_code:
             user = User.objects.create_user(username=username, email=email, password=password)
             my_profile = student_profile.objects.create(user=user, first_name=first_name, middle_name=middle_name, last_name=last_name, batch=batch, branch=branch, program=program)
             my_profile.save()
+            user = authenticate(request, username=username, password=password)
+            login(request,user)
         else:
             return render(request,'register.html')
-        return render(request,'land.html')
+        return render(request,'home.html')
 
 
 def addcourse(request):
