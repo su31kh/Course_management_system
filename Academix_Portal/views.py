@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
 from .models import faculty_profile
-from .models import Course
+from .models import Course, Assignment, Submission
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
@@ -110,7 +110,6 @@ def addcourse(request):
     return render(request , 'addcourse.html')
 
 
-
 def add_course_to_user(request, course_id):
     try:
         current_user = request.user
@@ -131,3 +130,34 @@ def add_course_to_user(request, course_id):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
         
+def createassignment(request):
+    return render(request, 'add_assignment.html')  
+
+def add_assignment(request, course_id):
+    print(course_id)
+    course = Course.objects.get(course_code = course_id)
+    print(course)
+    if(request.method == 'POST'):
+        assignmentname = request.POST.get('assignmentname')
+        description = request.POST.get('description')
+        duedate = request.POST.get('duedate')
+        max_grade = request.POST.get('max_grade')
+        attachment = request.POST.get('attachment')
+        assignment = Assignment.objects.create(name = assignmentname, description = description, duedate = duedate, max_grade=max_grade, attachment = attachment, assignment_course = course)
+
+        assignment.save()
+
+    return render(request, 'add_assignment.html')
+
+def createsubmission(request):
+    return render(request, 'add_submission.html')
+
+def add_submission(request, course_id, name):
+    student = student_profile.objects.get(user = request.user)
+    assignment = Assignment.objects.get(name = name)
+    if(request.method == 'POST'):
+        work = request.POST.get('work')
+        submission = Submission.objects.create(student = student, assignment = assignment, work = work)
+        submission.save()
+
+    return render(request, 'add_submission.html')

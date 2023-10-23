@@ -36,4 +36,24 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+class Assignment(models.Model):
+    name = models.CharField(max_length=30)
+    description = models.TextField(null=True, blank=True)
+    duedate = models.DateTimeField()
+    max_grade = models.IntegerField()
+    attachment = models.URLField()
+    assignment_course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+    
+class Submission(models.Model):
+    student = models.ForeignKey(student_profile, on_delete=models.CASCADE)
+    graded = models.BooleanField(default=False)
+    grade = models.IntegerField(null=True)
+    work = models.URLField()
+    feedback = models.CharField(max_length=20, default="Assigned")
+    timestamp = models.DateTimeField(auto_now_add=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.assignment.assignment_course.course_code + ' ' + self.student.first_name + self.student.last_name
