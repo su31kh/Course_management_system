@@ -160,4 +160,9 @@ def add_submission(request, course_id, name):
         submission = Submission.objects.create(student = student, assignment = assignment, work = work)
         submission.save()
 
+    if(submission.timestamp <= assignment.duedate):
+        submission.feedback='Turned in'
+    else:
+        submission.feedback='Turned in late'
+    submission.save()
     return render(request, 'add_submission.html')

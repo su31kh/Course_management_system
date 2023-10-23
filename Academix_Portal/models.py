@@ -51,7 +51,7 @@ class Submission(models.Model):
     graded = models.BooleanField(default=False)
     grade = models.IntegerField(null=True)
     work = models.URLField()
-    feedback = models.CharField(max_length=20, default="Assigned")
+    feedback = models.CharField(max_length=20, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
