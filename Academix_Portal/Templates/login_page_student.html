@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Academix Portal</title>
 
-    <link rel="stylesheet" href="static/css/login_page_student.css">
+    <link rel="stylesheet" href="{% static 'css/login_page_student.css' %}">
 
     <link
       rel="stylesheet"
@@ -25,7 +25,7 @@
   <!-- for form container -->
   <div class="container">
     <h2 style="margin-top:5px">STUDENT LOGIN</h2>
-    <form action="/login/student" method="post">
+    <form action="/login/student" method="POST">
       {% csrf_token %}
       <div class="form-item">
         <span class="material-icons-outlined">

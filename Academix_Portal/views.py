@@ -11,27 +11,37 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
 def home(request):
     return render(request , 'land.html')
 
-def login(request, loginid):
+def login_func(request, loginid):
     if request.method == "POST":
-        username = request.POST['user']
-        passwrd = request.POST['pass']
-        user = authenticate(username=username, password=passwrd)
+        username = request.POST.get('user')
+        passwrd = request.POST.get('pass')
+        user = authenticate(request , username=username, password=passwrd)
         if user is None:
             messages.warning(request, "Please Enter the correct Credentials.")
-            return redirect('/studentlogin')
+            print("1")
+            return redirect('/login/student')
         if loginid == "faculty":
             context = {'user':user}
+            login(request, user)
+            print("2")
             return render(request, 'home.html', context)
+            # return redirect('/')
         elif loginid == "student":
             context = {'user':user}
+            print(user)
+            login(request, user)
+            print("3")
+            # return redirect('/')
             return render(request, 'home.html', context)
     else:
+        print("4")
         if loginid == "student":
             return render(request , 'login_page_student.html')
         else:
@@ -104,20 +114,20 @@ def addcourse(request):
 def add_course_to_user(request, course_id):
     try:
         current_user = request.user
-        course = get_object_or_404(Course, course_code=course_id)
-
+        print(current_user)
+        course = Course.objects.get(course_code = course_id)
+        print(course)
         if course.studentlist.filter(user = current_user).exists():
             return JsonResponse({'error': 'User is already enrolled in this course'}, status=400)
-
-        course.studentlist.add(current_user)
-        current_user.student_courses.add(course)
+        studentuser = student_profile.objects.get(user = current_user)
+        course.studentlist.add(studentuser)
+        studentuser.student_courses.add(course)
 
         course.save()
-        current_user.save()
+        studentuser.save()
 
         return JsonResponse({'message': 'User successfully enrolled in the course'})
 
     except Exception as e:
-        
         return JsonResponse({'error': str(e)}, status=500)
         
