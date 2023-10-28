@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Academix Portal</title>
 
-    <link rel="stylesheet" href="{% static 'css/login_page_admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login_page_student.css' %}">
 
     <link
       rel="stylesheet"
@@ -18,63 +18,57 @@
 
   </head>
   <body>
-    <!-- for background -->
-  <div class="background">
-  </div>
 
-  <!-- for form container -->
-  <div class="container">
-    <h2>ADMIN LOGIN</h2>
-    <form action="/login/faculty">
-
-      <div class="form-item">
-        <span class="material-icons-outlined">
-          Username
-        </span>
-        <input type="text" name="user" id="user" placeholder="Email or Username" required>
+    <div class="container">
+      <div class="card">
+        <h2>Admin Login Form</h2>
+        <form action = '/login/student' method = "POST">
+           {% csrf_token %}
+          <label for="user">Username</label>
+          <input name="user" type="text" id="user" placeholder="Enter your username">
+    
+          <label for="password">Password</label>
+          <input name="pass" type="password" id="pass" placeholder="Enter your password">
+    
+          <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
+        </form>
+        <div class="switch">Don't have an account? <a href="#" onclick="switchCard()">Register here</a></div>
       </div>
-      &nbsp;
-
-      <div class="form-item">
-        <span class="material-icons-outlined">
-          Password
-        </span>
-        <input type="password" name="pass" id="pass" placeholder="password" required>
+    
+      <div class="card" style="display: none;">
+        <h2>Admin Register Form</h2>
+        <form>
+          {% csrf_token %}
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" placeholder="Enter your full name">
+    
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
+    
+          <label for="new-password">New Password</label>
+          <input type="password" id="new-password" placeholder="Enter your new password">
+    
+          <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Register</button>
+        </form>
+        <div class="switch">Already have an account? <a href="#" onclick="switchCard()">Login here</a></div>
       </div>
-      &nbsp;
-
-      <button type="submit" onclick="login()">LOGIN</button>
-      &nbsp;
-
-      <div>
-        <p><a href="#">Forget Password</a></p>
-        <p><a href="#"> Create an Account</a></p>
-      </div>
-
-    </form>
-  </div>
+    </div>
   </body>
 
   <script>
-
-    function login(){
-		var uname = document.getElementById("user").value;
-		var pwd = document.getElementById("pass").value;
-		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		if(!filter.test(uname)){
-			alert("Please enter valid username!");
-            document.getElementById("user").innerHTML = uname;
-            document.getElementById("pass").innerHTML = pwd;
-		}
-		else if(pwd.length < 8){
-			alert("Minimum length of the password should be 8!");
-            document.getElementById("user").innerHTML = uname;
-            document.getElementById("pass").innerHTML = pwd;
-		}
-		else{
-	        alert('Redirecting you to your dashboard...');
-		}
-	}
-
+    function switchCard() {
+      const loginCard = document.querySelector('.container .card:nth-child(1)');
+      const registerCard = document.querySelector('.container .card:nth-child(2)');
+    
+      if (loginCard.style.display === 'none') {
+        loginCard.style.display = 'block';
+        registerCard.style.display = 'none';
+      } else {
+        loginCard.style.display = 'none';
+        registerCard.style.display = 'block';
+      }
+    }
+    
+    
   </script>
 </html>
