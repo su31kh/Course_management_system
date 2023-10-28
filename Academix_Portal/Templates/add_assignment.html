@@ -5,35 +5,53 @@
 
 <title>Academix Portal</title>
 
+<link rel="stylesheet" href="static/css/add_assignment.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <div>
+    <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
         <form action="mycourses/CT-304/addassignment" method="post">
             {% csrf_token %}
-            <label for="title">Assignment Name</label>
-            <input type="text" id="assignmentename" name="assignmentname">
-            <br>
+            <div class="container">
+                <form action="/action_page.php">
+                   <div class="form-group">
+                    <label for="name">Assignment Name :</label>
+                    <input type="text" class="form-control" name="name">
+                  </div>
 
-            <label for="title">Description</label>
-            <input type="text" id="description" name="description">
-            <br>
+                  <div class="form-group">
+                    <label for="dob">Description : </label>
+                    <textarea type="text" class="form-control" name="dob"></textarea>
+                  </div>
 
-            <label for="title">Due-Date</label>
-            <input type="datetime-local" id="duedate" name="duedate">
-            <br>
+                  <div class="form-group">
+                    <label for="title">Due-Date : </label>
+                    <input type="datetime-local" id="duedate" class="form-control" name="duedate">
+                  </div>
 
-            <label for="title">Max-Grade</label>
-            <input type="number" id="max_grade" name="max_grade">
-            <br>
+                  <div class="form-group">
+                    <label for="address">Max-Grade :</label>
+                    <input type="number" class="form-control" name="address">
+                  </div>   
 
-            <label for="title">File</label>
-            <input type="file" id="attachment" name="attachment">
-            <br>
-
-            
-            <input type="submit" value="Add">
+                  <div class="form-group">
+                    <label for="income">File :</label>
+                    <input type="file" class="form-control" name="income">
+                  </div>
+                
+                    <button type="submit" class="btn border" style="float:right">Add</button>
+                   </form>
+              </div> 
         </form>
     </div>
+
+
+    <script>
+        
+    </script>
 </body>
 </html>

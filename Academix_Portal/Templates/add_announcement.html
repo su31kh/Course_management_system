@@ -8,7 +8,7 @@
 
   <title>Academix Portal</title>
 
-  <link rel="stylesheet" href="static/css/announcementdetail.css">
+  <link rel="stylesheet" href="static/css/add_announcement.css">
   <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
 </head>
   
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -46,20 +46,28 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
-      </nav>
+      </nav> {% endcomment %}
 
-      <div>
-        <form type="submit" class="text-center ann">
+      <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
+        <form action="mycourses/CT-304/addassignment" method="post">
+            {% csrf_token %}
+            <div class="container">
+                <form action="/action_page.php">
+                   <div class="form-group">
+                    <label for="name">Announcement Name :</label>
+                    <input type="text" class="form-control" name="name">
+                  </div>
 
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" style="width:500px; height:4vh;"><br>
-        
-        <br>
-        <label>Description</label>
-        <textarea id="desc" name="desc" style="width:500px; height:4vh;"></textarea>
-
+                  <div class="form-group">
+                    <label for="dob">Description : </label>
+                    <textarea type="text" class="form-control" name="dob"></textarea>
+                  </div>
+                
+                    <button type="submit" class="btn border" style="float:right">Add</button>
+                   </form>
+              </div> 
         </form>
-      </div>
+    </div>
 
     </div>
 

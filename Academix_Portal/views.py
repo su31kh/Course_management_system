@@ -36,8 +36,8 @@ def assignments(request):
 def materials(request):
     return render(request , 'materials.html')
 
-def announcementdetail(request):
-    return render(request , 'announcementdetail.html')
+def addannouncement(request):
+    return render(request , 'add_announcement.html')
 
 def feedback(request):
     return render(request , 'feedback.html')
