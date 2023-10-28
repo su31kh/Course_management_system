@@ -18,6 +18,30 @@ from django.contrib import messages
 def home(request):
     return render(request , 'land.html')
 
+def admindashboard(request):
+    return render(request , 'admin_dashboard.html')
+
+def coursedashboard(request):
+    return render(request , 'course_dashboard_student.html')
+
+def actions(request):
+    return render(request , 'actions.html')
+
+def announcements(request):
+    return render(request , 'announcements.html')
+
+def assignments(request):
+    return render(request , 'assignments.html')
+
+def materials(request):
+    return render(request , 'materials.html')
+
+def announcementdetail(request):
+    return render(request , 'announcementdetail.html')
+
+def feedback(request):
+    return render(request , 'feedback.html')
+
 def login_func(request, loginid):
     if request.method == "POST":
         username = request.POST.get('user')
