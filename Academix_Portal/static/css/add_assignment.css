@@ -31,6 +31,7 @@ form {
   .pull-right {
     float:right;
   }
+  
   body {
     background: #0d0f0f;
     background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  

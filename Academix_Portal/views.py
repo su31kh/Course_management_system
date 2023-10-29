@@ -80,7 +80,7 @@ def reg_validate(request):
         request.session['email'] = email
         send_email_to_client(email, code)
         return redirect('/register')
-    return render(request, 'Verification_Reg.html')
+    return render(request, 'otp_ver.html')
 
 
 def register(request):

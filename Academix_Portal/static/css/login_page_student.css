@@ -2,6 +2,9 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: #0d0f0f;
+  background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
+  background: linear-gradient(to right, #363535, #777e7f);
 }
 
 .container {
@@ -13,7 +16,7 @@ body {
 
 .card {
   width: 300px;
-  background-color: #fff;
+  background-color: #ffffff59;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
