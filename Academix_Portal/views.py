@@ -129,7 +129,27 @@ def add_course_to_user(request, course_id):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
-        
+
+
+def coursedashboard(request):
+    course = Course.objects.all()
+    context = {
+        "courses":course,
+    }
+    return render(request , 'course_dashboard_student.html' , context)
+
+def mycourse(request):
+    current_user = request.user
+    student = student_profile.objects.get(user = current_user)
+    print(student)
+    myenroll = student.student_courses.all()
+    print((myenroll))
+    
+    context = {
+        'enrolled': myenroll,
+    }
+    return render(request , 'enrolledcourse.html' , context)
+
 def createassignment(request):
     return render(request, 'add_assignment.html')  
 

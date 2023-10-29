@@ -36,6 +36,7 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+    
 class Assignment(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(null=True, blank=True)
