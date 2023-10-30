@@ -1,17 +1,24 @@
 .whole {
     background: #0d0f0f;
-    background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
-    background: linear-gradient(to right, #363535, #777e7f);
+    background: -webkit-linear-gradient(to right, #ffffff, #ac70f5);  
+    background: linear-gradient(to right, #ffffff, #ffffff);
   }
 
 .backcolor{
-    background-color: #bfc4c5;
+    background-color: #bcbcbc;
   }
 
 .nav{
-    background-color: #868993;
+    background-color: #008adf;
 }
 
+a{
+  color: #ffffff;
+}
+
+.coursediv{
+  color: white;
+}
 .navbar-toggler {
     padding: .25rem .75rem;
     font-size: 1.25rem;

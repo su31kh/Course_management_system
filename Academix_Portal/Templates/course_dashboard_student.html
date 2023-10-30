@@ -8,16 +8,16 @@
 
     <title>Academix Portal</title>
 
-    <link rel="stylesheet" href="static/css/course_dashboard_student.css">
     <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/css/course_dashboard_student.css">
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg nav">
         <a class="navbar-brand" href="#">Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,15 @@
                     <a class="nav-link" href="#">Profile <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Courses<span class="sr-only">(current)</span></a>
+                    <div class="dropdown">
+                        <div class="btn dropdown-toggle" style="color: white ;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: #007bff">
+                          Courses
+                        </div>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="#">My Courses</a></li>
+                          <li><a class="dropdown-item" href="#">Other Courses</a></li>
+                        </ul>
+                      </div>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Progress<span class="sr-only">(current)</span></a>
@@ -43,24 +51,35 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input name="search" id="searchbar" onkeyup="search_courses()" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-    </nav>
+    </nav> 
 
-    <div class="container-fluid">
+    <div class="container-fluid whole">
         <div class="row mb-4">
-        {% for course in enrolled %}
+        {% for course in courses %}
         
-            <div class="col-sm-4" style="padding-top: 10px">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title"></h2>
-                        <h2 class="card-title">{{ course.name }}</h2>
-                        <p class="card-text">{{ request.user.get_full_name}}</p>
-                        <button onclick="enroll(id)" id="id1" class="btn btn-warning">Enroll</button>
-                        <button disabled class="btn btn-success">Open</button>
+            <div class="col-sm-3 " style="padding-top: 15px;">
+                <div class="card backcolor ">
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <h2 class="card-title" >{{ course.name }}</h2>
+
+                    </div>
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <h5 class="card-title">{{ course.course_code}}</h5>
+                    </div>
+
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <p>{{ course.faculty}}</p>
+                    </div>
+                    <!-- <div class="card-body">
+                        
+                    <p class="card-text">{{ course.faculty }}</p> 
+                    </div> -->
+                    <div class="row mx-auto" style="padding-top: 50px;">
+                        <button class='btn btn-info' style= "background-color: #008adf; " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
                     </div>
                 </div>
             </div>
@@ -92,6 +111,24 @@
                 };
 
                 button.addEventListener('click', disableButton);
+            }
+
+            function search_courses() { 
+                let input = document.getElementById('searchbar').value 
+                input=input.toLowerCase(); 
+
+                let cour = document.getElementsByClassName('card-title'); 
+      
+                for (i = 0; i < cour.length; i++) {  
+                    console.log(cour[i]);
+                    var par=cour[i].closest('.card');
+                    if (!cour[i].innerHTML.toLowerCase().includes(input)) { 
+                        par.style.display="none"; 
+                    }            
+                    else { 
+                        par.style.display="block";                  
+                    }    
+                } 
             }
         </script>
 </body>

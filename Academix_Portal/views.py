@@ -176,8 +176,14 @@ def add_course_to_user(request, course_id):
 
 def coursedashboard(request):
     course = Course.objects.all()
+    current_user = request.user
+    student = student_profile.objects.get(user = current_user)
+    myenroll = student.student_courses.all()
+
+    
+    final = course.difference(myenroll)
     context = {
-        "courses":course,
+        "courses":final,
     }
     return render(request , 'course_dashboard_student.html' , context)
 

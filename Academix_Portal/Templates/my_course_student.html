@@ -34,7 +34,7 @@
                 </li>
                 <li class="nav-item active">
                     <div class="dropdown">
-                        <div class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: #007bff">
+                        <div class="btn dropdown-toggle" style="color: white ;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: #007bff">
                           Courses
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -61,12 +61,25 @@
         <div class="row mb-4">
         {% for course in enrolled %}
         
-            <div class="col-sm-4" style="padding-top: 10px">
-                <div class="card backcolor">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ course.name }}</h2>
-                        <p class="card-text">{{ course.faculty }}</p>
-                        <button class='btn btn-info' onclick="window.location.href = '/mycourse/{{ course.course_code }}';">Open</button>
+            <div class="col-sm-3 " style="padding-top: 15px;">
+                <div class="card backcolor ">
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <h2 class="card-title" >{{ course.name }}</h2>
+
+                    </div>
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <h5 class="card-title">{{ course.course_code}}</h5>
+                    </div>
+
+                    <div class="row mb-4" style="text-align: center; padding: 5px;">
+                        <p>{{ course.faculty}}</p>
+                    </div>
+                    <!-- <div class="card-body">
+                        
+                    <p class="card-text">{{ course.faculty }}</p> 
+                    </div> -->
+                    <div class="row mx-auto" style="padding-top: 50px;">
+                        <button class='btn btn-info' style= "background-color: #008adf;" window.location.href = '/mycourse/{{ course.course_code }}';>View Course</button>    
                     </div>
                 </div>
             </div>
