@@ -22,34 +22,31 @@
   <div class="container">
     <div class="card" style="width:500px; height: 850px">
         <h2>Student Register Form</h2>
-        <form>
+        <form action="/otp_ver" method="POST">
           {% csrf_token %}
           <label for="first_name">First Name</label>
-          <input type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+          <input type="text" name="first_name" id="first_name" value="{{ first_name }}" readonly>
 
           <label for="middle_name">Middle Name</label>
-          <input type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
+          <input type="text" name="middle_name" id="middle_name" value="{{ middle_name }}" readonly>
 
           <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" id="last_name" placeholder="Enter your last name">
+          <input type="text" name="last_name" id="last_name" value="{{ last_name }}" readonly>
     
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email">
+          <input type="email" id="email" name="email" value="{{ email }}" readonly>
 
           <label for="batch">Batch</label>
-          <input type="number" name="batch" id="batch" placeholder="Enter your batch year">
+          <input type="number" name="batch" id="batch" value="{{ batch }}" readonly>
 
           <label for="branch">Branch</label>
-          <input type="text" name="branch" id="branch" placeholder="Enter your branch name">
+          <input type="text" name="branch" id="branch" value="{{ branch }}" readonly>
 
           <label for="program">Program</label>
-          <input type="text" name="program" id="program" placeholder="Enter your program name">
-    
-          <label for="pass1">New Password</label>
-          <input type="password" id="pass1" placeholder="Enter your new password">
+          <input type="text" name="program" id="program" value="{{ program }}" readonly>
 
           <label for="code">OTP</label>
-          <input type="number" name="code" id="code" placeholder="Enter the OTP sent to your mail">
+          <input type="number" name="ver_code" id="ver_code" placeholder="Enter the OTP sent to your mail">
     
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Register</button>
         </form>

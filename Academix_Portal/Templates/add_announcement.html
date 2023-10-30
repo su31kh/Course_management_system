@@ -15,61 +15,60 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 </head>
-  
+
 <body>
-    {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="announcements">Announcements<span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="materials">Material <span class="sr-only"></span></a>
-              </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="assignments">Assignments<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="feedback">Feedback<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Students List<span class="sr-only"></span></a>
-              </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+  {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="announcements">Announcements<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="materials">Material <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="assignments">Assignments<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="feedback">Feedback<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Students List<span class="sr-only"></span></a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav> {% endcomment %}
+
+  <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
+    <div class="container">
+      <form action="/addannouncement/{{ course.course_code }}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Announcement Name :</label>
+          <input type="text" class="form-control" name="title">
         </div>
-      </nav> {% endcomment %}
 
-      <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="mycourses/CT-304/addassignment" method="post">
-            {% csrf_token %}
-            <div class="container">
-                <form action="/action_page.php">
-                   <div class="form-group">
-                    <label for="name">Announcement Name :</label>
-                    <input type="text" class="form-control" name="name">
-                  </div>
+        <div class="form-group">
+          <label for="dob">Description : </label>
+          <textarea type="text" class="form-control" name="desc"></textarea>
+        </div>
 
-                  <div class="form-group">
-                    <label for="dob">Description : </label>
-                    <textarea type="text" class="form-control" name="dob"></textarea>
-                  </div>
-                
-                    <button type="submit" class="btn border" style="float:right">Add</button>
-                   </form>
-              </div> 
-        </form>
+        <button type="submit" class="btn border" style="float:right">Add</button>
+      </form>
     </div>
+  </div>
 
-    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
