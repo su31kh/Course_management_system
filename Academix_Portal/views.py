@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
 from .models import faculty_profile
-from .models import Course, Assignment, Submission
+from .models import Course, Assignment, Submission, Announcements
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
@@ -27,7 +27,7 @@ def coursedashboard(request):
 def actions(request):
     return render(request , 'actions.html')
 
-def announcements(request):
+def announcements(request , course_id):
     return render(request , 'announcements.html')
 
 def assignments(request):
@@ -72,27 +72,9 @@ def login_func(request, loginid):
             return render(request , 'login_page_admin.html')
         
 
-def reg_validate(request):
+def register(request):
     if request.method == "POST":
         email = request.POST['email']
-        code = random.randint(1000,9999)
-        request.session['code'] = code
-        request.session['email'] = email
-        send_email_to_client(email, code)
-        return redirect('/register')
-    return render(request, 'otp_ver.html')
-
-
-def register(request):
-
-    if request.method == "GET":
-        return render(request, 'register.html')
-
-    if request.method == "POST":
-        email = request.session.get('email', None)
-        code = request.session.get('code', None)
-        code = str(code)
-        username = request.POST.get('username')
         password = request.POST.get('pass1')
         first_name = request.POST.get('first_name')
         middle_name = request.POST.get('middle_name')
@@ -100,25 +82,42 @@ def register(request):
         batch = request.POST.get('batch')
         branch = request.POST.get('branch')
         program = request.POST.get('program')
+        code = random.randint(1000,9999)
+        request.session['code'] = code
+        send_email_to_client(email, code)
+        dict = {'email':email,'password':password,'first_name':first_name,'middle_name':middle_name,'last_name':last_name,'batch':batch,'branch':branch,'program':program }
+        return render(request,'otp_ver.html',dict)
+    else:
+        return redirect('/')
+
+def verifyRegistration(request):
+    if request.method == "POST":
+        code = request.session.get('code', None)
+        email = request.POST['email']
+        password = request.POST.get('pass1')
+        first_name = request.POST.get('first_name')
+        middle_name = request.POST.get('middle_name')
+        last_name = request.POST.get('last_name')
+        batch = request.POST.get('batch')
+        branch = request.POST.get('branch')
+        program = request.POST.get('program')
+        code = str(code)
         ver_code = request.POST.get('ver_code')
-
-        if User.objects.filter(email=email).first is not None:
+        if User.objects.filter(email=email).exists():
             messages.warning(request, "Enter correct Email")
             return redirect('/register')
-        if User.objects.filter(username=username).first is not None:
-            messages.warning(request, "Enter correct Email")
-            return redirect('/register')
-
         if code == ver_code:
-            user = User.objects.create_user(username=username, email=email, password=password)
+            user = User.objects.create_user(username=email, email=email, password=password)
             my_profile = student_profile.objects.create(user=user, first_name=first_name, middle_name=middle_name, last_name=last_name, batch=batch, branch=branch, program=program)
             my_profile.save()
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=email, password=password)
             login(request,user)
+            return render(request,'home.html')
         else:
+            messages.error("PLEASE ENTER CORRECT OTP")
             return render(request,'register.html')
-        return render(request,'home.html')
-
+    else:
+        return redirect('/')
 
 def addcourse(request):
 

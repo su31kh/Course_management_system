@@ -58,3 +58,10 @@ class Submission(models.Model):
 
     def __str__(self):
         return self.assignment.assignment_course.course_code + ' ' + self.student.first_name + self.student.last_name
+    
+class Announcements(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=20, null=False)
+    description = models.CharField(max_length=100, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)

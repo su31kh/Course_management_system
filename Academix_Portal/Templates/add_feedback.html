@@ -51,15 +51,20 @@
 
   <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
     <div class="container">
-      <form action="/addannouncement/{{ course.course_code }}" method="post">
+      <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
-          <label for="name">Announcement Name :</label>
+          <label for="name">Professor Name :</label>
           <input type="text" class="form-control" name="title">
         </div>
 
         <div class="form-group">
-          <label for="dob">Description : </label>
+            <label for="name">Course Name :</label>
+            <input type="text" class="form-control" name="title">
+          </div>
+
+        <div class="form-group">
+          <label for="dob">Feedback Description : </label>
           <textarea type="text" class="form-control" name="desc"></textarea>
         </div>
 
