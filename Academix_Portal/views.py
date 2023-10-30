@@ -24,9 +24,6 @@ def admindashboard(request):
 def actions_student(request):
     return render(request , 'actions_student.html')
 
-def coursedashboard(request):
-    return render(request , 'course_dashboard_student.html')
-
 def actions(request):
     return render(request , 'actions.html')
 
@@ -173,7 +170,7 @@ def coursedashboard(request):
     }
     return render(request , 'course_dashboard_student.html' , context)
 
-def mycourse(request):
+def mycourses(request):
     current_user = request.user
     student = student_profile.objects.get(user = current_user)
     print(student)
@@ -183,7 +180,7 @@ def mycourse(request):
     context = {
         'enrolled': myenroll,
     }
-    return render(request , 'enrolledcourse.html' , context)
+    return render(request , 'my_course_student.html' , context)
 
 def createassignment(request):
     return render(request, 'add_assignment.html')  
