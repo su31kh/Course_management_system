@@ -58,9 +58,9 @@
                     <div class="card-body">
                         <h2 class="card-title"></h2>
                         <h2 class="card-title">{{ course.name }}</h2>
-                        <p class="card-text">[Professor Name]</p>
-                        <button onclick="enroll(id)" id="id1" class="btn btn-warning">Enroll</button>
-                        <button disabled class="btn btn-success">Open</button>
+                        <p class="card-text">{{ course.faculty }}</p>
+                        <a class="btn btn-primary" href="/enroll/{{ course.course_code}}">enroll</a> 
+                        <a class="btn btn-primary" href="/announcements/{{ course.course_code }}">open</a> 
                     </div>
                 </div>
             </div>

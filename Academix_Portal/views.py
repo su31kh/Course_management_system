@@ -27,7 +27,7 @@ def coursedashboard(request):
 def actions(request):
     return render(request , 'actions.html')
 
-def announcements(request):
+def announcements(request , course_id):
     return render(request , 'announcements.html')
 
 def assignments(request):

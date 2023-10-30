@@ -4,7 +4,7 @@ body {
   padding: 0;
   background: #0d0f0f;
   background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
-  background: linear-gradient(to right, #363535, #777e7f);
+  background: linear-gradient(to right, #f9f8f8, #777e7f);
 }
 
 .container {
