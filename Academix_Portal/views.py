@@ -27,26 +27,35 @@ def actions_student(request):
 def actions(request):
     return render(request , 'actions.html')
 
-def announcements(request , course_id):
-    return render(request , 'announcements.html')
-
-def assignments(request):
-    return render(request , 'assignments.html')
-
-def view_assignments(request):
-    return render(request , 'view_assignments.html')
-
 def materials(request):
     return render(request , 'materials.html')
 
 def addmaterial(request):
     return render(request , 'add_material.html')
 
-def addannouncement(request):
-    return render(request , 'add_announcement.html')
+def announcements(request , course_id):
+    course = Course.objects.get(course_code=course_id)
+    announce = Announcements.objects.filter(course=course)
+    context = {
+        "course":course,
+        "announce":announce
+    }
+    return render(request , 'announcements.html', context)
 
-def view_announcements(request):
-    return render(request , 'view_announcements.html')
+def addannouncement(request,course_id):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        desc = request.POST.get('desc')
+        course = Course.objects.get(course_code=course_id)
+        my_announce = Announcements.objects.create(title=title, description=desc, course=course, user=request.user)
+        my_announce.save()
+        return redirect('/mycourse/'+course_id)
+    else:
+        course = Course.objects.get(course_code=course_id)
+        context = {
+            "course":course
+        }
+        return render(request , 'add_announcement.html', context)
 
 def feedback(request):
     return render(request , 'feedback.html')
@@ -80,7 +89,6 @@ def login_func(request, loginid):
         else:
             return render(request , 'login_page_admin.html')
         
-
 def register(request):
     if request.method == "POST":
         email = request.POST['email']
@@ -141,7 +149,6 @@ def addcourse(request):
 
     return render(request , 'addcourse.html')
 
-
 def student_list(request , course_id):
     current_course = Course.objects.get(course_code = course_id)
     students = current_course.studentlist.all()
@@ -151,7 +158,6 @@ def student_list(request , course_id):
     }
 
     return render(request , 'student_list.html' , context)
-
 
 def add_course_to_user(request, course_id):
     try:
@@ -173,7 +179,6 @@ def add_course_to_user(request, course_id):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-
 def coursedashboard(request):
     course = Course.objects.all()
     context = {
@@ -193,15 +198,18 @@ def mycourses(request):
     }
     return render(request , 'my_course_student.html' , context)
 
-def createassignment(request):
-    return render(request, 'add_assignment.html')  
+def createassignment(request, course_id):
+    params = {
+        "courseid":course_id
+    }
+    return render(request, 'add_assignment.html', params)
 
 def add_assignment(request, course_id):
     print(course_id)
     course = Course.objects.get(course_code = course_id)
     print(course)
     if(request.method == 'POST'):
-        assignmentname = request.POST.get('assignmentname')
+        assignmentname = request.POST.get('name')
         description = request.POST.get('description')
         duedate = request.POST.get('duedate')
         max_grade = request.POST.get('max_grade')
@@ -210,7 +218,16 @@ def add_assignment(request, course_id):
 
         assignment.save()
 
-    return render(request, 'add_assignment.html')
+    return redirect('/mycourse/'+course_id+'/viewassignments')
+
+def view_assignments(request,course_id):
+    course = Course.objects.get(course_code=course_id)
+    assign = Assignment.objects.filter(assignment_course=course)
+    param = {
+        'course':course,
+        'assign':assign
+    }
+    return render(request , 'view_assignments.html', param)
 
 def createsubmission(request):
     return render(request, 'add_submission.html')

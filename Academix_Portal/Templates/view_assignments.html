@@ -48,25 +48,25 @@
             </form>
         </div>
     </nav>
-
+    <button><a href="/mycourse/{{ course.course_code }}/createassignment">Create Assignment</a></button>
     <div class="container-fluid">
         <div class="row mb-4">
-        {% for assignment in assignments %}
+        {% for x in assign %}
         
             <div class="col-sm-4" style="padding-top: 10px">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-text">[Professor Name]</h3>
-                        <h3 class="card-text">[Assignment Name]</h3>
-                        <h5 class="card-text">[Assignment Description]</h5>
-                        <h5 class="card-text">[Assignment Due Date]</h5>
-                        <h5 class="card-text">[Assignment Max Grade]</h5>
+                        <h3 class="card-text">{{ course.faculty }}</h3>
+                        <h3 class="card-text">{{ x.name }}</h3>
+                        <h5 class="card-text">{{ x.description }}</h5>
+                        <h5 class="card-text">{{ x.duedate }}</h5>
+                        <h5 class="card-text">{{ x.max_grade }}</h5>
+                        <p>{{ x.attachment }}</p>
                         <form action="">
                             <label for="file">File:</label>
                             <input type="file" id="file" name="file"> 
                             <button type="submit" class="btn border" style="float:right">Submit</button>  
                         </form>
-                        <h5></h5>
                     </div>
                 </div>
             </div>

@@ -14,37 +14,35 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="mycourses/CT-304/addassignment" method="post">
+        <form action="/mycourse/{{courseid}}/addassignment" method="post">
             {% csrf_token %}
             <div class="container">
-                <form action="/action_page.php">
                    <div class="form-group">
                     <label for="name">Assignment Name :</label>
                     <input type="text" class="form-control" name="name">
                   </div>
 
                   <div class="form-group">
-                    <label for="dob">Description : </label>
-                    <textarea type="text" class="form-control" name="dob"></textarea>
+                    <label for="description">Description : </label>
+                    <textarea type="text" class="form-control" name="description"></textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="title">Due-Date : </label>
+                    <label for="duedate">Due-Date : </label>
                     <input type="datetime-local" id="duedate" class="form-control" name="duedate">
                   </div>
 
                   <div class="form-group">
-                    <label for="address">Max-Grade :</label>
-                    <input type="number" class="form-control" name="address">
+                    <label for="max_grade">Max-Grade :</label>
+                    <input type="number" class="form-control" name="max_grade">
                   </div>   
 
                   <div class="form-group">
-                    <label for="income">File :</label>
-                    <input type="file" class="form-control" name="income">
+                    <label for="attachment">File URL :</label>
+                    <input type="url" class="form-control" name="attachment">
                   </div>
                 
                     <button type="submit" class="btn border" style="float:right">Add</button>
-                   </form>
               </div> 
         </form>
     </div>
