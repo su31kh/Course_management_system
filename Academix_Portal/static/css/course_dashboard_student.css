@@ -1,0 +1,22 @@
+.whole {
+    background: #0d0f0f;
+    background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
+    background: linear-gradient(to right, #363535, #777e7f);
+  }
+
+.backcolor{
+    background-color: #bfc4c5;
+  }
+
+.nav{
+    background-color: #868993;
+}
+
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: #8e990d;
+    border: 1px solid #000000;
+    border-radius: .25rem;
+}

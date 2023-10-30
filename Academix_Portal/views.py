@@ -21,6 +21,9 @@ def home(request):
 def admindashboard(request):
     return render(request , 'admin_dashboard.html')
 
+def actions_student(request):
+    return render(request , 'actions_student.html')
+
 def coursedashboard(request):
     return render(request , 'course_dashboard_student.html')
 
@@ -33,11 +36,20 @@ def announcements(request , course_id):
 def assignments(request):
     return render(request , 'assignments.html')
 
+def view_assignments(request):
+    return render(request , 'view_assignments.html')
+
 def materials(request):
     return render(request , 'materials.html')
 
+def addmaterial(request):
+    return render(request , 'add_material.html')
+
 def addannouncement(request):
     return render(request , 'add_announcement.html')
+
+def view_announcements(request):
+    return render(request , 'view_announcements.html')
 
 def feedback(request):
     return render(request , 'feedback.html')
