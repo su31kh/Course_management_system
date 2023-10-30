@@ -43,7 +43,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input name="search" id="searchbar" onkeyup="search_courses()" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -51,15 +51,15 @@
 
     <div class="container-fluid">
         <div class="row mb-4">
-        {% for course in courses %}
+        {% for announcement in announcements %}
         
             <div class="col-sm-4" style="padding-top: 10px">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">{{ course.name }}</h2>
-                        <p class="card-text">{{ course.faculty }}</p>
-                        <button class='btn btn-success' onclick="window.location.href = '/enroll/{{ course.course_code}}';">Enroll</button>
-                        <button class='btn btn-info' onclick="window.location.href = '/announcements/{{ course.course_code }}';">Open</button>
+                        <h3 class="card-text">[Professor Name]</h3>
+                        <h3 class="card-text">[Announcement name]</h3>
+                        <h6 class="card-text">[Announcement description]
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -81,36 +81,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
         <script>
-            function enroll(id) {
-                document.getElementById(id).innerHTML = "Enrolled";
-
-                const button = document.querySelector(id);
-
-                const disableButton = () => {
-                    button.disabled = true;
-                };
-
-                button.addEventListener('click', disableButton);
-            }
-
-            function search_courses() { 
-                let input = document.getElementById('searchbar').value 
-                input=input.toLowerCase(); 
-
-                let cour = document.getElementsByClassName('card-title'); 
-      
-                for (i = 0; i < cour.length; i++) {  
-                    console.log(cour[i]);
-                    var par=cour[i].closest('.card');
-                    if (!cour[i].innerHTML.toLowerCase().includes(input)) { 
-                        par.style.display="none"; 
-                    }            
-                    else { 
-                        par.style.display="block";                  
-                    }    
-                } 
-            }
         </script>
 </body>
 
 </html>
+
+
+
+
+
