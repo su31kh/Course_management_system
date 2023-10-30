@@ -142,6 +142,17 @@ def addcourse(request):
     return render(request , 'addcourse.html')
 
 
+def student_list(request , course_id):
+    current_course = Course.objects.get(course_code = course_id)
+    students = current_course.studentlist.all()
+
+    context = {
+        "students":students
+    }
+
+    return render(request , 'student_list.html' , context)
+
+
 def add_course_to_user(request, course_id):
     try:
         current_user = request.user
