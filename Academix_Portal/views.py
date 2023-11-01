@@ -229,14 +229,17 @@ def add_assignment(request, course_id):
 def view_assignments(request,course_id):
     course = Course.objects.get(course_code=course_id)
     assign = Assignment.objects.filter(assignment_course=course)
+    student_prof = student_profile.objects.get(user=request.user)
+    submit=[]
+    for x in assign:
+        y = Submission.objects.filter(student=student_prof).filter(assignment=x)
+        submit.append(y)
+    merged = tuple(zip(assign, submit))
     param = {
         'course':course,
-        'assign':assign
+        'merged':merged
     }
     return render(request , 'view_assignments.html', param)
-
-def createsubmission(request):
-    return render(request, 'add_submission.html')
 
 def add_submission(request, course_id, name):
     student = student_profile.objects.get(user = request.user)
@@ -251,4 +254,6 @@ def add_submission(request, course_id, name):
     else:
         submission.feedback='Turned in late'
     submission.save()
-    return render(request, 'add_submission.html')
+
+
+    return redirect('/mycourse/'+course_id+'/viewassignments')

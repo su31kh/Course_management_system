@@ -51,8 +51,7 @@
     <button><a href="/mycourse/{{ course.course_code }}/createassignment">Create Assignment</a></button>
     <div class="container-fluid">
         <div class="row mb-4">
-        {% for x in assign %}
-        
+        {% for x,y in merged %}
             <div class="col-sm-4" style="padding-top: 10px">
                 <div class="card">
                     <div class="card-body">
@@ -62,15 +61,19 @@
                         <h5 class="card-text">{{ x.duedate }}</h5>
                         <h5 class="card-text">{{ x.max_grade }}</h5>
                         <p>{{ x.attachment }}</p>
-                        <form action="">
-                            <label for="file">File:</label>
-                            <input type="file" id="file" name="file"> 
+                        {% if not y %}
+                        <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
+                            {% csrf_token %}
+                            <label for="work">File:</label>
+                            <input type="url" id="work" name="work"> 
                             <button type="submit" class="btn border" style="float:right">Submit</button>  
                         </form>
+                        {% else %}
+                        <p>you have submitted your work</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        
         {% endfor %}
     </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

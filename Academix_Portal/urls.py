@@ -19,6 +19,8 @@ urlpatterns = [
     path('mycourse/<str:course_id>/addassignment', views.add_assignment, name="add_assignment"),
     path('mycourse/<str:course_id>/viewassignments', views.view_assignments, name="view_assignments"),
 
+    path('mycourses/<str:course_id>/<str:name>/addsubmission', views.add_submission, name="add_submission"),
+
     path('materials', views.materials, name="materials"),
     path('addmaterial', views.addmaterial, name="addmaterial"),
     path('feedback', views.feedback, name="feedback"),
@@ -28,14 +30,6 @@ urlpatterns = [
     path('addcourses' , views.addcourse , name = "Add_course"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
-    path('createsubmission', views.createsubmission, name="createsubmission"),
-<<<<<<< HEAD
-    path('studentlist/<str:course_id>',views.student_list , name= "student_list"),
-    path('coursedashboard' , views.coursedashboard , name="coursedashboard")
-    # path('mycourses/<str:course_id>/addassignment' , views.add_assignment , name="add_assignment"),
-=======
     path('studentlist/<str:course_id>',views.student_list , name= "student_list")
->>>>>>> 53d1710cedde9972d2cb78d1f5ece20ced9ec5ef
-    # path('mycourses/<str:course_id>/<str:name>/add_submission', views.add_submission, name="add_submission"),
-    # path('mycourse' , views.mycourse , name = "mycourse")
+
 ]
