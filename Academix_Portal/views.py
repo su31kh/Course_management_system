@@ -41,7 +41,7 @@ def addmaterial(request,course_id):
         course = Course.objects.get(course_code=course_id)
         title = request.POST.get('title')
         desc = request.POST.get('description')
-        file = request.FILES.get('file')
+        file = request.POST.get('file')
         material_files = Material.objects.create(title=title,description=desc, course=course, material_file=file)
         material_files.save()
         return redirect('/mycourse/'+course_id+"/materials")
