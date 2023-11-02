@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
 from .models import faculty_profile
-from .models import Course, Assignment, Submission, Announcements
+from .models import Course, Assignment, Submission, Announcements, Material
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
@@ -27,11 +27,30 @@ def actions_student(request):
 def actions(request):
     return render(request , 'actions.html')
 
-def materials(request):
-    return render(request , 'materials.html')
+def materials(request,course_id):
+    course = Course.objects.get(course_code=course_id)
+    material = Material.objects.filter(course=course)
+    context = {
+        'material':material,
+        'course':course
+    }
+    return render(request , 'materials.html', context)
 
-def addmaterial(request):
-    return render(request , 'add_material.html')
+def addmaterial(request,course_id):
+    if request.method == "POST":
+        course = Course.objects.get(course_code=course_id)
+        title = request.POST.get('title')
+        desc = request.POST.get('description')
+        file = request.FILES.get('file')
+        material_files = Material.objects.create(title=title,description=desc, course=course, material_file=file)
+        material_files.save()
+        return redirect('/mycourse/'+course_id+"/materials")
+    else:
+        course = Course.objects.get(course_code=course_id)
+        context = {
+            'course':course
+        }
+        return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
     course = Course.objects.get(course_code=course_id)

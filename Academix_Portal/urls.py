@@ -21,8 +21,9 @@ urlpatterns = [
 
     path('mycourses/<str:course_id>/<str:name>/addsubmission', views.add_submission, name="add_submission"),
 
-    path('materials', views.materials, name="materials"),
-    path('addmaterial', views.addmaterial, name="addmaterial"),
+    path('mycourse/<str:course_id>/materials', views.materials, name="materials"),
+    path('mycourse/<str:course_id>/addmaterial', views.addmaterial, name="addmaterial"),
+    
     path('feedback', views.feedback, name="feedback"),
     path('actions', views.actions, name="actions"),
     path('actions_student', views.actions_student, name="actions_student"),
