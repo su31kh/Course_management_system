@@ -8,12 +8,11 @@
 
   <title>Academix Portal</title>
 
-  
-   <link rel="stylesheet" href="{% static 'css/stylish.css' %}">  
-  
+  <link rel="stylesheet" href="static/css/announcements.css">
+  <link rel="stylesheet" href="static/css/course_dashboard_student.css">
+  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/announcements.css">
 
 </head>
   
@@ -53,6 +52,7 @@
 
 
       <div class="container-fluid m-2 align-items-center">
+      <div class="container-fluid">
         <a href="/mycourse/{{ course.course_code }}/addannouncement"><button>Add Announcements</button></a>
     </div>
 
