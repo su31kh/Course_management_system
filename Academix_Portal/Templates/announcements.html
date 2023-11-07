@@ -8,60 +8,66 @@
 
   <title>Academix Portal</title>
 
-  <link rel="stylesheet" href="static/css/course_dashboard_student.css">
-  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
-
+  
+   <link rel="stylesheet" href="{% static 'css/stylish.css' %}">  
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/announcements.css">
 
 </head>
   
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+  <nav class="navbar navbar-expand-lg nav">
+    <a class="navbar-brand" href="#">USER NAME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Announcements<span class="sr-only"></span></a>
+                <a class="nav-link" href="#">Add course<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ course.course_code }}/materials">Material<span class="sr-only"></span></a>
-              </li>
+                <a class="nav-link" href="#">Announcements <span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ course.course_code }}/viewassignments">Assignments<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="feedback">Feedback<span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Students List<span class="sr-only"></span></a>
-              </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <a class="nav-link" href="#">Materials <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Assignments <span class="sr-only">(current)</span></a>
+        </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Student List <span class="sr-only">(current)</span></a>
+    </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input name="search" id="searchbar" onkeyup="search_courses()" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+        </form>
+    </div>
+</nav> 
+</div>
 
-    
-      <div class="container-fluid">
+
+      <div class="container-fluid m-2 align-items-center">
         <a href="/mycourse/{{ course.course_code }}/addannouncement"><button>Add Announcements</button></a>
     </div>
+
+    <div class="container-fluid">
     {% for x in announce %}
-        <div style="border:solid; border-radius:2px;">
-          <p>{{ x.title }}</p>
-          <p>{{ x.description }}</p>
-          <p>{{ x.user.email }}</p>
-          <br>
+        <div class="m-3 p-2"style="border:solid 1px; border-radius: 8px; background-color: #a3a3a3">
+          <p><b>Title :</b> {{ x.title }}</p>
+          <p><b>Description</b> : {{ x.description }}</p>
+          <p><b>User:</b> {{ x.user.email }}</p>
         </div>
       {% endfor %}
+      </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

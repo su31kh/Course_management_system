@@ -8,7 +8,7 @@
 
     <title>Academix Portal</title>
 
-    <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -39,7 +39,7 @@
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="#">My Courses</a></li>
-                          <li><a class="dropdown-item" href="other">Other Courses</a></li>
+                          <li><a class="dropdown-item" href="#">Other Courses</a></li>
                         </ul>
                       </div>
                 </li>
@@ -72,7 +72,7 @@
                         <p>{{ course.faculty}}</p>
                     </div>
                     <div class="row mx-auto" style="padding-top: 50px;">
-                        <a href = "actions"><button class='btn btn-info' style= "background-color: #008adf;" window.location.href = '/mycourse/{{ course.course_code }}'>View Course</button></a>  
+                        <button class='btn btn-info' style= "background-color: #008adf;" window.location.href = '/mycourse/{{ course.course_code }}'>View Course</button>    
                     </div>
                 </div>
             </div>
