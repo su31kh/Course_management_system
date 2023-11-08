@@ -1,0 +1,8 @@
+.whole{
+    background-image: url("/static/images/img_01.jpg");
+    background-size: cover;
+}
+
+.card{
+    opacity: 0.75;
+}

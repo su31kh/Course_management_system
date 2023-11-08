@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 import requests
 import random
 from .utils import send_email_to_client
@@ -166,6 +166,7 @@ def verifyRegistration(request):
         return redirect('/')
 
 def addcourse(request):
+
     if(request.method == 'POST'):
         course_name = request.POST.get('coursename')
         courseid = request.POST.get('courseid')
@@ -176,17 +177,6 @@ def addcourse(request):
         my_course.save()
 
     return render(request , 'addcourse.html')
-
-def edit_course(request, courseid):
-    if(request.method == 'POST'):
-        editcourse = Course.objects.get(course_code = courseid)
-        editcourse.name = request.POST.get('coursename')
-        editcourse.course_code = request.POST.get('courseid')
-        editcourse.description = request.POST.get('description')
-        editcourse.faculty = request.POST.get('faculty')
-        editcourse.save()
-
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def student_list(request , course_id):
     current_course = Course.objects.get(course_code = course_id)
@@ -271,11 +261,7 @@ def add_assignment(request, course_id):
     user = request.user
     prof = faculty_profile.objects.filter(user=user)
     if prof is None:
-<<<<<<< HEAD:Code/Academix_Portal/views.py
-        messages.error(request,"You cannot post an announcement")
-=======
         messages.error(request,"YOu cannot post an announcement")
->>>>>>> 804d85d1d89fad1e2030bcf05f9d3ec383d62214:Academix_Portal/views.py
     else:
         course = Course.objects.get(course_code = course_id)
         if(request.method == 'POST'):
@@ -305,20 +291,6 @@ def view_assignments(request,course_id):
     }
     return render(request , 'view_assignments.html', param)
 
-def edit_assignment(request, course_id):
-    if request.method == 'POST':
-        editassignment = Assignment.objects.get()
-        editassignment.name = request.POST.get('name')
-        editassignment.description = request.POST.get('description')
-        editassignment.duedate = request.POST.get('duedate')
-        editassignment.max_grade = request.POST.get('max_grade')
-        editassignment.attachment = request.POST.get('attachment')
-        editassignment.save()
-
-    return redirect('/mycourse/'+course_id+'/viewassignments')
-        
-
-
 def add_submission(request, course_id, name):
     student = student_profile.objects.get(user = request.user)
     assignment = Assignment.objects.get(name = name)
@@ -336,17 +308,6 @@ def add_submission(request, course_id, name):
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
-<<<<<<< HEAD:Code/Academix_Portal/views.py
-def edit_submission(request, course_id, name):
-    if(request.method == 'POST'):
-        editsubmission = Submission.objects.get()
-        editsubmission.work = request.POST.get('work')
-        editsubmission.save()
-
-    return redirect('/mycourse/'+course_id+'/viewassignments')
-
-=======
->>>>>>> 804d85d1d89fad1e2030bcf05f9d3ec383d62214:Academix_Portal/views.py
 def log_out(request):
     logout(request)
     return redirect('/')

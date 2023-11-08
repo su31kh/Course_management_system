@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academix Portal</title>
+
+    <link rel="stylesheet" href="{% static 'css/login_page_student.css' %}">
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="card">
+        <h2>Student Login</h2>
+        <form action = '/login/student' method = "POST">
+           {% csrf_token %}
+          <label for="user">Username</label>
+          <input name="user" type="text" id="user" placeholder="Enter your username">
+    
+          <label for="password">Password</label>
+          <input name="pass" type="password" id="pass" placeholder="Enter your password">
+    
+          <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
+        </form>
+        <div class="switch">Don't have an account? <a href="#" onclick="switchCard()">Register here</a></div>
+      </div>
+    
+      <div class="card" style="display: none; width:500px; height: 800px">
+        <h2>Student Register Form</h2>
+        <form action="/register" method="POST">
+          {% csrf_token %}
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+
+          <label for="middle_name">Middle Name</label>
+          <input type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
+
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" id="last_name" placeholder="Enter your last name">
+    
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email">
+
+          <label for="batch">Batch</label>
+          <input type="number" name="batch" id="batch" placeholder="Enter your batch year">
+
+          <label for="branch">Branch</label>
+          <input type="text" name="branch" id="branch" placeholder="Enter your branch name">
+
+          <label for="program">Program</label>
+          <input type="text" name="program" id="program" placeholder="Enter your program name">
+    
+          <label for="pass1">Confirm Password</label>
+          <input type="password" name="pass1" id="pass1" placeholder="Enter your new password">
+    
+          <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Register</button>
+        </form>
+        <div class="switch">Already have an account? <a href="#" onclick="switchCard()">Login here</a></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function switchCard() {
+      const loginCard = document.querySelector('.container .card:nth-child(1)');
+      const registerCard = document.querySelector('.container .card:nth-child(2)');
+    
+      if (loginCard.style.display === 'none') {
+        loginCard.style.display = 'block';
+        registerCard.style.display = 'none';
+      } else {
+        loginCard.style.display = 'none';
+        registerCard.style.display = 'block';
+      }
+    }
+    
+    
+  </script>
+</html>

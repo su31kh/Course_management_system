@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Academix Portal</title>
+
+</head>
+
+<body>
+    <div>
+        <form action="mycourses/CT-304/assignment2/add_submission" method="post">
+            {% csrf_token %}
+            <input type="url" id="work" name="work">
+            <br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</body>
+</html>
