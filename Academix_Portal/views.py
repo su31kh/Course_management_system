@@ -186,6 +186,25 @@ def student_list(request , course_id):
 
     return render(request , 'student_list.html' , context)
 
+def students_assignment(request , course_id , student):
+
+    course = Course.objects.get(course_code=course_id)
+    assign = Assignment.objects.filter(assignment_course=course).all()
+
+    thisstudent = student_profile.objects.get(first_name = student)
+    print(thisstudent)
+    
+    submitlist = []
+    for a in assign :
+        if(Submission.objects.filter(assignment = a , student = thisstudent).exists()):
+            submitlist.append(Submission.objects.get(assignment = a , student = thisstudent))
+    
+
+    context = {
+        "submission":submitlist
+    }
+    return render(request , 'students_assignment.html' , context)
+
 def add_course_to_user(request, course_id):
     try:
         current_user = request.user

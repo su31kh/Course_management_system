@@ -50,28 +50,9 @@
     </nav>
     <div class="container-fluid">
         <div class="row mb-4">
-        {% for x,y in merged %}
+        {% for x in submission %}
             <div class="col-sm-4" style="padding-top: 10px">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-text">{{ course.faculty }}</h3>
-                        <h3 class="card-text">{{ x.name }}</h3>
-                        <h5 class="card-text">{{ x.description }}</h5>
-                        <h5 class="card-text">{{ x.duedate }}</h5>
-                        <h5 class="card-text">{{ x.max_grade }}</h5>
-                        <p>{{ x.attachment }}</p>
-                        {% if not y %}
-                        <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
-                            {% csrf_token %}
-                            <label for="work">File:</label>
-                            <input type="url" id="work" name="work"> 
-                            <button type="submit" class="btn border" style="float:right">Submit</button>  
-                        </form>
-                        {% else %}
-                        <p>you have submitted your work</p>
-                        {% endif %}
-                    </div>
-                </div>
+                {{x.work}}
             </div>
         {% endfor %}
     </div>
