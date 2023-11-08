@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
 
+
 .gr-2 { 
   background-image: url('.images/89418bfde600d1e1852a8af17e43a985.jpg');
 }
@@ -42,7 +43,7 @@
   opacity: 1;
 }
 .column:hover a {
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);  
 }
 .column:hover a:after {
   width: 10%;

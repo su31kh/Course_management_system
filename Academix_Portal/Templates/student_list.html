@@ -54,10 +54,15 @@
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="ms-2 me-auto">
         <div class="fw-bold"><b>{{student.first_name}} {{student.last_name}}</b></div>
+        
         {{student.batch}}
       </div>
       
     </li>
+    <a href="/{{course_id}}/{{student.first_name}}" class=" mx-auto">
+    <button type="button" class="btn btn-primary" style="background-color: rgb(216, 216, 216); color: black; border-radius: 10px; border-color: black;">View assignment</button>
+    </a>
+    <br>
     {% endfor %}
   </ol>
 

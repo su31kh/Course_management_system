@@ -180,7 +180,8 @@ def student_list(request , course_id):
     students = current_course.studentlist.all()
 
     context = {
-        "students":students
+        "students":students,
+        "course_id":course_id
     }
 
     return render(request , 'student_list.html' , context)
@@ -289,3 +290,5 @@ def add_submission(request, course_id, name):
 def log_out(request):
     logout(request)
     return redirect('/')
+
+
