@@ -21,6 +21,9 @@ def home(request):
 def admindashboard(request):
     return render(request , 'admin_dashboard.html')
 
+def students_profile(request):
+    return render(request , 'student_profile.html')
+
 def actions_student(request):
     return render(request , 'actions_student.html')
 
@@ -236,7 +239,7 @@ def coursedashboard(request):
     }
     return render(request , 'course_dashboard_student.html' , context)
 
-def mycourses(request):
+def mycourse(request):
     current_user = request.user
     student = student_profile.objects.get(user = current_user)
     # print(student)

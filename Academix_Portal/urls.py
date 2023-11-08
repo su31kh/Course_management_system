@@ -10,7 +10,8 @@ urlpatterns = [
     path('login/<str:loginid>', views.login_func, name="login_func"),
     path('register', views.register, name="Register"),
     path('admindashboard', views.admindashboard, name="admindashboard"),
-    path('mycourse', views.mycourses, name="mycourses"),
+    path('mycourse', views.mycourse, name="mycourse"),
+    path('student_profile', views.students_profile, name="students_profile"),
 
     path('mycourse/<str:course_id>', views.announcements, name="announcements"),
     path('mycourse/<str:course_id>/addannouncement', views.addannouncement, name="addannouncement"),
