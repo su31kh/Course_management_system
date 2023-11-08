@@ -271,11 +271,7 @@ def add_assignment(request, course_id):
     user = request.user
     prof = faculty_profile.objects.filter(user=user)
     if prof is None:
-<<<<<<< HEAD:Code/Academix_Portal/views.py
         messages.error(request,"You cannot post an announcement")
-=======
-        messages.error(request,"YOu cannot post an announcement")
->>>>>>> 804d85d1d89fad1e2030bcf05f9d3ec383d62214:Academix_Portal/views.py
     else:
         course = Course.objects.get(course_code = course_id)
         if(request.method == 'POST'):
@@ -336,7 +332,6 @@ def add_submission(request, course_id, name):
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
-<<<<<<< HEAD:Code/Academix_Portal/views.py
 def edit_submission(request, course_id, name):
     if(request.method == 'POST'):
         editsubmission = Submission.objects.get()
@@ -345,8 +340,6 @@ def edit_submission(request, course_id, name):
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
-=======
->>>>>>> 804d85d1d89fad1e2030bcf05f9d3ec383d62214:Academix_Portal/views.py
 def log_out(request):
     logout(request)
     return redirect('/')
