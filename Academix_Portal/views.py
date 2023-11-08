@@ -10,7 +10,7 @@ from .models import Course, Assignment, Submission, Announcements, Material
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
@@ -62,19 +62,26 @@ def announcements(request , course_id):
     return render(request , 'announcements.html', context)
 
 def addannouncement(request,course_id):
-    if request.method == "POST":
-        title = request.POST.get('title')
-        desc = request.POST.get('desc')
-        course = Course.objects.get(course_code=course_id)
-        my_announce = Announcements.objects.create(title=title, description=desc, course=course, user=request.user)
-        my_announce.save()
+    user = request.user
+    prof = faculty_profile.objects.filter(user=user)
+    # print(prof)
+    if not prof:
+        messages.error(request,"You cannot post an announcement")
         return redirect('/mycourse/'+course_id)
     else:
-        course = Course.objects.get(course_code=course_id)
-        context = {
-            "course":course
-        }
-        return render(request , 'add_announcement.html', context)
+        if request.method == "POST":
+            title = request.POST.get('title')
+            desc = request.POST.get('desc')
+            course = Course.objects.get(course_code=course_id)
+            my_announce = Announcements.objects.create(title=title, description=desc, course=course, user=request.user)
+            my_announce.save()
+            return redirect('/mycourse/'+course_id)
+        else:
+            course = Course.objects.get(course_code=course_id)
+            context = {
+                "course":course
+            }
+            return render(request , 'add_announcement.html', context)
 
 def feedback(request):
     return render(request , 'feedback.html')
@@ -86,23 +93,23 @@ def login_func(request, loginid):
         user = authenticate(request , username=username, password=passwrd)
         if user is None:
             messages.warning(request, "Please Enter the correct Credentials.")
-            print("1")
+            # print("1")
             return redirect('/login/student')
         if loginid == "faculty":
             context = {'user':user}
             login(request, user)
             print("2")
-            return render(request, 'home.html', context)
-            # return redirect('/')
+            # return render(request, 'home.html', context)
+            return redirect('/')
         elif loginid == "student":
             context = {'user':user}
             print(user)
             login(request, user)
-            print("3")
-            # return redirect('/')
-            return render(request, 'home.html', context)
+            # print("3")
+            return redirect('/mycourse')
+            # return render(request, 'home.html', context)
     else:
-        print("4")
+        # print("4")
         if loginid == "student":
             return render(request , 'login_page_student.html')
         else:
@@ -204,7 +211,6 @@ def coursedashboard(request):
     student = student_profile.objects.get(user = current_user)
     myenroll = student.student_courses.all()
 
-    
     final = course.difference(myenroll)
     context = {
         "courses":final,
@@ -214,9 +220,9 @@ def coursedashboard(request):
 def mycourses(request):
     current_user = request.user
     student = student_profile.objects.get(user = current_user)
-    print(student)
+    # print(student)
     myenroll = student.student_courses.all()
-    print((myenroll))
+    # print((myenroll))
     
     context = {
         'enrolled': myenroll,
@@ -230,18 +236,21 @@ def createassignment(request, course_id):
     return render(request, 'add_assignment.html', params)
 
 def add_assignment(request, course_id):
-    print(course_id)
-    course = Course.objects.get(course_code = course_id)
-    print(course)
-    if(request.method == 'POST'):
-        assignmentname = request.POST.get('name')
-        description = request.POST.get('description')
-        duedate = request.POST.get('duedate')
-        max_grade = request.POST.get('max_grade')
-        attachment = request.POST.get('attachment')
-        assignment = Assignment.objects.create(name = assignmentname, description = description, duedate = duedate, max_grade=max_grade, attachment = attachment, assignment_course = course)
+    user = request.user
+    prof = faculty_profile.objects.filter(user=user)
+    if prof is None:
+        messages.error(request,"YOu cannot post an announcement")
+    else:
+        course = Course.objects.get(course_code = course_id)
+        if(request.method == 'POST'):
+            assignmentname = request.POST.get('name')
+            description = request.POST.get('description')
+            duedate = request.POST.get('duedate')
+            max_grade = request.POST.get('max_grade')
+            attachment = request.POST.get('attachment')
+            assignment = Assignment.objects.create(name = assignmentname, description = description, duedate = duedate, max_grade=max_grade, attachment = attachment, assignment_course = course)
 
-        assignment.save()
+            assignment.save()
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
@@ -276,3 +285,7 @@ def add_submission(request, course_id, name):
 
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
+
+def log_out(request):
+    logout(request)
+    return redirect('/')

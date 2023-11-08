@@ -25,12 +25,13 @@ urlpatterns = [
     path('mycourse/<str:course_id>/addmaterial', views.addmaterial, name="addmaterial"),
     
     path('feedback', views.feedback, name="feedback"),
+    path('coursedashboard',views.coursedashboard,name="coursedashboard"),
     path('actions', views.actions, name="actions"),
     path('actions_student', views.actions_student, name="actions_student"),
     path('otp_ver', views.verifyRegistration, name="otp_ver"),
     path('addcourses' , views.addcourse , name = "Add_course"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
-    path('studentlist/<str:course_id>',views.student_list , name= "student_list")
-
+    path('studentlist/<str:course_id>',views.student_list , name= "student_list"),
+    path('logout',views.log_out,name='log_out')
 ]

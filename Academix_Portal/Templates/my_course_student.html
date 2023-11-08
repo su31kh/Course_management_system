@@ -39,12 +39,12 @@
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="#">My Courses</a></li>
-                          <li><a class="dropdown-item" href="other">Other Courses</a></li>
+                          <li><a class="dropdown-item" href="/coursedashboard">Other Courses</a></li>
                         </ul>
                       </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="login/student">Logout<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="logout">Logout<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -72,7 +72,7 @@
                         <p>{{ course.faculty}}</p>
                     </div>
                     <div class="row mx-auto" style="padding-top: 50px;">
-                        <a href = "actions"><button class='btn btn-info' style= "background-color: #008adf;" window.location.href = '/mycourse/{{ course.course_code }}'>View Course</button></a>  
+                        <a href = "/mycourse/{{ course.course_code }}"><button class='btn btn-info' style= "background-color: #008adf;">View Course</button></a>  
                     </div>
                 </div>
             </div>
