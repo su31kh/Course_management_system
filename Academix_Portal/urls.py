@@ -32,7 +32,7 @@ urlpatterns = [
     path('addcourses' , views.addcourse , name = "Add_course"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
-    path('studentlist/<str:course_id>',views.student_list , name= "student_list"),
+    path('mycourse/studentlist/<str:course_id>',views.student_list , name= "student_list"),
     path('<str:course_id>/<str:student>',views.students_assignment , name= "students_assignment"),
     path('logout',views.log_out,name='log_out')
 ]

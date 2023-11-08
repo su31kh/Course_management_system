@@ -198,7 +198,6 @@ def students_assignment(request , course_id , student):
     for a in assign :
         if(Submission.objects.filter(assignment = a , student = thisstudent).exists()):
             submitlist.append(Submission.objects.get(assignment = a , student = thisstudent))
-    
 
     context = {
         "submission":submitlist
