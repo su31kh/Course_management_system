@@ -172,21 +172,23 @@ def addcourse(request):
         description = request.POST.get('description')
         faculty = request.POST.get('faculty')
         my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = faculty)
-
         my_course.save()
 
     return render(request , 'addcourse.html')
 
-def edit_course(request, courseid):
+def edit_course(request, course_id):
     if(request.method == 'POST'):
-        editcourse = Course.objects.get(course_code = courseid)
+        editcourse = Course.objects.get(course_code = course_id)
         editcourse.name = request.POST.get('coursename')
         editcourse.course_code = request.POST.get('courseid')
         editcourse.description = request.POST.get('description')
         editcourse.faculty = request.POST.get('faculty')
         editcourse.save()
-
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    else:
+        editcourse = Course.objects.get(course_code = course_id)
+        params = {'record' : editcourse}
+        return render(request, 'editcourse.html', params)
+    return redirect('mycourse')
 
 def student_list(request , course_id):
     current_course = Course.objects.get(course_code = course_id)

@@ -11,6 +11,8 @@ urlpatterns = [
     path('register', views.register, name="Register"),
     path('admindashboard', views.admindashboard, name="admindashboard"),
     path('mycourse', views.mycourse, name="mycourse"),
+    path('mycourse/<str:course_id>/editcourse', views.edit_course, name="edit_course"),
+
     path('student_profile', views.students_profile, name="students_profile"),
 
     path('mycourse/<str:course_id>', views.announcements, name="announcements"),
