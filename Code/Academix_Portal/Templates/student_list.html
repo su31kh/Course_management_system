@@ -8,7 +8,7 @@
 
   <title>Academix Portal</title>
 
-  <link rel="stylesheet" href="static/css/add_announcement.css">
+  <link rel="stylesheet" href="static/css/announcements.css">
   <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -49,7 +49,31 @@
     </div>
   </nav> 
 
-  <ol class="list-group list-group-numbered">
+
+  
+    
+    
+    
+  </div>
+
+  <div class="container-fluid">
+    {% for student in students %}
+    <div class="m-3 p-2"style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
+        <p><b>Student Name :</b> {{student.first_name}} {{student.last_name}}</p>
+        
+        <p><b>Batch : </b> {{ student.batch}}</p>
+        
+        <p><a href="/{{course_id}}/{{student.first_name}}" class="mx-auto">
+          <button type="button" class="btn btn-primary" style="background-color: rgb(109, 109, 255); color: rgb(255, 255, 255); border-radius: 10px; border-color: rgb(255, 255, 255);">View assignment</button>
+          </a></p>
+      </div>
+        
+    
+    
+    {% endfor %}
+      </div>
+
+    {% comment %} <ol class="list-group list-group-numbered container p-4">
     {% for student in students %}
     <li class="list-group-item d-flex justify-content-between align-items-start" style="border-bottom-color: white;">
       <div class="ms-2 me-auto" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
@@ -57,14 +81,14 @@
         
         {{student.batch}}
       </div>
-      
+      <a href="/{{course_id}}/{{student.first_name}}" class="mx-auto">
+        <button type="button" class="btn btn-primary" style="background-color: rgb(136, 168, 255); color: rgb(255, 255, 255); border-radius: 10px; border-color: rgb(255, 255, 255); float:right">View assignment</button>
+        </a>  
     </li>
-    <a href="/{{course_id}}/{{student.first_name}}" class="mx-auto">
-    <button type="button" class="btn btn-primary" style="background-color: rgb(136, 168, 255); color: rgb(255, 255, 255); border-radius: 10px; border-color: rgb(255, 255, 255);">View assignment</button>
-    </a>
-    <br>
+    
+    
     {% endfor %}
-  </ol>
+  </ol>   {% endcomment %}
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
