@@ -302,16 +302,21 @@ def view_assignments(request,course_id):
     
     return render(request , 'view_assignments.html', param)
 
-def edit_assignment(request, course_id):
+def edit_assignment(request, course_id, name):
     if request.method == 'POST':
-        editassignment = Assignment.objects.get()
+        course = Course.objects.get(course_code = course_id)
+        editassignment = Assignment.objects.get(assignment_course=course, name=name)
         editassignment.name = request.POST.get('name')
         editassignment.description = request.POST.get('description')
         editassignment.duedate = request.POST.get('duedate')
         editassignment.max_grade = request.POST.get('max_grade')
         editassignment.attachment = request.POST.get('attachment')
         editassignment.save()
-        
+    else:
+        course = Course.objects.get(course_code = course_id)
+        editassignment = Assignment.objects.get(assignment_course=course, name=name)
+        params = {'record' : editassignment, 'course' : course}
+        return render(request, 'edit_assignment.html', params)
     return redirect('/mycourse/'+course_id+'/viewassignments')
         
 
