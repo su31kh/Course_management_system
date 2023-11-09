@@ -16,6 +16,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect('/mycourse')
     return render(request , 'land.html')
 
 def admindashboard(request):
@@ -31,15 +33,26 @@ def actions(request):
     return render(request , 'actions.html')
 
 def materials(request,course_id):
+    isprof = True
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        isprof = False
     course = Course.objects.get(course_code=course_id)
     material = Material.objects.filter(course=course)
     context = {
         'material':material,
-        'course':course
+        'course':course,
+        'isprof':isprof
     }
     return render(request , 'materials.html', context)
 
 def addmaterial(request,course_id):
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        messages.error(request, "You cannot Post Material here.")
+        return redirect('/mycourse/'+course_id+'/materials')
     if request.method == "POST":
         course = Course.objects.get(course_code=course_id)
         title = request.POST.get('title')
@@ -56,40 +69,47 @@ def addmaterial(request,course_id):
         return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
+    isprof = True
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        isprof = False
     course = Course.objects.get(course_code=course_id)
     announce = Announcements.objects.filter(course=course)
     context = {
         "course":course,
-        "announce":announce
+        "announce":announce,
+        'isprof':isprof
     }
     return render(request , 'announcements.html', context)
 
 def addannouncement(request,course_id):
-    user = request.user
-    prof = faculty_profile.objects.filter(user=user)
-    # print(prof)
-    if not prof:
-        messages.error(request,"You cannot post an announcement")
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        messages.error(request, "You cannot Post Material here.")
+        return redirect('/mycourse/'+course_id+'/materials')
+    if request.method == "POST":
+        title = request.POST.get('title')
+        desc = request.POST.get('desc')
+        course = Course.objects.get(course_code=course_id)
+        my_announce = Announcements.objects.create(title=title, description=desc, course=course, user=request.user)
+        my_announce.save()
         return redirect('/mycourse/'+course_id)
     else:
-        if request.method == "POST":
-            title = request.POST.get('title')
-            desc = request.POST.get('desc')
-            course = Course.objects.get(course_code=course_id)
-            my_announce = Announcements.objects.create(title=title, description=desc, course=course, user=request.user)
-            my_announce.save()
-            return redirect('/mycourse/'+course_id)
-        else:
-            course = Course.objects.get(course_code=course_id)
-            context = {
-                "course":course
-            }
-            return render(request , 'add_announcement.html', context)
+        course = Course.objects.get(course_code=course_id)
+        context = {
+            "course":course
+        }
+        return render(request , 'add_announcement.html', context)
 
 def feedback(request):
     return render(request , 'feedback.html')
 
 def login_func(request, loginid):
+    if request.user.is_authenticated:
+        return redirect('/mycourse')
+
     if request.method == "POST":
         username = request.POST.get('user')
         passwrd = request.POST.get('pass')
@@ -110,7 +130,6 @@ def login_func(request, loginid):
             login(request, user)
             # print("3")
             return redirect('/mycourse')
-            # return render(request, 'home.html', context)
     else:
         # print("4")
         if loginid == "student":
@@ -119,6 +138,9 @@ def login_func(request, loginid):
             return render(request , 'login_page_admin.html')
         
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('/mycourse')
+
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST.get('pass1')
@@ -137,6 +159,9 @@ def register(request):
         return redirect('/')
 
 def verifyRegistration(request):
+    if request.user.is_authenticated:
+        return redirect('/mycourse')
+
     if request.method == "POST":
         code = request.session.get('code', None)
         email = request.POST['email']
@@ -166,6 +191,11 @@ def verifyRegistration(request):
         return redirect('/')
 
 def addcourse(request):
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        messages.error(request, "You are not authorized to add a Course")
+        return redirect('/mycourse')
     if(request.method == 'POST'):
         course_name = request.POST.get('coursename')
         courseid = request.POST.get('courseid')
@@ -177,6 +207,11 @@ def addcourse(request):
     return render(request , 'addcourse.html')
 
 def edit_course(request, course_id):
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        messages.error(request, "You are not authorized to edit a Course")
+        return redirect('/mycourse')
     if(request.method == 'POST'):
         editcourse = Course.objects.get(course_code = course_id)
         editcourse.name = request.POST.get('coursename')
@@ -191,12 +226,18 @@ def edit_course(request, course_id):
     return redirect('mycourse')
 
 def student_list(request , course_id):
+    isprof = True
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        isprof = False
     current_course = Course.objects.get(course_code = course_id)
     students = current_course.studentlist.all()
 
     context = {
         "students":students,
-        "course_id":course_id
+        "course":current_course,
+        'isprof':isprof
     }
 
     return render(request , 'student_list.html' , context)
@@ -248,6 +289,7 @@ def coursedashboard(request):
     final = course.difference(myenroll)
     context = {
         "courses":final,
+        "student":student
     }
     return render(request , 'course_dashboard_student.html' , context)
 
@@ -260,6 +302,7 @@ def mycourse(request):
     
     context = {
         'enrolled': myenroll,
+        "student":student
     }
     return render(request , 'my_course_student.html' , context)
 
@@ -305,6 +348,11 @@ def view_assignments(request,course_id):
     return render(request , 'view_assignments.html', param)
 
 def edit_assignment(request, course_id, name):
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+    except:
+        messages.error(request, "You are not authorized to add a Course")
+        return redirect('/mycourse/'+course_id+'/viewassignments')
     if request.method == 'POST':
         course = Course.objects.get(course_code = course_id)
         editassignment = Assignment.objects.get(assignment_course=course, name=name)
@@ -320,8 +368,6 @@ def edit_assignment(request, course_id, name):
         params = {'record' : editassignment, 'course' : course}
         return render(request, 'edit_assignment.html', params)
     return redirect('/mycourse/'+course_id+'/viewassignments')
-        
-
 
 def add_submission(request, course_id, name):
     student = student_profile.objects.get(user = request.user)
@@ -353,5 +399,3 @@ def edit_submission(request, course_id, name):
 def log_out(request):
     logout(request)
     return redirect('/')
-
-
