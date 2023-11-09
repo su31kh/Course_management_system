@@ -299,6 +299,7 @@ def view_assignments(request,course_id):
         'course':course,
         'merged':merged
     }
+    
     return render(request , 'view_assignments.html', param)
 
 def edit_assignment(request, course_id):
@@ -310,7 +311,7 @@ def edit_assignment(request, course_id):
         editassignment.max_grade = request.POST.get('max_grade')
         editassignment.attachment = request.POST.get('attachment')
         editassignment.save()
-
+        
     return redirect('/mycourse/'+course_id+'/viewassignments')
         
 
@@ -334,7 +335,9 @@ def add_submission(request, course_id, name):
 
 def edit_submission(request, course_id, name):
     if(request.method == 'POST'):
-        editsubmission = Submission.objects.get()
+        student = student_profile.objects.get(user = request.user)
+        assignment = Assignment.objects.get(name = name)
+        editsubmission = Submission.objects.get(student = student, assignment = assignment)
         editsubmission.work = request.POST.get('work')
         editsubmission.save()
 

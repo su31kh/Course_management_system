@@ -60,16 +60,22 @@
                         <h5 class="card-text">{{ x.description }}</h5>
                         <h5 class="card-text">{{ x.duedate }}</h5>
                         <h5 class="card-text">{{ x.max_grade }}</h5>
-                        <p>{{ x.attachment }}</p>
+                        <p>Attachment : {{ x.attachment }}</p>
                         {% if not y %}
                         <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
                             {% csrf_token %}
                             <label for="work">File:</label>
-                            <input type="url" id="work" name="work"> 
+                            <input type="url" id="work" name="work" required="True"> 
                             <button type="submit" class="btn border" style="float:right">Submit</button>  
                         </form>
                         {% else %}
-                        <p>you have submitted your work</p>
+                        <p>Submitted : {{y.0.work}}</p>
+                        <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post">
+                            {% csrf_token %}
+                            <label for="work">File:</label>
+                            <input type="url" id="work" name="work" required="True"> 
+                            <button type="submit" class="btn border" style="float:right">Edit Submission</button>  
+                        </form>
                         {% endif %}
                     </div>
                 </div>
