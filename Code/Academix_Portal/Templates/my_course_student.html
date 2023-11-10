@@ -3,6 +3,7 @@
     {% block head %}
 
     <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/my_course_student.css' %}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -10,15 +11,14 @@
     {% endblock %}
 
 {% block body %}
-    <div class="container-fluid whole">
+    <div class="container-fluid">
         <div class="row mb-4">
         {% for course in enrolled %}
         
-            <div class="col-sm-3 " style="padding-top: 15px;">
-                <div class="card backcolor ">
+            <div class="col-lg-3 col-sm-6 col-md-6" style="padding-top: 15px;">
+                <div class="card backcolor" style="background-color: #b5adad">
                     <div class="row mb-4" style="text-align: center; padding: 5px;">
                         <u><h2 class="card-title" >{{ course.name }}</h2></u>
-
                     </div>
                     <div class="row mb-4" style="text-align: center; padding: 5px;">
                         <h5 class="card-title">{{ course.course_code}}</h5>
@@ -28,8 +28,8 @@
                         <p>{{ course.faculty}}</p>
                     </div>
                     <div class="row mx-auto" style="padding-top: 50px;">
-                        <a href = "/mycourse/{{ course.course_code }}"><button class='btn btn-info' style= "background-color: #008adf;">View Course</button></a> 
-                        <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class='btn btn-info' style= "background-color: #008adf;">Edit Course</button></a>   
+                        <a href = "/mycourse/{{ course.course_code }}"><button class='btn btn-info' style= "background-color: rgb(109, 109, 255);">View Course</button></a> 
+                        <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class='btn btn-info' style= "background-color: rgb(109, 109, 255);">Edit Course</button></a>   
                     </div>
                 </div>
             </div>

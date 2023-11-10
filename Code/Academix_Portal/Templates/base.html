@@ -27,7 +27,7 @@
       {% endfor %}
   </ul>
   {% endif %}
-  <nav class="navbar navbar-expand-lg nav">
+  <nav class="navbar navbar-expand-lg nav" style="background-color: rgb(109, 109, 255);">
     <a class="navbar-brand" href="/mycourse">{{ student.first_name }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,10 +37,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Dashboard<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="student_profile">Profile <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <div class="dropdown">
@@ -61,7 +58,7 @@
       <form class="form-inline my-2 my-lg-0">
         <input name="search" id="searchbar" onkeyup="search_courses()" class="form-control mr-sm-2" type="search"
           placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white">Search</button>
       </form>
     </div>
   </nav>
