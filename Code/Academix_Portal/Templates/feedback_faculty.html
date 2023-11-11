@@ -1,0 +1,8 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block body %}
+{% for x in feedback %}
+<p>{{x.fb}}</p>
+{% endfor %}
+{% endblock %}

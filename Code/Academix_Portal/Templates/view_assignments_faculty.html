@@ -1,0 +1,30 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block body %}
+
+<button class="m-2"><a href="/mycourse/{{ course.course_code }}/createassignment">Create Assignment</a></button>
+
+    <div class="container-fluid">
+        <div class="row mb-4">
+        {% for x in assign %}
+            <div class="col-sm-12" style="padding-top: 5px">
+                    <div class="card-body">
+                <div class="card" style="min-height: 330px; background-color: #b5adad;">    
+                        <h3 class="card-text">{{ course.faculty }}</h3>
+                        <div class="card-text"><b>Assignment Name : </b>{{ x.name }}
+                            <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button type="submit" class="btn btn-primary" style="float:right; background-color: rgb(109, 109, 255); border-radius: 7px; border-color: rgb(255, 255, 255);">Edit Assignment</button></a>
+                        </div><br>
+                        <div class="card-text"><b>Description : </b>{{ x.description }}
+                            <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button class="btn btn-primary" style="float:right; background-color: rgb(109, 109, 255); border-radius: 7px; border-color: rgb(255, 255, 255);">View Students Submission</button></a>
+                        </div><br>
+                        <div class="card-text"><b>Due-Date : </b>{{ x.duedate }}</div><br>
+                        <div class="card-text"><b>Max-Grade : </b>{{ x.max_grade }}</div><br>
+                        <p><b>Attachment : </b>{{ x.attachment }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

@@ -29,7 +29,9 @@
                     </div>
                     <div class="row mx-auto" style="padding-top: 50px;">
                         <a href = "/mycourse/{{ course.course_code }}"><button class='btn btn-info' style= "background-color: rgb(109, 109, 255);">View Course</button></a> 
+                        {% if isprof %}
                         <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class='btn btn-info' style= "background-color: rgb(109, 109, 255);">Edit Course</button></a>   
+                        {% endif %}
                     </div>
                 </div>
             </div>

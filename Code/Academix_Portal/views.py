@@ -116,9 +116,12 @@ def fb_response(request, course_id):
     try:
         prof = faculty_profile.objects.get(user=request.user)
         fb = feedback.objects.filter(course=course)
+        isprof = True
         context = {
             'prof':prof,
-            'feedback':fb
+            'feedback':fb,
+            'isprof':isprof,
+            'course':course
         }
         return render(request, 'feedback_faculty.html', context)
     except:
@@ -277,7 +280,7 @@ def view_profile(request, course_id, id):
     student = student_profile.objects.get(id = id)
     current_course = Course.objects.get(course_code = course_id)
     context = {'student':student, 'course':current_course}
-    return render(request , 'student_profile.html', context)
+    return render(request , 'view_other_student_profile.html', context)
 
 def students_assignment(request , course_id , student):
 
@@ -332,6 +335,7 @@ def coursedashboard(request):
 
 def mycourse(request):
     current_user = request.user
+    isprof=False
     try:
         student = student_profile.objects.get(user = current_user)
         # print(student)
@@ -339,14 +343,17 @@ def mycourse(request):
         # print((myenroll))
         context = {
             'enrolled': myenroll,
-            'student':student
+            'student':student,
+            'isprof':isprof
         }
     except:
         prof = faculty_profile.objects.get(user = current_user)
         myenroll = Course.objects.filter(faculty=prof)
+        isprof=True
         context = {
             'enrolled': myenroll,
-            'student':prof
+            'student':prof,
+            'isprof':isprof
         }
     return render(request , 'my_course_student.html' , context)
 
@@ -376,20 +383,31 @@ def add_assignment(request, course_id):
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
 def view_assignments(request,course_id):
+    prof = faculty_profile.objects.filter(user=request.user)
     course = Course.objects.get(course_code=course_id)
     assign = Assignment.objects.filter(assignment_course=course)
-    student_prof = student_profile.objects.get(user=request.user)
-    submit=[]
-    for x in assign:
-        y = Submission.objects.filter(student=student_prof).filter(assignment=x)
-        submit.append(y)
-    merged = tuple(zip(assign, submit))
-    param = {
-        'course':course,
-        'merged':merged
-    }
-    
-    return render(request , 'view_assignments.html', param)
+    if prof.exists():
+        isprof=True
+        param = {
+            'course':course,
+            'assign':assign,
+            'isprof':isprof
+        }
+        return render(request, 'view_assignments_faculty.html', param)
+    else:
+        student_prof = student_profile.objects.get(user=request.user)
+        submit=[]
+        for x in assign:
+            y = Submission.objects.filter(student=student_prof).filter(assignment=x)
+            submit.append(y)
+        merged = tuple(zip(assign, submit))
+        param = {
+            'course':course,
+            'merged':merged
+        }
+        
+        return render(request , 'view_assignments.html', param)
+        
 
 def edit_assignment(request, course_id, name):
     try:
