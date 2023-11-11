@@ -7,9 +7,9 @@
   {% for student in students %}
   <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
     <p><b>Student Name :</b> {{student.first_name}} {{student.last_name}}</p>
-    <p><b>Batch : </b> {{ student.user.email}}</p>
+    <p><b>Username : </b> {{ student.user.email}}</p>
     <button type="button" class="btn btn-primary"
-      style="background-color: rgb(109, 109, 255); color: rgb(255, 255, 255); border-radius: 10px; border-color: rgb(255, 255, 255);"><a
+      style="background-color: rgb(109, 109, 255); color: rgb(255, 255, 255); border-radius: 7px; border-color: rgb(255, 255, 255);"><a
         href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;">View Profile</a></button>
   </div>
   {% endfor %}
