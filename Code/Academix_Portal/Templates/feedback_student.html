@@ -1,11 +1,28 @@
 {% extends 'navbar.html' %}
 {% load static %}
+
+{% block head %}
+
+    
+    <link rel="stylesheet" href="{% static 'css/feedback_student.css' %}">
+    {% endblock %}
+
 {% block body %}
-<div>
-    <form action="/mycourse/{{course.course_code}}/feedback" method="post">
-    <input name="feedback">
-    {% csrf_token %}
-    <button type="submit">Submit</button>
-</form>
+
+
+
+<div class="container d-flex align-items-center justify-content-center" style="padding-top:10%;">
+    <form action="/mycourse/{{course.course_code}}/feedback" method="post" style="background-color: #b5adad; border-radius: 10px; padding: 10px">
+        {% csrf_token %}
+        <div class="container-fluid text-center">
+               <div class="form-group">
+                <label for="feedback"><b>Feedback description : </b></label><br>
+                <textarea class="wh" name="feedback"></textarea>
+                {% csrf_token %}
+              </div>
+              <button type="submit" class="btn btn-warning" style="line-height: 1.2rem;">Submit</button>
+          </div> 
+          
+    </form>
 </div>
 {% endblock %}

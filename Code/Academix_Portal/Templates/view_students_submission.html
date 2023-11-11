@@ -4,7 +4,14 @@
 
 {% block body %}
 
-{% for s in submission %}
-<div><a href="{{s.work}}">{{s.student.first_name}} {{s.student.last_name}}'s Submission</a></div>
-{% endfor %}
+
+<div class="container-fluid">
+    {% for s in submission %}
+    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
+      <h5>{{s.student.first_name}} {{s.student.last_name}}'s Submission</h5>
+      <div><b>Submission Link</b> : <a href="{{s.work}}">Link</a></div>
+    </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}
