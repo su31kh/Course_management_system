@@ -29,7 +29,7 @@
 {% endif %}
 
 <nav style="background-color: rgb(109, 109, 255);" class="navbar navbar-expand-lg navbar-dark" >
-    <a class="navbar-brand" href="#" style="background-color: rgb(109, 109, 255);">{{ course.course_code }}</a>
+    <a class="navbar-brand" href="/mycourse" style="background-color: rgb(109, 109, 255);">{{ course.course_code }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
@@ -53,10 +53,8 @@
           <a class="nav-link" href="/mycourse/{{course.course_code}}/studentlist">Students List<span class="sr-only"></span></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white;">Search</button>
-      </form>
+      {% block search %}
+      {% endblock %}
     </div>
   </nav> 
 

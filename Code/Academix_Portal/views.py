@@ -155,7 +155,7 @@ def login_func(request, loginid):
             login(request, user)
             print("2")
             # return render(request, 'home.html', context)
-            return redirect('/')
+            return redirect('/mycourse')
         elif loginid == "student":
             context = {'user':user}
             print(user)
@@ -232,8 +232,8 @@ def addcourse(request):
         course_name = request.POST.get('coursename')
         courseid = request.POST.get('courseid')
         description = request.POST.get('description')
-        faculty = request.POST.get('faculty')
-        my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = faculty)
+        prof = faculty_profile.objects.get(user=request.user)
+        my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = prof)
         my_course.save()
 
     return render(request , 'addcourse.html')
@@ -249,7 +249,6 @@ def edit_course(request, course_id):
         editcourse.name = request.POST.get('coursename')
         editcourse.course_code = request.POST.get('courseid')
         editcourse.description = request.POST.get('description')
-        editcourse.faculty = request.POST.get('faculty')
         editcourse.save()
     else:
         editcourse = Course.objects.get(course_code = course_id)
@@ -333,15 +332,22 @@ def coursedashboard(request):
 
 def mycourse(request):
     current_user = request.user
-    student = student_profile.objects.get(user = current_user)
-    # print(student)
-    myenroll = student.student_courses.all()
-    # print((myenroll))
-    
-    context = {
-        'enrolled': myenroll,
-        "student":student
-    }
+    try:
+        student = student_profile.objects.get(user = current_user)
+        # print(student)
+        myenroll = student.student_courses.all()
+        # print((myenroll))
+        context = {
+            'enrolled': myenroll,
+            'student':student
+        }
+    except:
+        prof = faculty_profile.objects.get(user = current_user)
+        myenroll = Course.objects.filter(faculty=prof)
+        context = {
+            'enrolled': myenroll,
+            'student':prof
+        }
     return render(request , 'my_course_student.html' , context)
 
 def createassignment(request, course_id):
@@ -438,10 +444,22 @@ def view_students_submission(request,course_id, name):
     course = Course.objects.get(course_code=course_id)
     assignment = Assignment.objects.get(name = name, assignment_course = course)
     submission = Submission.objects.filter(assignment=assignment)
-    # print(submission)
     params = {'submission' : submission, 'course' : course}
     return render(request, 'view_students_submission.html', params)
 
 def log_out(request):
     logout(request)
     return redirect('/')
+
+def student_list_search(request,course_id):
+    if request.method == "POST":
+        name = request.POST.get('Search')
+        course = Course.objects.get(course_code=course_id)
+        student = student_profile.objects.filter(first_name = name)
+        context = {
+            'students':student,
+            'course':course
+        }
+        return render(request , 'student_list.html' , context)
+    else:
+        return redirect('/mycourse/'+course_id+'/studentlist')
