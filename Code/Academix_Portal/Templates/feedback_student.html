@@ -1,0 +1,11 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block body %}
+<div>
+    <form action="/mycourse/{{course.course_code}}/feedback" method="post">
+    <input name="feedback">
+    {% csrf_token %}
+    <button type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}

@@ -75,3 +75,13 @@ class Material(models.Model):
 
     def __str__(self):
         return self.course.course_code + ' ' + self.title
+    
+
+class feedback(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    fb = models.CharField(max_length=200,null=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.course.course_code + ' ' + self.user.email

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
 from .models import faculty_profile
-from .models import Course, Assignment, Submission, Announcements, Material
+from .models import Course, Assignment, Submission, Announcements, Material, feedback
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
@@ -24,7 +24,15 @@ def admindashboard(request):
     return render(request , 'admin_dashboard.html')
 
 def students_profile(request):
-    return render(request , 'student_profile.html')
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+        return redirect('/mycourse')
+    except:
+        student = student_profile.objects.get(user=request.user)
+        context = {
+            'student':student
+        }
+        return render(request , 'student_profile.html', context)
 
 def actions_student(request):
     return render(request , 'actions_student.html')
@@ -103,8 +111,32 @@ def addannouncement(request,course_id):
         }
         return render(request , 'add_announcement.html', context)
 
-def feedback(request):
-    return render(request , 'feedback.html')
+def fb_response(request, course_id):
+    course = Course.objects.get(course_code=course_id)
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+        fb = feedback.objects.filter(course=course)
+        context = {
+            'prof':prof,
+            'feedback':fb
+        }
+        return render(request, 'feedback_faculty.html', context)
+    except:
+        try:
+            fb = feedback.objects.get(user=request.user)
+            messages.error(request, "You have already given the feedback")
+            return redirect('/mycourse/'+course_id)
+        except:
+            if request.method == "POST":
+                details = request.POST.get('feedback')
+                fb = feedback.objects.create(fb=details, user=request.user,course=course)
+                fb.save()
+                return redirect('/mycourse/'+course_id)
+            else:
+                context = {
+                    'course':course
+                }
+                return render(request , 'feedback_student.html',context)
 
 def login_func(request, loginid):
     if request.user.is_authenticated:
