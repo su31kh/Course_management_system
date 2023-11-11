@@ -274,6 +274,12 @@ def student_list(request , course_id):
 
     return render(request , 'student_list.html' , context)
 
+def view_profile(request, course_id, id):
+    student = student_profile.objects.get(id = id)
+    current_course = Course.objects.get(course_code = course_id)
+    context = {'student':student, 'course':current_course}
+    return render(request , 'view_other_student_profile.html', context)
+
 def students_assignment(request , course_id , student):
 
     course = Course.objects.get(course_code=course_id)
