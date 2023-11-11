@@ -19,6 +19,15 @@
                         <div class="card-text"><b>Due-Date : </b>{{ x.duedate }}</div><br>
                         <div class="card-text"><b>Max-Grade : </b>{{ x.max_grade }}</div><br>
                         <p><b>Attachment : </b>{{ x.attachment }}</p>
+                        {% if y %}
+                        <div class="card-text"><b>Status : </b>{{ y.0.feedback }}</div><br>
+                        {% if y.0.graded %}
+                        <div class="card-text"><b>Graded : </b>{{ y.0.grade }}</div><br>
+                        {% else %}
+                        <div class="card-text"><b>Graded : </b>Not Yet</div><br>
+                        {% endif %}
+                        {% endif %}
+
                         {% if not y %}
                         <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
                             {% csrf_token %}

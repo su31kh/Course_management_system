@@ -455,6 +455,11 @@ def edit_submission(request, course_id, name):
         editsubmission = Submission.objects.get(student = student, assignment = assignment)
         editsubmission.work = request.POST.get('work')
         editsubmission.save()
+        if(editsubmission.timestamp <= assignment.duedate):
+            editsubmission.feedback='Turned in'
+        else:
+            editsubmission.feedback='Turned in late'
+        editsubmission.save()
 
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
@@ -462,8 +467,23 @@ def view_students_submission(request,course_id, name):
     course = Course.objects.get(course_code=course_id)
     assignment = Assignment.objects.get(name = name, assignment_course = course)
     submission = Submission.objects.filter(assignment=assignment)
-    params = {'submission' : submission, 'course' : course}
+    isprof = True
+    params = {'assignment':assignment, 'submission' : submission, 'course' : course, 'isprof' : isprof}
     return render(request, 'view_students_submission.html', params)
+
+def grade_student_submission(request,course_id,name,sub_id):
+    course = Course.objects.get(course_code=course_id)
+    assignment = Assignment.objects.get(name = name, assignment_course = course)
+    submission = Submission.objects.filter(assignment=assignment)
+    submissiongrade = Submission.objects.get(assignment=assignment, id=sub_id)
+    isprof = True
+    params = {'assignment':assignment, 'submission' : submission, 'course' : course, 'isprof' : isprof}
+    if(request.method == 'POST'):
+        submissiongrade.grade = request.POST.get('grade')
+        submissiongrade.graded = True
+        submissiongrade.save()
+        return render(request, 'view_students_submission.html', params)
+    return render(request,'view_students_submission.html',params)
 
 def log_out(request):
     logout(request)

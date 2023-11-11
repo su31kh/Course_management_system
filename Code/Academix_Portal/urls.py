@@ -28,6 +28,7 @@ urlpatterns = [
     path('mycourses/<str:course_id>/<str:name>/addsubmission', views.add_submission, name="add_submission"),
     path('mycourses/<str:course_id>/<str:name>/editsubmission', views.edit_submission, name="edit_submission"),
     path('mycourse/<str:course_id>/<str:name>/viewstudentssubmission', views.view_students_submission, name="view_students_submission"),
+    path('mycourse/<str:course_id>/<str:name>/viewstudentssubmission/<str:sub_id>/grade', views.grade_student_submission, name="grade_student_submission"),
 
     path('mycourse/<str:course_id>/materials', views.materials, name="materials"),
     path('mycourse/<str:course_id>/addmaterial', views.addmaterial, name="addmaterial"),
