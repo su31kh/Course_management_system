@@ -10,6 +10,14 @@
         <link rel="stylesheet" href="static/css/course_dashboard_student.css">
     {% endblock %}
 
+    {% block search %}
+    <form class="form-inline my-2 my-lg-0" action="/coursedashboard/search" method="POST">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white;">Search</button>
+    </form>
+  {% endblock %}
+
 {% block body %}
     <div class="container-fluid whole">
         <div class="row mb-4">

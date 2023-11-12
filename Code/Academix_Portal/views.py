@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
+from django.db.models import Q
 
 def home(request):
     if request.user.is_authenticated:
@@ -324,16 +325,29 @@ def add_course_to_user(request, course_id):
         return JsonResponse({'error': str(e)}, status=500)
 
 def coursedashboard(request):
-    course = Course.objects.all()
-    current_user = request.user
-    student = student_profile.objects.get(user = current_user)
-    myenroll = student.student_courses.all()
+    try:
+        course = Course.objects.all()
+        current_user = request.user
+        student = student_profile.objects.get(user = current_user)
+        myenroll = student.student_courses.all()
 
-    final = course.difference(myenroll)
-    context = {
-        "courses":final,
-        "student":student
-    }
+        final = course.difference(myenroll)
+        context = {
+            "courses":final,
+            "student":student
+        }
+    except:
+        course = Course.objects.all()
+        current_user = request.user
+        prof = faculty_profile.objects.get(user = current_user)
+        myenroll = Course.objects.filter(faculty=prof)
+
+        final = course.difference(myenroll)
+
+        context = {
+            "courses":final,
+            "student":prof
+        }
     return render(request , 'course_dashboard_student.html' , context)
 
 def mycourse(request):
@@ -496,7 +510,8 @@ def student_list_search(request,course_id):
     if request.method == "POST":
         name = request.POST.get('Search')
         course = Course.objects.get(course_code=course_id)
-        student = student_profile.objects.filter(first_name = name)
+        student = student_profile.objects.filter(Q(first_name__icontains = name, student_courses=course) | Q(last_name__icontains = name, student_courses=course))
+        print(student)
         context = {
             'students':student,
             'course':course
@@ -504,3 +519,58 @@ def student_list_search(request,course_id):
         return render(request , 'student_list.html' , context)
     else:
         return redirect('/mycourse/'+course_id+'/studentlist')
+    
+def mycourse_search(request):
+    if request.method == "POST":
+        course_detail = request.POST.get('Search')
+        try:
+            student = student_profile.objects.get(user = request.user)
+            myenroll = student.student_courses.filter(Q(course_code__icontains = course_detail) | Q(name__icontains = course_detail))
+            context = {
+                'enrolled': myenroll,
+                'student':student,
+                'isprof':isprof
+            }
+        except:
+            prof = faculty_profile.objects.get(user = request.user)
+            myenroll = Course.objects.filter(faculty=prof).filter(Q(course_code__icontains = course_detail) | Q(name__icontains = course_detail))
+            isprof=True
+            context = {
+                'enrolled': myenroll,
+                'student':prof,
+                'isprof':isprof
+            }
+        return render(request , 'my_course_student.html' , context)
+    else:
+        return redirect('/mycourse')
+    
+def coursedashboard_search(request):
+    if request.method == "POST":
+        course_detail = request.POST.get('Search')
+        try:
+            course = Course.objects.filter(Q(course_code__icontains = course_detail) | Q(name__icontains = course_detail))
+            current_user = request.user
+            student = student_profile.objects.get(user = current_user)
+            myenroll = student.student_courses.all()
+
+            final = course.difference(myenroll)
+
+            context = {
+                "courses":final,
+                "student":student
+            }
+        except:
+            course = Course.objects.filter(Q(course_code__icontains = course_detail) | Q(name__icontains = course_detail))
+            current_user = request.user
+            prof = faculty_profile.objects.get(user = current_user)
+            myenroll = Course.objects.filter(faculty=prof)
+
+            final = course.difference(myenroll)
+
+            context = {
+                "courses":final,
+                "student":prof
+            }
+        return render(request , 'course_dashboard_student.html' , context)
+    else:
+        return redirect('/coursedashboard')

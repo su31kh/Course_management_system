@@ -12,6 +12,7 @@ urlpatterns = [
     path('admindashboard', views.admindashboard, name="admindashboard"),
 
     path('mycourse', views.mycourse, name="mycourse"),
+    path('mycourse/search', views.mycourse_search, name="mycourse_search"),
     path('mycourse/<str:course_id>/editcourse', views.edit_course, name="edit_course"),
 
     path('student_profile', views.students_profile, name="students_profile"),
@@ -35,6 +36,7 @@ urlpatterns = [
     
     path('mycourse/<str:course_id>/feedback', views.fb_response, name="feedback"),
     path('coursedashboard',views.coursedashboard,name="coursedashboard"),
+    path('coursedashboard/search',views.coursedashboard_search,name="coursedashboard_search"),
     path('actions', views.actions, name="actions"),
     path('actions_student', views.actions_student, name="actions_student"),
     path('otp_ver', views.verifyRegistration, name="otp_ver"),
