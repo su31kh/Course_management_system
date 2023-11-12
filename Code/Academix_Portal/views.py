@@ -127,7 +127,7 @@ def fb_response(request, course_id):
         return render(request, 'feedback_faculty.html', context)
     except:
         try:
-            fb = feedback.objects.get(user=request.user)
+            fb = feedback.objects.get(user=request.user, course=course)
             messages.error(request, "You have already given the feedback")
             return redirect('/mycourse/'+course_id)
         except:
