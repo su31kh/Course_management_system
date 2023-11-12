@@ -1,8 +1,18 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+{% endblock %}
+
 {% block body %}
-{% for x in feedback %}
-<p>{{x.fb}}</p>
-{% endfor %}
+<div class="container-fluid">
+    {% for x in feedback %}
+    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
+      <div><b>Feedback : </b> {{ x.fb }}
+        <div style="float: right">{{ x.timestamp }}</div>
+    </div>
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}

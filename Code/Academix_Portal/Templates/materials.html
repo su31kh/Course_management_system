@@ -1,11 +1,13 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+{% endblock %}
+
 {% block body %}
 {% if isprof %}
-<div class="container-fluid m-2 align-items-center">
-  <a href="/mycourse/{{ course.course_code }}/addmaterial"><button>Add Material</button></a>
-</div>
+  <a href="/mycourse/{{ course.course_code }}/addmaterial"><button class="btn btn-warning m-2" style="border-color: black">Add Material</button></a>
 {% endif %}
 
 <div class="container-fluid">
@@ -13,7 +15,9 @@
   <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad"">
     <p> <b>Material Name : </b>{{ x.title }}</p>
     <p> <b>Description : </b>{{ x.description }}</p>
-    <p><b>File Link : </b><a href="{{x.material_file}}">Link</a></p>
+    <div><b>File Link : </b><a href="{{x.material_file}}">Link</a>
+      <div style="float: right">{{ x.timestamp }}</div>
+    </div>
   </div>
   {% endfor %}
 

@@ -1,9 +1,13 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+{% endblock %}
+
 {% block body %}
 
-<button class="m-2"><a href="/mycourse/{{ course.course_code }}/createassignment">Create Assignment</a></button>
+<a href="/mycourse/{{ course.course_code }}/createassignment"><button class="btn btn-warning m-2" style="border-color: black">Create Assignment</button></a>
 
     <div class="container-fluid">
         <div class="row mb-4">

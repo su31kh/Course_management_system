@@ -1,21 +1,25 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+{% endblock %}
+
 
 {% block body %}
 
 {% if isprof %}
-<div class="container-fluid m-2 align-items-center">
-  <div class="container-fluid">
-    <a href="{{ course.course_code }}/addannouncement"><button>Add Announcements</button></a>
-  </div>
+    <a href="{{ course.course_code }}/addannouncement"><button class="btn btn-warning m-2" style="border-color: black">Add Announcements</button></a>
 {% endif %}
   <div class="container-fluid">
     {% for x in announce %}
     <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
       <p><b>Title :</b> {{ x.title }}</p>
       <p><b>Description</b> : {{ x.description }}</p>
-      <p><b>User:</b> {{ x.user }}</p>
+      <div><b>User:</b> {{ x.user }}
+        <div style="float: right">{{ x.timestamp }}</div>
+      </div>
+      
     </div>
     {% endfor %}
   </div>

@@ -1,6 +1,10 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/student_list.css' %}">
+{% endblock %} 
+
 {% block search %}
   <form class="form-inline my-2 my-lg-0" action="/mycourse/{{course.course_code}}/studentlist/search" method="POST">
     {% csrf_token %}
@@ -15,9 +19,9 @@
   <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
     <p><b>Student Name :</b> {{student.first_name}} {{student.last_name}}</p>
     <p><b>Username : </b> {{ student.user.email}}</p>
-    <button type="button" class="btn btn-primary"
-      style="background-color: rgb(109, 109, 255); color: rgb(255, 255, 255); border-radius: 7px; border-color: rgb(255, 255, 255);"><a
-        href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;">View Profile</a></button>
+    <a
+        href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button type="button" class="btn btn-warning"
+      style="color: black; border-radius: 7px; border-color: black;">View Profile</button></a>
   </div>
   {% endfor %}
 </div>
