@@ -117,3 +117,8 @@
   color: rgb(255, 255, 255);
   z-index: 0;
 }
+
+.btn-primary{
+  background-color: rgb(109, 109, 255) !important;
+  border-color: rgb(109, 109, 255) !important;
+}

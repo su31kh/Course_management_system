@@ -236,8 +236,11 @@ def addcourse(request):
         courseid = request.POST.get('courseid')
         description = request.POST.get('description')
         prof = faculty_profile.objects.get(user=request.user)
-        my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = prof)
-        my_course.save()
+        if not Course.objects.filter(course_code = courseid).exists():
+            my_course = Course.objects.create(name = course_name , course_code = courseid , description = description , faculty = prof)
+            my_course.save()
+        return redirect('/mycourse')
+    
 
     return render(request , 'addcourse.html')
 
