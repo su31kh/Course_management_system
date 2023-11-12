@@ -7,9 +7,7 @@
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Academix Portal</title>
-
-  <link rel="stylesheet" href="static/css/add_announcement.css">
-  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+  <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,9 +17,9 @@
 <body>
 
   <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-    <div class="container">
       <form action="/mycourse/{{ course.course_code }}/addannouncement" method="post">
         {% csrf_token %}
+        <div class="container">
         <div class="form-group">
           <label for="name">Announcement Name :</label>
           <input type="text" class="form-control" name="title">
@@ -31,10 +29,11 @@
           <label for="dob">Description : </label>
           <textarea type="text" class="form-control" name="desc"></textarea>
         </div>
-
-        <button type="submit" class="btn border" style="float:right">Add</button>
-      </form>
+        <div>
+        </div>
+        <button type="submit" class="btn btn-warning" style="float: right; border-color: black;">Add</button>
     </div>
+  </form>
   </div>
 
   </div>

@@ -1,6 +1,10 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/view_assignments.css' %}">
+{% endblock %} 
+
 
 {% block body %}
     <div class="container-fluid">
@@ -33,7 +37,7 @@
                             {% csrf_token %}
                             <label for="work"><b>Submission File : </b></label>
                             <input type="url" id="work" name="work" required="True"> 
-                            <button type="submit" class="btn btn-primary" style="float:right; background-color: rgb(109, 109, 255); border-radius: 7px; border-color: rgb(255, 255, 255);">Submit</button> 
+                            <button type="submit" class="btn btn-warning" style="float:right; border-radius: 7px; border-color: black;">Submit</button> 
                         </form>
                         {% else %}
                         <!-- <p>Submitted : {{y.0.work}}</p> -->
@@ -41,7 +45,7 @@
                             {% csrf_token %}
                             <label for="work"><b>Submisson File : </b></label>
                             <input type="url" id="work" name="work" required="True" value="{{y.0.work}}"> 
-                            <button type="submit" class="btn btn-primary" style="float:right; background-color: rgb(109, 109, 255); border-radius: 7px; border-color: rgb(255, 255, 255);">Edit Submission</button>
+                            <button type="submit" class="btn btn-warning" style="float:right; border-radius: 7px; border-color: black;">Edit Submission</button>
                         </form>
                         {% endif %}
                     </div>

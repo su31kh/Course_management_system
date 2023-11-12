@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
 
 <title>Academix Portal</title>
 
-<link rel="stylesheet" href="static/css/add_assignment.css">
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -31,7 +33,9 @@
                     <label for="income">File :</label>
                     <input type="url" class="form-control" name="file">
                   </div>
-                    <button type="submit" class="btn border" style="float:right">Add</button>
+                  <div>
+                    <button type="submit" class="btn btn-warning" style="float:right; border-color: black;">Add</button>
+                  </div>
               </div> 
         </form>
     </div>

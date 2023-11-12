@@ -1,8 +1,8 @@
-.whole {
-    background: #0d0f0f;
-    background: -webkit-linear-gradient(to right, #ffffff, #ac70f5);  
-    background: linear-gradient(to right, #ffffff, #ffffff);
-  }
+body {
+  background: #0d0f0f;
+  background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
+  background: linear-gradient(to right, #ffffff, #b5b1b1);
+}
 
 .backcolor{
     background-color: #bcbcbc;

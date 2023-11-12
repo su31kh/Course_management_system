@@ -24,10 +24,6 @@ form {
     border-radius:0px Important;
   }
   
-  form button:hover {
-    background:#fff !important;
-  }
-  
   .pull-right {
     float:right;
   }
