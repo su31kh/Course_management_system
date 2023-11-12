@@ -1,22 +1,25 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+{% endblock%}
+
 {% block body %}
 
-
-<div class="container d-flex align-items-center justify-content-center" style="padding-top:10%;">
-    <form action="/mycourse/{{course.course_code}}/addquery" method="post" style="background-color: #b5adad; border-radius: 10px; padding: 10px">
-        {% csrf_token %}
-        <div class="container-fluid text-center">
-               <div class="form-group">
-                <label for="qry"><b>Write Your Query : </b></label><br>
-                <textarea class="wh" name="qry"></textarea>
-                {% csrf_token %}
-              </div>
-              <button type="submit" class="btn btn-warning" style="line-height: 1.2rem;">Submit</button>
-          </div> 
-          
-    </form>
+<div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
+  <form action="/mycourse/{{course.course_code}}/addquery" method="post" style="border-radius: 10px; padding: 10px">
+    {% csrf_token %}
+    <div class="container-fluid text-center">
+           <div class="form-group">
+            <label for="qry"><b>Write Your Query : </b></label><br>
+            <textarea class="wh" name="qry"></textarea>
+            {% csrf_token %}
+          </div>
+          <button type="submit" class="btn btn-primary" style="line-height: 1.2rem;">Submit</button>
+      </div> 
+  </form>
 </div>
 
   {% endblock %}

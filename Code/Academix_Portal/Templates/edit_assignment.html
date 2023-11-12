@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,8 @@
 
 <title>Academix Portal</title>
 
-<link rel="stylesheet" href="static/css/announcements.css">
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -42,7 +45,7 @@
                     <input type="url" class="form-control" name="attachment" value="{{record.attachment}}">
                   </div>
                 
-                    <button type="submit" class="btn border" style="float:right" >Submit</button>
+                    <button type="submit" class="btn btn-primary" style="float:right" >Submit</button>
               </div> 
         </form>
     </div>

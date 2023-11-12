@@ -26,7 +26,8 @@ form button {
 }
 
 form button:hover {
-  background:#fff !important;
+  cursor: pointer;
+  background:rgb(109, 109, 255) !important;
 }
 
 .pull-right {

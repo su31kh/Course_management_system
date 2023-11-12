@@ -23,25 +23,20 @@
         <div class="row mb-4">
         {% for course in courses %}
         
-            <div class="col-sm-3 " style="padding-top: 15px;">
-                <div class="card backcolor ">
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <h2 class="card-title" >{{ course.name }}</h2>
+        <div class="col-lg-3 col-sm-6 col-md-6" style="padding-top: 15px;">
+            <div class="card backcolor" style="background-color: #b5adad">
+                <div class="row mb-4" style="text-align: center; padding: 5px;">
+                    <u><h2 class="card-title" >{{ course.name }}</h2></u>
+                </div>
+                <div class="row mb-4" style="text-align: center; padding: 5px;">
+                    <h5 class="card-title">{{ course.course_code}}</h5>
+                </div>
 
-                    </div>
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <h5 class="card-title">{{ course.course_code}}</h5>
-                    </div>
-
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <p>{{course.faculty.name}}</p>
-                    </div>
-                    <!-- <div class="card-body">
-                        
-                    <p class="card-text">{{ course.faculty }}</p> 
-                    </div> -->
+                <div class="row mb-4" style="text-align: center; padding: 5px;">
+                    <p>{{ course.faculty}}</p>
+                </div>
                     <div class="row mx-auto" style="padding-top: 50px;">
-                        <button class='btn btn-info' style= "background-color: #008adf; " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
+                        <button class='btn btn-primary' style= "background-color: #008adf; " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
                     </div>
                 </div>
             </div>

@@ -1,6 +1,11 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+{% endblock%}
+
 {% block body %}
 
 {% if not isprof %}
@@ -16,7 +21,7 @@
         {% endif %}
         {% if isprof %}
         {% if not q.reply%}
-        <a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="btn btn-warning m-2"
+        <a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="btn btn-primary m-2"
             style="border-color: black">Reply</button></a>
         {% endif %}
         {% endif %}

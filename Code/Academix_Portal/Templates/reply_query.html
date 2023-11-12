@@ -1,11 +1,16 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+{% endblock%}
+
 {% block body %}
 
 
 <div class="container d-flex align-items-center justify-content-center" style="padding-top:10%;">
-    <form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method="post" style="background-color: #b5adad; border-radius: 10px; padding: 10px">
+    <form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method="post" style="border-radius: 10px; padding: 10px">
         {% csrf_token %}
         <div class="container-fluid text-center">
                <div class="form-group">
@@ -13,7 +18,7 @@
                 <textarea class="wh" name="reply"></textarea>
                 {% csrf_token %}
               </div>
-              <button type="submit" class="btn btn-warning" style="line-height: 1.2rem;">Submit</button>
+              <button type="submit" class="btn btn-primary" style="line-height: 1.2rem;">Reply</button>
           </div> 
           
     </form>
