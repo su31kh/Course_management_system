@@ -1,0 +1,27 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if not isprof %}
+<a href="/mycourse/{{ course.course_code }}/addquery"><button class="btn btn-primary m-2"
+        style="border-color: black">Raise Query</button></a>
+{% endif %}
+<div class="container-fluid">
+    {% for q in Query %}
+    <div>
+        <p>{{q.user.first_name}} {{q.user.last_name}} : {{q.qry}}</p>
+        {% if q.reply %}
+        <p>{{course.faculty.first_name}} {{course.faculty.last_name}} : {{q.reply}}</p>
+        {% endif %}
+        {% if isprof %}
+        {% if not q.reply%}
+        <a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="btn btn-warning m-2"
+            style="border-color: black">Reply</button></a>
+        {% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

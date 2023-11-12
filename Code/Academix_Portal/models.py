@@ -87,3 +87,13 @@ class feedback(models.Model):
 
     def __str__(self):
         return self.course.course_code + ' ' + self.user.email
+    
+class query(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    user = models.ForeignKey(student_profile, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    qry = models.CharField(max_length=200,null=False)
+    reply = models.CharField(max_length=200,null=True)
+    
+    def __str__(self):
+        return self.course.course_code + ' ' + self.user.first_name + ' ' + self.user.last_name

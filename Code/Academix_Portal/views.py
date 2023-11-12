@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import student_profile
 from .models import faculty_profile
-from .models import Course, Assignment, Submission, Announcements, Material, feedback
+from .models import Course, Assignment, Submission, Announcements, Material, feedback, query
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.template import loader
@@ -501,6 +501,42 @@ def grade_student_submission(request,course_id,name,sub_id):
         submissiongrade.save()
         return render(request, 'view_students_submission.html', params)
     return render(request,'view_students_submission.html',params)
+
+def view_query(request, course_id):
+    course = Course.objects.get(course_code=course_id)
+    Query = query.objects.filter(course = course)
+    prof = faculty_profile.objects.filter(user=request.user)
+    isprof=False
+    if prof.exists():
+        isprof=True
+    params = {'course' : course, 'Query' : Query, 'isprof' : isprof}
+    return render(request, 'view_query.html', params)
+
+def add_query(request, course_id):
+    course = Course.objects.get(course_code=course_id)
+    student = student_profile.objects.get(user = request.user)
+    params = {'course' : course}
+    if(request.method == 'POST'):
+        qry = request.POST.get('qry')
+        Query = query.objects.create(course=course, user = student, qry=qry)
+        Query.save()
+        QueryList = query.objects.filter(course = course)
+        isprof = False
+        params2 = {'course' : course, 'Query' : QueryList, 'isprof' : isprof}
+        return render(request, 'view_query.html', params2)
+    return render(request, 'add_query.html', params)
+
+def reply_query(request, course_id, qid):
+    course = Course.objects.get(course_code=course_id)
+    SQuery = query.objects.get(id=qid)
+    Query = query.objects.filter(course = course)
+    isprof = True
+    params = {'course' : course, 'SQuery' : SQuery, 'Query' : Query, 'isprof' : isprof}
+    if(request.method == 'POST'):
+        SQuery.reply = request.POST.get('reply')
+        SQuery.save()
+        return render(request, 'view_query.html', params)
+    return render(request, 'reply_query.html', params)
 
 def log_out(request):
     logout(request)

@@ -33,6 +33,10 @@ urlpatterns = [
 
     path('mycourse/<str:course_id>/materials', views.materials, name="materials"),
     path('mycourse/<str:course_id>/addmaterial', views.addmaterial, name="addmaterial"),
+
+    path('mycourse/<str:course_id>/viewquery', views.view_query, name="view_query"),
+    path('mycourse/<str:course_id>/addquery', views.add_query, name="add_query"),
+    path('mycourse/<str:course_id>/replyquery/<str:qid>', views.reply_query, name="reply_query"),
     
     path('mycourse/<str:course_id>/feedback', views.fb_response, name="feedback"),
     path('coursedashboard',views.coursedashboard,name="coursedashboard"),
