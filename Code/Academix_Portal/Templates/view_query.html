@@ -15,9 +15,11 @@
 <div class="container-fluid">
     {% for q in Query %}
     <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
-        <p><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}</p>
+        <div><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}
+        <div style="float:right">{{s.timestamp}}</div></div>
         {% if q.reply %}
-        <p><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}</p>
+        <div><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}
+        <div style="float:right">{{s.timestamp}}</div></div>
         {% endif %}
         {% if isprof %}
         {% if not q.reply%}
