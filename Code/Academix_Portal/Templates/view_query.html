@@ -14,10 +14,10 @@
 {% endif %}
 <div class="container-fluid">
     {% for q in Query %}
-    <div>
-        <p>{{q.user.first_name}} {{q.user.last_name}} : {{q.qry}}</p>
+    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
+        <p><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}</p>
         {% if q.reply %}
-        <p>{{course.faculty.first_name}} {{course.faculty.last_name}} : {{q.reply}}</p>
+        <p><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}</p>
         {% endif %}
         {% if isprof %}
         {% if not q.reply%}
