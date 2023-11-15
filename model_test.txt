@@ -1,17 +1,9 @@
-Found 4 test(s).
+Found 10 test(s).
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-F...
-======================================================================
-FAIL: test_course_relationships (Academix_Portal.tests.test_models.TestModels)
+..........
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\91635\Desktop\CMS\Course_management_system\Code\Academix_Portal\tests\test_models.py", line 77, in test_course_relationships
-    self.assertEqual(self.faculty.faculty_courses.count(), 2)
-AssertionError: 1 != 2
+Ran 10 tests in 2.421s
 
-----------------------------------------------------------------------
-Ran 4 tests in 1.494s
-
-FAILED (failures=1)
+OK
 Destroying test database for alias 'default'...
