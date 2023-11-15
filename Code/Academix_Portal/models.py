@@ -46,8 +46,12 @@ class Assignment(models.Model):
     max_grade = models.IntegerField()
     attachment = models.URLField()
     assignment_course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
+    
+    class Meta:
+        unique_together = ('name' , 'assignment_course')
     
 class Submission(models.Model):
     student = models.ForeignKey(student_profile, on_delete=models.CASCADE)
@@ -60,6 +64,9 @@ class Submission(models.Model):
 
     def __str__(self):
         return self.assignment.assignment_course.course_code + ' ' + self.student.first_name + self.student.last_name
+    
+    class Meta:
+        unique_together = ('student', 'assignment')
     
 class Announcements(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
