@@ -1,9 +1,9 @@
-Found 10 test(s).
+Found 24 test(s).
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
 ..........
 ----------------------------------------------------------------------
-Ran 10 tests in 2.421s
+Ran 24 tests in 6.010s
 
 OK
 Destroying test database for alias 'default'...
