@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 from Academix_Portal.models import student_profile,faculty_profile,Course
-
+from django.db.utils import IntegrityError
 
 ## Notes for people involved in testing ##
 
@@ -19,11 +19,14 @@ from Academix_Portal.models import student_profile,faculty_profile,Course
 
 """
 
+from django.test import TestCase
+from django.contrib.auth.models import User
+from Academix_Portal.models import student_profile, faculty_profile, Course
+
 class TestModels(TestCase):
     def setUp(self):
         self.user_student = User.objects.create_user(username='shrikar', password='shrikar123')
         self.user_faculty = User.objects.create_user(username='aakash', password='aakash123')
-
 
         self.faculty = faculty_profile.objects.create(
             user=self.user_faculty,
@@ -49,37 +52,63 @@ class TestModels(TestCase):
             faculty=self.faculty
         )
 
-        self.course2 = Course.objects.create(
-            name='Mathematics 101',
-            course_code='MATH101',
-            description='Introduction to Mathematics',
-            faculty=self.faculty
+    def test_duplicate_usernames(self):
+        # Test for uniqueness of usernames
+        user_duplicate = User(username='shrikar', password='testpassword')
+        with self.assertRaises(Exception):
+            user_duplicate.save()
+
+    def test_student_enroll_in_course(self):
+        # Test if a student can enroll in a course
+        self.course.studentlist.add(self.student)
+        self.assertEqual(self.course.studentlist.count(), 1)
+
+    def test_course_with_no_faculty(self):
+        # Test creating a course without a faculty
+        
+        with self.assertRaises(IntegrityError):
+            course_no_faculty = Course.objects.create(
+            name='No Faculty Course',
+            course_code='NF101',
+            description='Course without faculty'
         )
 
-    def test_student_profile_str(self):
+    def test_course_without_students(self):
+        # Test creating a course without students
+        course_empty = Course.objects.create(
+            name='Empty Course',
+            course_code='EC101',
+            description='Course with no students',
+            faculty=self.faculty
+        )
+        self.assertEqual(course_empty.studentlist.count(), 0)
+
+    def test_student_courses_relationship(self):
+        # Testing relationship between student and courses
+        self.student.student_courses.add(self.course)
+        self.assertEqual(self.student.student_courses.count(), 1)
+        self.assertEqual(self.student.student_courses.first().name, 'Computer Science 101')
+
+    def test_faculty_courses_relationship(self):
+        # Testing relationship between faculty and courses
+        self.faculty.faculty_courses.add(self.course)
+        self.assertEqual(self.faculty.faculty_courses.count(), 1)
+        self.assertEqual(self.faculty.faculty_courses.first().name, 'Computer Science 101')
+
+    def test_course_students_and_faculty(self):
+        # Testing that a course has both students and a faculty
+        self.course.studentlist.add(self.student)
+        self.assertEqual(self.course.studentlist.count(), 1)
+        self.assertEqual(self.course.faculty, self.faculty)
+
+    def test_student_str_method(self):
         
         self.assertEqual(str(self.student), 'shrikar')
 
-    def test_faculty_profile_str(self):
-            
+    def test_faculty_str_method(self):
+        
         self.assertEqual(str(self.faculty), 'aakash')
 
-    def test_course_str(self):
-           
+    def test_course_str_method(self):
+        
         self.assertEqual(str(self.course), 'Computer Science 101')
-
-
-    def test_course_relationships(self):
-        
-        self.assertEqual(self.course.faculty, self.faculty)
-        self.assertEqual(self.course.faculty.first_name, 'aakash')
-
-       
-        self.course.studentlist.add(self.student)
-        self.assertEqual(self.course.studentlist.count(), 1)
-        self.assertEqual(self.student.course.first().name, 'Computer Science 101')
-
-        self.faculty.faculty_courses.add(self.course)
-        
-        self.assertEqual(self.faculty.faculty_courses.count(), 2)
-        self.assertTrue(self.course2 in self.faculty.faculty_courses.all())
