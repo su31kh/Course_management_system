@@ -4,55 +4,95 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/view_assignments.css' %}">
 <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
+<style>
+    .button-5 {
+      align-items: center;
+      background-clip: padding-box;
+      background-color: #eb6e54;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 1.25;
+      margin: 0;
+      min-height: 3rem;
+      padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+      position: relative;
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      width: auto;
+    }
+    
+    .button-5:hover,
+    .button-5:focus {
+      background-color: #eb6e54;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+    
+    .button-5:hover {
+        background-color: #ecccc5;  
+      transform: translateY(-1px);
+    }
+    
+    .button-5:active {
+      background-color: #eb6e54;
+      box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+      transform: translateY(0);
+    }
+    </style>
 
 {% endblock %} 
 
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row mb-4">
-        {% for x,y in merged %}
-            <div class="col-sm-12" style="padding-top: 5px">
-                    <div class="card-body">
-                <div class="card" style="min-height: 330px; background-color: #b5adad;">    
-                        <h3 class="card-text">{{ course.faculty }}</h3>
-                        <div class="card-text"><b>Assignment Name : </b>{{ x.name }}
-                            
-                        </div><br>
-                        <div class="card-text"><b>Description : </b>{{ x.description }}
-                            
-                        </div><br>
-                        <div class="card-text"><b>Due-Date : </b>{{ x.duedate }}</div><br>
-                        <div class="card-text"><b>Max-Grade : </b>{{ x.max_grade }}</div><br>
-                        <p><b>Attachment : </b>{{ x.attachment }}</p>
-                        {% if y %}
-                        <div class="card-text"><b>Status : </b>{{ y.0.feedback }}</div><br>
-                        {% if y.0.graded %}
-                        <div class="card-text"><b>Graded : </b>{{ y.0.grade }}</div><br>
-                        {% else %}
-                        <div class="card-text"><b>Graded : </b>Not Yet</div><br>
-                        {% endif %}
-                        {% endif %}
 
-                        {% if not y %}
-                        <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
-                            {% csrf_token %}
-                            <label for="work"><b>Submission File : </b></label>
-                            <input type="url" id="work" name="work" required="True"> 
-                            <button type="submit" class="btn btn-primary" style="float:right; border-radius: 7px; border-color: black;">Submit</button> 
-                        </form>
-                        {% else %}
-                        <!-- <p>Submitted : {{y.0.work}}</p> -->
-                        <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post">
-                            {% csrf_token %}
-                            <label for="work"><b>Submisson File : </b></label>
-                            <input type="url" id="work" name="work" required="True" value="{{y.0.work}}"> 
-                            <button type="submit" class="btn btn-primary" style="float:right; border-radius: 7px; border-color: black;">Edit Submission</button>
-                        </form>
-                        {% endif %}
-                    </div>
-                </div>
+    <div class="list-group container-fluid">
+        {% for x,y in merged %}
+        <div class="m-3 p-2" style="border-radius: 8px;">
+          <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" style="color:#eb6e54"><b>Assignment Name:</b> {{x.name}}</h5>
+                <small><b>Due-Date: </b>{{x.duedate}}</small>
             </div>
+            <p class="mb-1" style="padding-top: 25px;"><b>Description: </b>{{x.description}}</p>
+            <p class="mb-1" style="padding-top: 5px;"><b>Max-Grade: </b>{{x.max_grade}}</p>
+            <p class="mb-1" style="padding-top: 5px;"><b>Attachment: </b>{{x.attachment}}</p>
+            {% if y %}
+            <p class="mb-1" style="padding-top: 5px;"><b>Status: </b>{{y.0.feedback}}</p>
+            {% if y.0.graded %}
+            <p class="mb-1" style="padding-top: 5px;"><b>Graded: </b>{{y.0.grade}}</p>
+            {% else %}
+            <p class="mb-1" style="padding-top: 5px;"><b>Graded: </b>Not Yet</p>
+            {% endif %}
+            {% endif %}
+            {% if not y %}
+            <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
+                {% csrf_token %}<div style="padding-bottom:15px;">
+                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission File : </b></p></label>
+                <input type="url" id="work" name="work" required="True"> 
+                <button class="button-5" style="float: right;" role="button">Submit</button>
+            </div></form>
+            {% else %}
+            <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post">
+                {% csrf_token %}<div style="padding-bottom:15px;">
+                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson File : </b></p></label>
+                <input type="url" id="work" name="work" required="True" value="{{y.0.work}}"> 
+                <button class="button-5" style="float: right;" role="button">Edit Submission</button>
+            </div></form>
+            {% endif %}
+            </div>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

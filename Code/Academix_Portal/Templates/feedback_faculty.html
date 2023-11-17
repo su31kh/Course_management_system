@@ -6,13 +6,16 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+  <div class="list-group container-fluid">
     {% for x in feedback %}
-    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
-      <div><b>Feedback : </b> {{ x.fb }}
-        <div style="float: right">{{ x.timestamp }}</div>
-    </div>
+    <div class="m-3 p-2" style="border-radius: 8px;">
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1"><span style="color:#eb6354"><b>Feedback: </b></span> {{x.fb}}</h6>
+            <small>{{x.timestamp}}</small>
+        </div>  
+        </div>
     </div>
     {% endfor %}
-  </div>
+</div>
 {% endblock %}

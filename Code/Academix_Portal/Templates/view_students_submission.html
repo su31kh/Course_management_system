@@ -1,37 +1,89 @@
 {% extends 'navbar.html' %}
 {% load static %}
-
+{% block head %}
+<style>
+    .button-5 {
+      align-items: center;
+      background-clip: padding-box;
+      background-color: #eb6e54;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 1.25;
+      margin: 0;
+      min-height: 3rem;
+      padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+      position: relative;
+      text-decoration: none;
+      transition: all 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: baseline;
+      width: auto;
+    }
+    
+    .button-5:hover,
+    .button-5:focus {
+      background-color: #eb6e54;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    }
+    
+    .button-5:hover {
+      background-color: #ecccc5;  
+      transform: translateY(-1px);
+    }
+    
+    .button-5:active {
+      background-color: #eb6e54;
+      box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+      transform: translateY(0);
+    }
+    </style>
+{% endblock %}
 
 {% block body %}
 
-
-<div class="container-fluid">
+  <div class="list-group container-fluid">
     {% for s in submission %}
-    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
-      <h5>{{s.student.first_name}} {{s.student.last_name}}'s Submission</h5>
-      <div><b>Submission Link : </b><a href="{{s.work}}">Link</a></div><hr>
-      <div><b>Status : </b>{{s.feedback}}</div>
-      {% if s.graded %}
-      <div><b>Grade Obtained : </b>{{s.grade}}</div>
-      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
-        {% csrf_token %}
-        <label><b>Update Grade : </b></label>
-        <input type="number" id="grade" name="grade" style="border-radius: 5px">
-        <br>
-        {% comment %} <input type="submit" value="ReGrade Assignment"> {% endcomment %}
-        <button type="submit" class="btn btn-primary" value="ReGrade Assignment">Update</button>
-    </form>
-      {% else %}
-      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
-        {% csrf_token %}
-        <label><b>Grade : </b></label>
-        <input type="number" id="grade" name="grade" style="border-radius: 5px">
-        <br>
-        <button type="submit" class="btn btn-primary" value="ReGrade Assignment">Grade</button>
-    </form>
-      {% endif %}
+    <div class="m-3 p-2" style="border-radius: 8px;">
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1" style="color:#eb6e54">{{s.student.first_name}} {{s.student.last_name}}'s Submission</h5>
+            <h6 class="mb-1"><b>Submission Link: </b><a href="{{s.work}}">Link</a></small>
+        </div><hr>
+        <p class="mb-1" style="padding-top: 10px;"><b>Status: </b>{{s.feedback}}</p>
+        {% if s.graded %}
+          <p class="mb-1" style="padding-top: 5px;"><b>Grade Obtained: </b>{{s.grade}}</p>
+          <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+            {% csrf_token %}
+            <label><p class='mb-1' style="padding-top: 5px;"><b>Update Grade: </b></p></label>
+            <input type="number" id="grade" name="grade" style="border-radius: 5px">
+            <br>
+            {% comment %} <input type="submit" value="ReGrade Assignment"> {% endcomment %}
+            <div style="padding-top: 15px;"><button class="button-5" role="button">Update</button></div>
+          </form>
+        {% else %}
+          <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+            {% csrf_token %}
+            <label><p class='mb-1' style="padding-top: 5px;"><b>Grade: </b></p></label>
+            <input type="number" id="grade" name="grade" style="border-radius: 5px">
+            <br>
+            <div style="padding-top: 15px;"><button class="button-5" role="button">Grade</button></div>
+          </form>
+        {% endif %}
+    </div>
     </div>
     {% endfor %}
-  </div>
+
+</div>
 
 {% endblock %}
