@@ -19,31 +19,34 @@
   {% endblock %}
 
 {% block body %}
-    <div class="container-fluid whole">
+<section class="solutions-section" id="oursolutions">
+    <div class="container">
         <div class="row mb-4">
-        {% for course in courses %}
-        
-        <div class="col-lg-3 col-sm-6 col-md-6" style="padding-top: 15px;">
-            <div class="card backcolor" style="background-color: #b5adad">
-                <div class="row mb-4" style="text-align: center; padding: 5px;">
-                    <u><h2 class="card-title" >{{ course.name }}</h2></u>
-                </div>
-                <div class="row mb-4" style="text-align: center; padding: 5px;">
-                    <h5 class="card-title">{{ course.course_code}}</h5>
-                </div>
-
-                <div class="row mb-4" style="text-align: center; padding: 5px;">
-                    <p>{{ course.faculty}}</p>
-                </div>
-                    <div class="row mx-auto" style="padding-top: 50px;">
-                        <button class='btn btn-primary' style= "background-color: #008adf; " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
+            <div class="col-12">
+                <div class="solutions-main">
+                    {% for course in courses %}
+                    <div class="solutions-box container-fluid">
+                        <h4 class="baskerville-font">{{ course.name }}</h4>
+                        <h5 class="baskerville-font">{{ course.course_code }}</h5>
+                        <p class="baskerville-font">{{ course.faculty }}</p>
+                        <div class="row mx-auto" style="padding-top: 50px;">
+                            <button class='btn' style= "background-color: #EB6E54; color:white " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
+                        </div>
                     </div>
+                    
+                </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
-        
-        {% endfor %}
+        </div>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+</section>
+        
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
