@@ -4,31 +4,83 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
 <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+<style>
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #eb6e54;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    background-color: #eb6e54;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-5:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: #eb6e54;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+  </style>
 {% endblock%}
 
 {% block body %}
 
-{% if not isprof %}
-<a href="/mycourse/{{ course.course_code }}/addquery"><button class="btn btn-primary m-2"
-        style="border-color: black">Raise Query</button></a>
-{% endif %}
-<div class="container-fluid">
+
+
+<div class="list-group container-fluid">
     {% for q in Query %}
-    <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
-        <div><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}
-        <div style="float:right">{{s.timestamp}}</div></div>
-        {% if q.reply %}
-        <div><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}
-        <div style="float:right">{{s.timestamp}}</div></div>
-        {% endif %}
-        {% if isprof %}
+    <div class="m-3 p-2" style="border-radius: 8px;">
+      <div class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1"><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}</p>
+        <small>{{s.timestamp}}</small>
+      </div>
+      {% if q.reply %}
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1"><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}</p>
+        <small>{{s.timestamp}}</small>
+      </div>
+      {% endif %}
+      {% if isprof %}
         {% if not q.reply%}
-        <a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="btn btn-primary m-2"
-            style="border-color: black">Reply</button></a>
+        <div style="padding-top:15px;"><a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="button-5" role="button">Reply</button></a></div>
         {% endif %}
         {% endif %}
     </div>
-    {% endfor %}
-</div>
+    </div>
+    {% endfor %}  
+    {% if not isprof %}
+    <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/addquery"><button class="button-5" role="button">Raise Query</button></a></div>
+{% endif %}
+  </div>
 
 {% endblock %}

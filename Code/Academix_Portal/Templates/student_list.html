@@ -3,6 +3,52 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/student_list.css' %}">
+<style>
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #eb6e54;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #eb6e54;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #eb6e54;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+</style>
 {% endblock %} 
 
 {% block search %}
@@ -14,16 +60,20 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
+
+<ol class="list-group container-fluid list-group-flush">
   {% for student in students %}
-  <div class="m-3 p-2" style="border:solid 1px; border-radius: 8px; background-color: #b5adad">
-    <p><b>Student Name :</b> {{student.first_name}} {{student.last_name}}</p>
-    <p><b>Username : </b> {{ student.user.email}}</p>
-    <a
-        href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button type="button" class="btn btn-primary"
-      style="color: rgb(254, 254, 254); border-radius: 7px; border-color: blue;">View Profile</button></a>
+  <div class="m-3 p-2" style="border-radius: 8px;">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw"><b>Student Name: </b>{{student.first_name}} {{student.last_name}}</div>
+      <b>Username: </b>{{ student.user.email}}
+    </div>
+    <span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button class="button-5" role="button">View Profile</button></a></span>
+  </li>
   </div>
   {% endfor %}
-</div>
+</ol>
+
 
 {% endblock %}
