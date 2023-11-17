@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="static/css/course_dashboard_student.css">
+        <link rel="stylesheet" href="static/css/course_dashboard_student.css">   
     {% endblock %}
 
     {% block search %}
@@ -19,33 +19,30 @@
   {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row mb-4">
-        {% for course in enrolled %}
-        
-            <div class="col-lg-3 col-sm-6 col-md-6" style="padding-top: 15px;">
-                <div class="card backcolor" style="background-color: #b5adad">
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <u><h2 class="card-title" >{{ course.name }}</h2></u>
-                    </div>
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <h5 class="card-title">{{ course.course_code}}</h5>
-                    </div>
-
-                    <div class="row mb-4" style="text-align: center; padding: 5px;">
-                        <p>{{ course.faculty}}</p>
-                    </div>
-                    <div class="row mx-auto" style="padding-top: 50px;">
-                        <a href = "/mycourse/{{ course.course_code }}"><button class="btn btn-primary" style="border-color: black">View Course</button></a> 
-                        {% if isprof %}
-                        <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn btn-primary" style="border-color: black">Edit Course</button></a>   
-                        {% endif %}
+    
+    <section class="solutions-section" id="oursolutions">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="solutions-main">
+                        {% for course in enrolled %}
+                        <div class="solutions-box container-fluid">
+                            <h4 class="baskerville-font">{{ course.name }}</h4>
+                            <h5 class="baskerville-font">{{ course.course_code }}</h5>
+                            <p class="baskerville-font">{{ course.faculty }}</p>
+                            <div style="padding-top: 50px;">
+                                <a href = "/mycourse/{{ course.course_code }}"><button class='btn'style="border-color: black; background-color: #EB6E54; color:white">View Course</button></a> 
+                                {% if isprof %}
+                                <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn btn-primary" style="border-color: black">Edit Course</button></a>   
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-        
-        {% endfor %}
-    </div>
+        </div>
+    </section>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
