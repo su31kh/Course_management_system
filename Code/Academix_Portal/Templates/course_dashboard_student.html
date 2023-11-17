@@ -4,6 +4,8 @@
     {% block head %}
 
     <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_course_student.css' %}">
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -29,12 +31,9 @@
                         <h4 class="baskerville-font">{{ course.name }}</h4>
                         <h5 class="baskerville-font">{{ course.course_code }}</h5>
                         <p class="baskerville-font">{{ course.faculty }}</p>
-                        <div class="row mx-auto" style="padding-top: 50px;">
-                            <button class='btn' style= "background-color: #EB6E54; color:white " onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Enroll Course</button>    
+                        <div style="padding-top: 50px;">
+                            <button class='btn'style="border-color: black; background-color: #EB6E54; color:white" onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Eroll course</button>
                         </div>
-                    </div>
-                    
-                </div>
                     </div>
                     {% endfor %}
                 </div>
