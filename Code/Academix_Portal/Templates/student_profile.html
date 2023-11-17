@@ -1,48 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block body %}
-<div class="page-content container" id="page-content">
-  <div class="padding p-5">
-    <div class="row container d-flex justify-content-center">
-      <div class="col-xl-12 col-md-12">
-        <div class="card user-card-full" style="background-color: #b5adad; border: none">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-12">
-              <div class="card-block">
-                <div class="m-b-20 p-b-5 b-b-default f-w-600 text-center" style="font-size: 40px">
-                  Student Profile
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                  <p style="font-size: 20px;" class="m-b-10 f-w-600"><b>Name : </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</p>
-                    <br>
-                  </div>
-                  <div class="col-sm-12">
-                    <p style="font-size: 20px;" class="m-b-10 f-w-600"><b>Email : </b>{{student.user.email}}</p>
-                    <br>
-                  </div>
-                  <div class="col-sm-12">
-                    <p style="font-size: 20px;" class="m-b-10 f-w-600"><b>Batch : </b>{{student.batch}} </p>
-                    <br>
-                  </div>
-                </div>
+{% block head %}
+<style>
+         
+.card{
+    border:none;
 
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p style="font-size: 20px;" class="m-b-10 f-w-600"><b>Branch : </b>{{student.branch}} </p>
-                    <br>
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card:before{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#edcbc4;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#eb6e54;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after{
+    transform:scaleY(1);
+}
+
+
+.fonts{
+    font-size:11px;
+}
+
+
+        </style>
+    {% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+    
+  <div class="row d-flex justify-content-center">
+      
+      <div class="col-md-7">
+          
+          <div class="card p-3 py-4">
+              
+              
+              <div class="text-center mt-3">
+                  <span class="bg-secondary p-1 px-4 rounded text-white" style="font-size: 25px;">Student</span>
+                  <h5 class="mt-2 mb-0" style="padding-top: 25px; font-size: 25px;"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</h5>
+                  <div style="padding-top: 20px; font-size: 20px;">
+                    <span><b>Email: </b>{{student.user.email}}</span>
                   </div>
-                  <div class="col-sm-12">
-                    <p style="font-size: 20px;" class="m-b-10 f-w-600"><b>Program : </b>{{student.program}} </p>
-                    <br>
+                  <div class="px-4 mt-1">
+                      <p class="fonts" style="padding-top: 15px; font-size: 15px;"><b>Batch: </b>{{student.batch}}</p>
                   </div>
-                </div>
+                  <div class="px-4 mt-1">
+                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Branch: </b>{{student.branch}} </p>
+                  </div>
+                  <div class="px-4 mt-1">
+                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Program: </b>{{student.program}} </p>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
   </div>
 </div>
 
