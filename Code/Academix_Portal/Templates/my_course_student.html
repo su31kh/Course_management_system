@@ -32,10 +32,13 @@
                             <p class="baskerville-font">{{ course.faculty }}</p>
                             <div style="padding-top: 50px;">
                                 <a href = "/mycourse/{{ course.course_code }}"><button class='btn'style="border-color: black; background-color: #EB6E54; color:white">View Course</button></a> 
-                                {% if isprof %}
-                                <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn btn-primary" style="border-color: black">Edit Course</button></a>   
-                                {% endif %}
                             </div>
+                            {% if isprof %}
+                            <div style="padding-top: 15px;">
+                                <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn" style="border-color: black; background-color: #EB6E54; color:white">Edit Course</button></a>   
+                            </div>
+                            {% endif %}
+                            
                         </div>
                         {% endfor %}
                     </div>
