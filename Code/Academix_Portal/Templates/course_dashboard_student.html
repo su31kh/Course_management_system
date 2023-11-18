@@ -18,21 +18,21 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white;">Search</button>
     </form>
-  {% endblock %}
+  {% endblock %}+
 
 {% block body %}
 <section class="solutions-section" id="oursolutions">
-    <div class="container">
+    <div class="container" >
         <div class="row mb-4">
             <div class="col-12">
-                <div class="solutions-main">
+                <div class="solutions-main" >
                     {% for course in courses %}
-                    <div class="solutions-box container-fluid">
+                    <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173);">
                         <h4 class="baskerville-font">{{ course.name }}</h4>
                         <h5 class="baskerville-font">{{ course.course_code }}</h5>
                         <p class="baskerville-font">{{ course.faculty }}</p>
                         <div style="padding-top: 50px;">
-                            <button class='btn'style="border-color: black; background-color: #EB6E54; color:white" onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Eroll course</button>
+                            <button class='btn'style="border-color: black; background-color: rgb(109, 109, 255); color:white" onclick="window.location.href = '/enroll/{{ course.course_code}}';";>Eroll course</button>
                         </div>
                     </div>
                     {% endfor %}

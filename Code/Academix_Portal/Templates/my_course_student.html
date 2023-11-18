@@ -2,13 +2,18 @@
 {% load static %}
     {% block head %}
 
+    
+
     <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/my_course_student.css' %}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="static/css/course_dashboard_student.css">   
+        <link rel="stylesheet" href="static/css/course_dashboard_student.css">  
+    
+        
     {% endblock %}
+
 
     {% block search %}
     <form class="form-inline my-2 my-lg-0" action="/mycourse/search" method="POST">
@@ -26,16 +31,16 @@
                 <div class="col-12">
                     <div class="solutions-main">
                         {% for course in enrolled %}
-                        <div class="solutions-box container-fluid">
-                            <h4 class="baskerville-font">{{ course.name }}</h4>
+                        <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173);">
+                            <h4 class="baskerville-font" style="color: rgb(109, 109, 255);">{{ course.name }}</h4>
                             <h5 class="baskerville-font">{{ course.course_code }}</h5>
-                            <p class="baskerville-font">{{ course.faculty }}</p>
+                            <p class="baskerville-font">{{ course.description }}</p>
                             <div style="padding-top: 50px;">
-                                <a href = "/mycourse/{{ course.course_code }}"><button class='btn'style="border-color: black; background-color: #EB6E54; color:white">View Course</button></a> 
+                                <a href = "/mycourse/{{ course.course_code }}"><button class='btn'style="border-color: black; background-color: rgb(109, 109, 255); color:white">View Course</button></a> 
                             </div>
                             {% if isprof %}
                             <div style="padding-top: 15px;">
-                                <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn" style="border-color: black; background-color: #EB6E54; color:white">Edit Course</button></a>   
+                                <a href = "/mycourse/{{ course.course_code }}/editcourse"><button class="btn" style="border-color: black; background-color: rgb(109, 109, 255); color:white">Edit Course</button></a>   
                             </div>
                             {% endif %}
                             

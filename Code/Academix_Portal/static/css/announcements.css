@@ -7,10 +7,10 @@ form {
   max-width:400px;
   padding:25px;
   margin:0 auto;
-  /* background:#ffffff59;  */
-  -webkit-box-shadow: 3px 3px 23px -9px rgba(0,0,0,0.86);
-  -moz-box-shadow: 3px 3px 23px -9px rgba(0,0,0,0.86);
-  box-shadow: 3px 3px 23px -9px rgba(0,0,0,0.86);
+  background:#efefef;
+  border: solid 1px;
+  border-color: grey;
+
 }
 
 form input {
@@ -36,7 +36,7 @@ form button:hover {
 body {
   background: #0d0f0f;
   background: -webkit-linear-gradient(to right, #94d4ff, #ac70f5);  
-  background: linear-gradient(to right, #ffffff, #b5b1b1);
+  background: linear-gradient(to right, #ffffff, #ffffff);
 }
 
 .container-fluid{

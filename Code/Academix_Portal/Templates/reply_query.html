@@ -9,8 +9,8 @@
 {% block body %}
 
 
-<div class="container d-flex align-items-center justify-content-center" style="padding-top:10%;">
-    <form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method="post" style="border-radius: 10px; padding: 10px">
+<div class="container d-flex align-items-center justify-content-center" style="padding-top:10%; ">
+    <form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method="post" style="border-radius: 10px; padding: 10px; background-color: rgb(232, 232, 232);">
         {% csrf_token %}
         <div class="container-fluid text-center">
                <div class="form-group">
