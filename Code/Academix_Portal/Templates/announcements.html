@@ -112,7 +112,7 @@
         <small>{{x.timestamp}}</small>
       </div>
       {% if isprof %}
-      <button type="submit" class="button-3" style="float:right;">Remove</button>
+      <a href="{{ course.course_code }}/deleteannouncement/{{ x.id }}"><button role="button" class="button-3" style="float:right;">Remove</button></a>
       {% endif %}
       <div>
       <p class="mb-1"><b>Description: </b>{{x.description}}</p>

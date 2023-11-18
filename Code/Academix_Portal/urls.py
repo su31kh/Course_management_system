@@ -14,16 +14,18 @@ urlpatterns = [
     path('mycourse', views.mycourse, name="mycourse"),
     path('mycourse/search', views.mycourse_search, name="mycourse_search"),
     path('mycourse/<str:course_id>/editcourse', views.edit_course, name="edit_course"),
-
+    
     path('student_profile', views.students_profile, name="students_profile"),
 
     path('mycourse/<str:course_id>', views.announcements, name="announcements"),
     path('mycourse/<str:course_id>/addannouncement', views.addannouncement, name="addannouncement"),
+    path('mycourse/<str:course_id>/deleteannouncement/<str:ann_id>', views.delete_announcement, name="delete_announcement"),
 
     path('mycourse/<str:course_id>/createassignment', views.createassignment, name="createassignment"),
     path('mycourse/<str:course_id>/addassignment', views.add_assignment, name="add_assignment"),
     path('mycourse/<str:course_id>/viewassignments', views.view_assignments, name="view_assignments"),
     path('mycourse/<str:course_id>/<str:name>/editassignment', views.edit_assignment, name="edit_assignment"),
+    path('mycourse/<str:course_id>/<str:name>/deleteassignment', views.delete_assignment, name="delete_assignment"),
     
 
     path('mycourses/<str:course_id>/<str:name>/addsubmission', views.add_submission, name="add_submission"),

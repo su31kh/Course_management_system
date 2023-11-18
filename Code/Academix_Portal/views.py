@@ -448,6 +448,21 @@ def edit_assignment(request, course_id, name):
         return render(request, 'edit_assignment.html', params)
     return redirect('/mycourse/'+course_id+'/viewassignments')
 
+def delete_assignment(request , course_id , name):
+
+    course = Course.objects.get(course_code = course_id)
+    Assignment.objects.filter(assignment_course = course , name = name).delete()
+    view_assignments(request , course_id)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def delete_announcement(request , course_id , ann_id):
+
+    Announcements.objects.filter(id = ann_id).delete()
+    announcements(request , course_id)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+   
+
 def add_submission(request, course_id, name):
     student = student_profile.objects.get(user = request.user)
     assignment = Assignment.objects.get(name = name)
