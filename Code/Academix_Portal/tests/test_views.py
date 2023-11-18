@@ -54,7 +54,6 @@ class TestViews(TestCase):
         self.view_feedback_url = reverse('feedback', args=['CS101'])
         self.view_student_list_url = reverse('student_list', args=['CS101'])
         self.add_assignment_url = reverse('add_assignment', args=['CS101'])
-        self.add_announcement_url = reverse('add_assignment', args=['CS101'])
         self.add_announcement_url = reverse('addannouncement', args=['CS101'])
         self.add_submission_url = reverse('add_submission', args=['CS101', 'Assignment 1'])
 
