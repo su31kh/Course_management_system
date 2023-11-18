@@ -13,6 +13,54 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <style>
+      .button-5 {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: rgb(109, 109, 255);
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 2rem;
+        padding: calc(.7rem - 1px) calc(1.5rem - 1px);
+        position: relative;
+        text-decoration: none;
+        transition: all 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: 5rem;
+      }
+      
+      .button-5:hover,
+      .button-5:focus {
+        background-color: rgb(109, 109, 255);
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      }
+      
+      .button-5:hover {
+        background-color: #ecccc5;  
+        transform: translateY(-1px);
+      }
+      
+      .button-5:active {
+        background-color: rgb(109, 109, 255);
+        box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+        transform: translateY(0);
+      }
+      </style>
+
 </head>
 
 <body>
@@ -45,7 +93,7 @@
                     <input type="url" class="form-control" name="attachment" value="{{record.attachment}}">
                   </div>
                 
-                    <button type="submit" class="btn btn-primary" style="float:right" >Submit</button>
+                    <button type="submit" class="button-5" style="float:right" >Submit</button>
               </div> 
         </form>
     </div>
