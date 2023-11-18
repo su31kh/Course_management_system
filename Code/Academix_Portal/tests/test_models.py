@@ -2,9 +2,10 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 from Academix_Portal.models import student_profile,faculty_profile,Course
-from Academix_Portal.models import Assignment,Submission
+from Academix_Portal.models import Assignment,Submission,query
 from django.db.utils import IntegrityError
 from datetime import datetime
+
 ## Notes for people involved in testing ##
 
 """
@@ -20,7 +21,6 @@ from datetime import datetime
 
 """
 
-""" Current test cases contains 5 models: student_profile , faculty_profile , Course , Assignment, Submission """
 
 from django.test import TestCase
 from django.contrib.auth.models import User
@@ -305,4 +305,55 @@ class TestModels(TestCase):
                 work='http://example.com/submission3',
                 feedback='Yet another submission',
                 assignment=None
+            )
+    
+    def test_query_creation(self):
+        # Testing creation of a query
+        query_instance = query.objects.create(
+            course=self.course,
+            user=self.student,
+            qry='Doubt about the lecture content'
+        )
+        self.assertEqual(str(query_instance), 'CS101 shrikar padaliya')
+        self.assertIsNotNone(query_instance.timestamp)
+        self.assertEqual(query_instance.qry, 'Doubt about the lecture content')
+        self.assertIsNone(query_instance.reply)
+
+    def test_query_reply(self):
+        # Testing replying to a query
+        query_instance = query.objects.create(
+            course=self.course,
+            user=self.student,
+            qry='Doubt about the lecture content'
+        )
+        reply_text = 'This is a reply.'
+        query_instance.reply = reply_text
+        query_instance.save()
+        self.assertEqual(query_instance.reply, reply_text)
+
+    def test_query_defaults(self):
+        # Testing default values of a query
+        query_instance = query.objects.create(
+            course=self.course,
+            user=self.student,
+            qry='Doubt about the lecture content'
+        )
+        self.assertIsNone(query_instance.reply)
+
+    def test_query_course_foreign_key_constraint(self):
+        # Testing integrity constraint for query course foreign key
+        with self.assertRaises(IntegrityError):
+            query.objects.create(
+                course=None,
+                user=self.student,
+                qry='Doubt about the lecture content'
+            )
+
+    def test_query_user_foreign_key_constraint(self):
+        # Testing integrity constraint for query user foreign key
+        with self.assertRaises(IntegrityError):
+            query.objects.create(
+                course=self.course,
+                user=None,
+                qry='Doubt about the lecture content'
             )
