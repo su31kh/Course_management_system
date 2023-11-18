@@ -63,19 +63,67 @@
             .solutions-box:hover{
                 transform: scale(1.05);
             }
+
+            .button-3 {
+                align-items: center;
+                background-clip: padding-box;
+                background-color: rgb(109, 109, 255);
+                border: 1px solid transparent;
+                border-radius: .25rem;
+                box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+                box-sizing: border-box;
+                color: #fff;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+                justify-content: center;
+                line-height: 1.25;
+                margin: 0;
+                min-height: 2.3rem;
+                padding: calc(.7 - 1px) calc(1.5rem - 1px);
+                position: relative;
+                text-decoration: none;
+                transition: all 250ms;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                vertical-align: baseline;
+                width: 5rem;
+              }
+              
+              .button-3:hover,
+              .button-3:focus {
+                background-color: rgb(109, 109, 255);
+                box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+              }
+              
+              .button-3:hover {
+                background-color: green;  
+                transform: translateY(-1px);
+              }
+              
+              .button-3:active {
+                background-color: rgb(109, 109, 255);
+                box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+                transform: translateY(0);
+              }
             </style>
     
         
     {% endblock %}
 
 
+
     {% block search %}
-    <form class="form-inline my-2 my-lg-0" action="/mycourse/search" method="POST">
-      {% csrf_token %}
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white;">Search</button>
-    </form>
-  {% endblock %}
+  <form class="form-inline my-2 my-lg-0" action="/mycourse/{{course.course_code}}/studentlist/search" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
+    <button class="button-3" type="submit" style="color: white; border-color: white;">Search</button>
+  </form>
+    {% endblock %}
+
 
 {% block body %}
     
