@@ -53,20 +53,26 @@ class TestViews(TestCase):
         self.view_query_url = reverse('view_query', args=['CS101'])
         self.view_feedback_url = reverse('feedback', args=['CS101'])
         self.view_student_list_url = reverse('student_list', args=['CS101'])
+        self.add_assignment_url = reverse('add_assignment', args=['CS101'])
+        self.add_announcement_url = reverse('addannouncement', args=['CS101'])
+        self.add_submission_url = reverse('add_submission', args=['CS101', 'Assignment 1'])
 
+    #testing view enrolled courses page
     def test_my_course_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.my_course_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'my_course_student.html')
         self.assertTemplateUsed(response, 'base.html')
-        
+
+    #tests for view assignment page faculty side    
     def test_view_assignments_faculty_GET(self):
         login = self.client.login(username='aakash', password='aakash123')
         response = self.client.get(self.view_assignments_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'view_assignments_faculty.html')
 
+    #tests for view assignment page student side
     def test_view_assignments_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_assignments_url)
@@ -74,44 +80,95 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'view_assignments.html')
         self.assertTemplateUsed(response, 'navbar.html')
 
+    #tests for view profile page
     def test_view_profile_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.profile_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'student_profile.html')
-
+    
+    #tests for view announcements page
     def test_view_announcements_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_announcements_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'announcements.html')
 
+    #tests for view materials page
     def test_view_materials_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_materials_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'materials.html')
 
+    #tests for view query page
     def test_view_query_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_query_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'view_query.html')
 
+    #tests for view feedback page student side
     def test_view_feedback_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_feedback_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'feedback_student.html')
 
+    #tests for view feedback page faculty side
     def test_view_feedback_faculty_GET(self):
         login = self.client.login(username='aakash', password='aakash123')
         response = self.client.get(self.view_feedback_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'feedback_faculty.html')
 
+    #tests for view enrolled student list
     def test_view_student_list_GET(self):
         login = self.client.login(username='shrikar', password='shrikar123')
         response = self.client.get(self.view_student_list_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'student_list.html')
+
+    #tests for adding assignment
+    def test_add_assignment_POST(self):
+        login = self.client.login(username='aakash', password='aakash123')
+        data = {
+            'name' : 'Assignment 2',
+            'max_grade': '100',
+            'description' : 'Second assignment',
+            'duedate' : datetime(2023, 12, 1, 0, 0, 0),
+            'attachment' : 'https://github.com',
+            'assignment_course' : self.course}
+        
+        response = self.client.post(self.add_assignment_url, data)
+        self.assertEquals(response.status_code, 302)
+        assignment = Assignment.objects.get(name = "Assignment 2")
+        self.assertEqual(assignment.description, 'Second assignment')
+
+    #tests for adding announcement
+    def test_add_announcement_POST(self):
+        login = self.client.login(username='aakash', password='aakash123')
+        data = {
+            'user' : self.user_faculty,
+            'course' : self.course,
+            'title': 'Lecture file',
+            'description' : 'PFA materials',
+            'timestamp' :  datetime(2023, 12, 1, 0, 0, 0)}
+    
+
+        response = self.client.post(self.add_announcement_url, data)
+        self.assertEquals(response.status_code, 302)
+
+    #tests for adding submission
+    def test_add_submission_POST(self):
+        login = self.client.login(username='shrikar', password='shrikar123')
+        data = {
+            'student' : self.student,
+            'work' : 'https://github.com',
+            'title': 'Lecture file',
+            'assignment' : self.assignment,
+            'timestamp' :  datetime(2023, 12, 1, 0, 0, 0)}
+    
+
+        response = self.client.post(self.add_submission_url, data)
+        self.assertEquals(response.status_code, 302)
