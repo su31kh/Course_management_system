@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -70,26 +71,25 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/addcourses" method="post">
-            {% csrf_token %}
-            <div class="container">
-                   <div class="form-group">
-                    <label for="coursename">Course Name :</label>
-                    <input type="text" id="coursename" class="form-control" name="coursename">
-                  </div>
+        <form action="/addcourses" method="post" style="background-color: rgb(254, 254, 254); border-radius: 5px; opacity: 0.9;">
+          {% csrf_token %}
+          <div class="container">
+                 <div class="form-group">
+                  <label for="coursename" style="font-family: 'Nunito';"><b>Course Name :</b></label>
+                  <input type="text" id="coursename" class="form-control" name="coursename" value="{{record.name}}">
+                </div>
 
-                  <div class="form-group">
-                    <label for="courseid">Course ID :</label>
-                    <input type="text" id="courseid" class="form-control" name="courseid">
-                  </div>
+                <div class="form-group">
+                  <label for="courseid" style="font-family: 'Nunito';"><b>Course ID :</b></label>
+                  <input type="text" id="courseid" class="form-control" name="courseid" value="{{record.course_code}}">
+                </div>
 
-                  <div class="form-group">
-                    <label for="description">Description :</label>
-                    <input type="text" id="description" class="form-control" name="description">
-                  </div> 
-                
-                  <button class="button-3" style="float: right;">Add</button>
-             </div> 
+                <div class="form-group">
+                  <label for="description" style="font-family: 'Nunito';"><b>Description :</b></label>
+                  <input type="text" id="description" class="form-control" name="description" value="{{record.description}}">
+                </div> 
+                <button type="submit" class="button-3" style="font-family: 'Nunito'; float: right;">Add</button>
+           </div> 
         </form>
     </div>
 
