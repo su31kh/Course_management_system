@@ -63,24 +63,18 @@
           
           <div class="card p-3 py-4">
               
-              
+              <form action="/student_profile/change" method="POST">
+                {% csrf_token %}
               <div class="text-center mt-3">
-                  <span class="p-1 px-4 rounded text-white" style="font-size: 25px; color: white; background-color: rgb(109, 109, 255)">Student</span>
-                  <h5 class="mt-2 mb-0" style="padding-top: 25px; font-size: 25px;"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</h5>
-                  <div style="padding-top: 20px; font-size: 20px;">
-                    <span><b>Email: </b>{{student.user.email}}</span>
-                  </div>
-                  <div class="px-4 mt-1">
-                      <p class="fonts" style="padding-top: 15px; font-size: 15px;"><b>Batch: </b>{{student.batch}}</p>
-                  </div>
-                  <div class="px-4 mt-1">
-                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Branch: </b>{{student.branch}} </p>
-                  </div>
-                  <div class="px-4 mt-1">
-                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Program: </b>{{student.program}} </p>
-                  </div>
-                  <button class="btn btn-primary mx-auto"><a href="student_profile/change" class="mx-auto">Update Profile</a></button>
+                  <input name="first_name" value="{{student.first_name}}">
+                  <input name="middle_name" value="{{student.middle_name}}">
+                  <input name="last_name" value="{{student.last_name}}">
+                  <input name="batch" value="{{student.batch}}">
+                  <input name="branch" value="{{student.branch}}">
+                  <input name="program" value="{{student.program}}">
+                  <button type="submit"> Save Changes </button>
               </div>
+            </form>
           </div>
       </div>
   </div>

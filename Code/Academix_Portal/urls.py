@@ -52,7 +52,7 @@ urlpatterns = [
     path('mycourse/<str:course_id>/studentlist',views.student_list , name= "student_list"),
     path('mycourse/<str:course_id>/studentlist/search',views.student_list_search , name= "student_list_search"),
     path('mycourse/<str:course_id>/studentlist/<str:id>/viewprofile',views.view_profile , name= "view_profile"),
+    path('student_profile/change',views.update_profile, name="update_profile"),
     path('<str:course_id>/<str:student>',views.students_assignment , name= "students_assignment"),
-
     path('logout',views.log_out,name='log_out')
 ]

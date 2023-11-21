@@ -625,3 +625,31 @@ def coursedashboard_search(request):
         return render(request , 'course_dashboard_student.html' , context)
     else:
         return redirect('/coursedashboard')
+    
+def update_profile(request):
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+        return redirect('/mycourse')
+    except:
+        student = student_profile.objects.get(user=request.user)
+        if request.method == "POST":
+            first_name = request.POST.get('first_name')
+            print(first_name)
+            middle_name = request.POST.get('middle_name')
+            last_name = request.POST.get('last_name')
+            batch = request.POST.get('batch')
+            branch = request.POST.get('branch')
+            program = request.POST.get('program')
+            student.first_name = first_name
+            student.middle_name = middle_name
+            student.last_name = last_name
+            student.batch = batch
+            student.branch = branch
+            student.program = program
+            student.save()
+            return redirect('/student_profile')
+        else:
+            context = {
+                'student':student
+            }
+            return render(request, 'update_profile.html', context)
