@@ -1,6 +1,215 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
+
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
+<style>
+         
+.card{
+    border:none;
+
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card:before{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:rgb(217, 217, 255);
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color: #ff0000;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after{
+    transform:scaleY(1);
+}
+
+
+.fonts{
+    font-size:11px;
+}
+
+body{
+  background-image: url("static/images/img_03.jpg");
+  background-size: cover;
+}
+
+.button-3 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #66cc00;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.5rem - 1px) calc(1rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-3:hover,
+.button-3:focus {
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-3:hover {
+  background-color: #009900;  
+  transform: translateY(-1px);
+}
+
+.button-3:active {
+  background-color: rgb(109, 109, 255);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+body{
+  background-image: url("/static/images/img_03.jpg");
+  background-size: cover;
+}
+
+
+        </style>
+    {% endblock %}
+
+
+{% block body %}
+<div class="container mt-5">
+    
+  <div class="row d-flex justify-content-center">
+      
+      <div class="col-md-7">
+          
+          <div class="card p-3 py-4" style="opacity: 0.6">
+              
+              
+            <form action="/student_profile/change" method="POST">
+              {% csrf_token %}
+            <div class="text-center mt-3">
+              <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>First Name: </b>
+                <input name="first_name" value="{{student.first_name}}">
+              </div>
+
+              <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Middle Name: </b>
+                <input name="middle_name" value="{{student.middle_name}}">
+              </div>
+
+              <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Last Name: </b>
+                <input name="last_name" value="{{student.last_name}}">
+              </div>
+
+              <div class=" mt-1">
+                <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Batch: </b><input name="batch" value="{{student.batch}}"></p>
+            </div>
+
+            <div class=" mt-1">
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Branch: </b><input name="branch" value="{{student.branch}}"> </p>
+            </div>
+
+            <div class=" mt-1">
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Program: </b><input name="program" value="{{student.program}}"></p>
+            </div>
+                
+                
+                
+                
+                
+                <button class="button-3" type="submit"> Save Changes </button>
+            </div>
+          </form> 
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+  function enroll(id) {
+    document.getElementById(id).innerHTML = "Enrolled";
+
+    const button = document.querySelector(id);
+
+    const disableButton = () => {
+      button.disabled = true;
+    };
+
+    button.addEventListener("click", disableButton);
+  }
+
+  function search_courses() {
+    let input = document.getElementById("searchbar").value;
+    input = input.toLowerCase();
+
+    let cour = document.getElementsByClassName("card-title");
+
+    for (i = 0; i < cour.length; i++) {
+      console.log(cour[i]);
+      var par = cour[i].closest(".card");
+      if (!cour[i].innerHTML.toLowerCase().includes(input)) {
+        par.style.display = "none";
+      } else {
+        par.style.display = "block";
+      }
+    }
+  }
+</script>
+
+{% endblock %}
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+{% block head %}
 <style>
          
 .card{
@@ -121,4 +330,4 @@
   }
 </script>
 
-{% endblock %}
+{% endblock %} {% endcomment %}

@@ -8,12 +8,12 @@
   .button-5 {
     align-items: center;
     background-clip: padding-box;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -36,12 +36,11 @@
   
   .button-5:hover,
   .button-5:focus {
-    background-color: rgb(109, 109, 255);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
   .button-5:hover {
-    background-color: #ecccc5;  
+    background-color: #cc0000;  
     transform: translateY(-1px);
   }
   
@@ -55,12 +54,12 @@
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -83,12 +82,11 @@
   
   .button-3:hover,
   .button-3:focus {
-    background-color: rgb(109, 109, 255);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
   .button-3:hover {
-    background-color: #ecccc5;  
+    background-color: #cc0000;  
     transform: translateY(-1px);
   }
   
@@ -114,14 +112,14 @@
     <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
       <div class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1" style="color:rgb(109, 109, 255)"><b>Title:</b> {{x.title}}</h5>
+        <h5 class="mb-1" style="color:black"><b>Title:</b> {{x.title}}</h5>
         <small>{{x.timestamp}}</small>
       </div>
       {% if isprof %}
       <a href="{{ course.course_code }}/deleteannouncement/{{ x.id }}"><button role="button" class="button-3" style="float:right;">Remove</button></a>
       {% endif %}
       <div>
-      <p class="mb-1"><b>Description: </b>{{x.description}}</p>
+      <p class="mb-1" style="color:black"><b>Description: </b>{{x.description}}</p>
       <small>{{x.user}}</small>
       </div>
       
@@ -129,7 +127,7 @@
     </div>
     {% endfor %}
     {% if isprof %}
-    <div style="padding-top:25px; padding-left:25px;"><a href="{{ course.course_code }}/addannouncement"><button class="button-5" role="button">Add Announcements</button></a></div>
+    <div style="padding-top:25px; padding-left:25px;"><a href="{{ course.course_code }}/addannouncement"><button class="button-3" role="button">Add Announcements</button></a></div>
 {% endif %}
   </div>
 

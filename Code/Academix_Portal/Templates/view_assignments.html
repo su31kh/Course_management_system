@@ -5,50 +5,54 @@
 <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
 <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
 <style>
-    .button-5 {
-      align-items: center;
-      background-clip: padding-box;
-      background-color: rgb(109, 109, 255);
-      border: 1px solid transparent;
-      border-radius: .25rem;
-      box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-      box-sizing: border-box;
-      color: #fff;
-      cursor: pointer;
-      display: inline-flex;
-      font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      justify-content: center;
-      line-height: 1.25;
-      margin: 0;
-      min-height: 2rem;
-      padding: calc(.7rem - 1px) calc(1.5rem - 1px);
-      position: relative;
-      text-decoration: none;
-      transition: all 250ms;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      vertical-align: baseline;
-      width: auto;
-    }
-    
-    .button-5:hover,
-    .button-5:focus {
-      background-color: rgb(109, 109, 255);
-      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    }
-    
-    .button-5:hover {
-        background-color: #ecccc5;  
-      transform: translateY(-1px);
-    }
-    
-    .button-5:active {
-      background-color: rgb(109, 109, 255);
-      box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-      transform: translateY(0);
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #ff0000;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-5:hover {
+    background-color: #cc0000;  
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+
+    body{
+      background-image: url("/static/images/img_03.jpg");
+      background-size: cover;
     }
 
     
@@ -64,12 +68,12 @@
         <div class="m-3 p-2" style="border-radius: 8px;">
           <div class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" style="color:rgb(109, 109, 255)"><b>Assignment Name:</b> {{x.name}}</h5>
+                <h5 class="mb-1" style="color:black"><b>Assignment Name:</b> {{x.name}}</h5>
                 <small><b>Due-Date: </b>{{x.duedate}}</small>
             </div>
-            <p class="mb-1" style="padding-top: 25px;"><b>Description: </b>{{x.description}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b>Max-Grade: </b>{{x.max_grade}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b>Attachment: </b>{{x.attachment}}</p>
+            <p class="mb-1" style="padding-top: 25px; color:black"><b>Description: </b>{{x.description}}</p>
+            <p class="mb-1" style="padding-top: 5px; color:black"><b>Max-Grade: </b>{{x.max_grade}}</p>
+            <p class="mb-1" style="padding-top: 5px; color:black"><b>Attachment: </b>{{x.attachment}}</p>
             {% if y %}
             <p class="mb-1" style="padding-top: 5px;"><b>Status: </b>{{y.0.feedback}}</p>
             {% if y.0.graded %}

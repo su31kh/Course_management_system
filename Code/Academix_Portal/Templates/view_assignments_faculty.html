@@ -7,12 +7,12 @@
     .button-5 {
       align-items: center;
       background-clip: padding-box;
-      background-color: rgb(109, 109, 255);
+      background-color: #ff0000;
       border: 1px solid transparent;
       border-radius: .25rem;
       box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
       box-sizing: border-box;
-      color: #fff;
+      color: black;
       cursor: pointer;
       display: inline-flex;
       font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -35,12 +35,11 @@
     
     .button-5:hover,
     .button-5:focus {
-      background-color: rgb(109, 109, 255);
       box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     }
     
     .button-5:hover {
-      background-color: #ecccc5;  
+      background-color: #cc0000;  
       transform: translateY(-1px);
     }
     
@@ -53,12 +52,12 @@
     .button-3 {
       align-items: center;
       background-clip: padding-box;
-      background-color: rgb(109, 109, 255);
+      background-color: #ff0000;
       border: 1px solid transparent;
       border-radius: .25rem;
       box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
       box-sizing: border-box;
-      color: #fff;
+      color: black;
       cursor: pointer;
       display: inline-flex;
       font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -81,12 +80,11 @@
     
     .button-3:hover,
     .button-3:focus {
-      background-color: rgb(109, 109, 255);
       box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     }
     
     .button-3:hover {
-      background-color: #ecccc5;  
+      background-color: #cc0000;  
       transform: translateY(-1px);
     }
     
@@ -109,22 +107,22 @@
         <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
           <div class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" style="color:rgb(109, 109, 255)"><b>Assignment Name:</b> {{x.name}}</h5>
+                <h5 class="mb-1" style="color:black"><b>Assignment Name:</b> {{x.name}}</h5>
                 <small><b>Due-Date: </b>{{x.duedate}}</small>
             </div>
             <a href="/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment"><button role="button" class="button-3" style="float:right;">Remove</button></a>
-            <p class="mb-1" style="padding-top: 25px;"><b>Description: </b>{{x.description}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b>Max-Grade: </b>{{x.max_grade}}</p>
+            <p class="mb-1" style="padding-top: 25px; color:black;"><b>Description: </b>{{x.description}}</p>
+            <p class="mb-1" style="padding-top: 5px; color:black;"><b>Max-Grade: </b>{{x.max_grade}}</p>
             <p class="mb-1" style="padding-top: 5px;"><b>Attachment: </b>{{x.attachment}}</p>
             <div style="padding: 10px; padding-top: 25px;">
-                <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button class="button-5" role="button">Edit Assignment</button></a>
-                    <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button class="button-5" role="button">View Students Submission</button></a>
+                <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button class="button-3" role="button">Edit Assignment</button></a>
+                    <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button class="button-3" role="button">View Students Submission</button></a>
                 </div>
         </div>
         </div>
         {% endfor %}
 
-        <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/createassignment"><button class="button-5" role="button">Create Assignment</button></a></div>
+        <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/createassignment"><button class="button-3" role="button">Create Assignment</button></a></div>
 
     </div>
 

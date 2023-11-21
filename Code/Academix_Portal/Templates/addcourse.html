@@ -14,15 +14,16 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <style>
-      .button-5 {
+
+      .button-3 {
         align-items: center;
         background-clip: padding-box;
-        background-color: rgb(109, 109, 255);
+        background-color: #ff0000;
         border: 1px solid transparent;
         border-radius: .25rem;
         box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
         box-sizing: border-box;
-        color: #fff;
+        color: black;
         cursor: pointer;
         display: inline-flex;
         font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -32,7 +33,7 @@
         line-height: 1.25;
         margin: 0;
         min-height: 2rem;
-        padding: calc(.7rem - 1px) calc(1.5rem - 1px);
+        padding: calc(.5rem - 1px) calc(1rem - 1px);
         position: relative;
         text-decoration: none;
         transition: all 250ms;
@@ -40,24 +41,28 @@
         -webkit-user-select: none;
         touch-action: manipulation;
         vertical-align: baseline;
-        width: 4rem;
+        width: auto;
       }
       
-      .button-5:hover,
-      .button-5:focus {
-        background-color: rgb(109, 109, 255);
+      .button-3:hover,
+      .button-3:focus {
         box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
       }
       
-      .button-5:hover {
-        background-color: #ecccc5;  
+      .button-3:hover {
+        background-color: #cc0000;  
         transform: translateY(-1px);
       }
       
-      .button-5:active {
+      .button-3:active {
         background-color: rgb(109, 109, 255);
         box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
         transform: translateY(0);
+      }
+
+      body{
+        background-image: url("/static/images/img_03.jpg");
+        background-size: cover;
       }
       </style>
 
@@ -83,7 +88,7 @@
                     <input type="text" id="description" class="form-control" name="description">
                   </div> 
                 
-                  <button class="button-5" style="float: right;">Add</button>
+                  <button class="button-3" style="float: right;">Add</button>
              </div> 
         </form>
     </div>

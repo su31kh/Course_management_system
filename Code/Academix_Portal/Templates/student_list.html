@@ -4,51 +4,95 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/student_list.css' %}">
 <style>
-.button-5 {
-  align-items: center;
-  background-clip: padding-box;
-  background-color: rgb(109, 109, 255);
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #ff0000;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-5:hover {
+    background-color: #cc0000;  
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
 
-.button-5:hover,
-.button-5:focus {
-  background-color: rgb(109, 109, 255);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-
-.button-5:hover {
-  background-color: #ecccc5; 
-  transform: translateY(-1px);
-}
-
-.button-5:active {
-  background-color: rgb(109, 109, 255);
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-  transform: translateY(0);
-}
+  .button-3 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #ff0000;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 2rem;
+    padding: calc(.5rem - 1px) calc(1rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-3:hover,
+  .button-3:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-3:hover {
+    background-color: #cc0000;  
+    transform: translateY(-1px);
+  }
+  
+  .button-3:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
 
 body{
   background-image: url("/static/images/img_03.jpg");
@@ -61,7 +105,7 @@ body{
   <form class="form-inline my-2 my-lg-0" action="/mycourse/{{course.course_code}}/studentlist/search" method="POST">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white;">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white; border-color: white; background-color: #404040;">Search</button>
   </form>
 {% endblock %}
 
@@ -75,7 +119,7 @@ body{
       <div class="fw"><b>Student Name: </b>{{student.first_name}} {{student.last_name}}</div>
       <b>Username: </b>{{ student.user.email}}
     </div>
-    <span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button class="button-5" role="button">View Profile</button></a></span>
+    <span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button class="button-3" role="button">View Profile</button></a></span>
   </li>
   </div>
   {% endfor %}

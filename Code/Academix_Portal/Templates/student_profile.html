@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
+
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
 <style>
          
 .card{
@@ -34,7 +37,7 @@
     top:0;
     width:4px;
     height:100%;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -54,6 +57,51 @@ body{
   background-size: cover;
 }
 
+.button-3 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #ff0000;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.5rem - 1px) calc(1rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-3:hover,
+.button-3:focus {
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-3:hover {
+  background-color: #cc0000;  
+  transform: translateY(-1px);
+}
+
+.button-3:active {
+  background-color: rgb(109, 109, 255);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
 
         </style>
     {% endblock %}
@@ -70,21 +118,27 @@ body{
               
               
               <div class="text-center mt-3">
-                  <span class="p-1 px-4 rounded text-white" style="font-size: 25px; color: white; background-color: rgb(109, 109, 255)">Student</span>
-                  <h5 class="mt-2 mb-0" style="padding-top: 25px; font-size: 25px;"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</h5>
-                  <div style="padding-top: 20px; font-size: 20px;">
-                    <span><b>Email: </b>{{student.user.email}}</span>
+                  <span class="p-1  rounded" style="font-size: 2.5rem; color: black; font-family: 'Nunito';"><b>Student</b></span>
+                  <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</div>
+
+                  <div style="padding-top: 20px; font-size: 1.5rem; font-family: 'Nunito';">
+                    <div><b>Email: </b>{{student.user.email}}</div>
                   </div>
-                  <div class="px-4 mt-1">
-                      <p class="fonts" style="padding-top: 15px; font-size: 15px;"><b>Batch: </b>{{student.batch}}</p>
+
+                  <div class=" mt-1">
+                      <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Batch: </b>{{student.batch}}</p>
                   </div>
-                  <div class="px-4 mt-1">
-                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Branch: </b>{{student.branch}} </p>
+
+                  <div class=" mt-1">
+                    <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Branch: </b>{{student.branch}} </p>
                   </div>
-                  <div class="px-4 mt-1">
-                    <p class="fonts" style="padding-top: 5px; font-size: 15px;"><b>Program: </b>{{student.program}} </p>
+
+                  <div class=" mt-1">
+                    <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Program: </b>{{student.program}} </p>
                   </div>
-                  <button class="btn btn-primary mx-auto"><a href="student_profile/change" class="mx-auto">Update Profile</a></button>
+                  
+                  <br>
+                  <a href="student_profile/change"><button class="button-3 mx-auto" class="mx-auto" style="color: black; text-decoration: none;">Update Profile</button></a>
               </div>
           </div>
       </div>

@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/my_course_student.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -13,12 +14,12 @@
             .button-5 {
               align-items: center;
               background-clip: padding-box;
-              background-color: rgb(109, 109, 255);
+              background-color: #cccc00;
               border: 1px solid transparent;
               border-radius: .25rem;
               box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
               box-sizing: border-box;
-              color: #fff;
+              color: black;
               cursor: pointer;
               display: inline-flex;
               font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -41,12 +42,11 @@
             
             .button-5:hover,
             .button-5:focus {
-              background-color: rgb(109, 109, 255);
               box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
             }
             
             .button-5:hover {
-              background-color: rgb(130, 130, 255);  
+              background-color: #999900;  
               transform: translateY(-1px);
             }
             
@@ -67,7 +67,7 @@
             .button-3 {
                 align-items: center;
                 background-clip: padding-box;
-                background-color: black;
+                background-color: #404040;
                 border: 1px solid transparent;
                 border-radius: .25rem;
                 box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -111,7 +111,8 @@
 
               body{
                 background-image: url("static/images/img_03.jpg");
-                background-size: cover;
+                
+                background-repeat: repeat-x;
               }
 
             </style>
@@ -139,7 +140,7 @@
                     <div class="solutions-main">
                         {% for course in enrolled %}
                         <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173); opacity: 0.9;">
-                            <h4 class="baskerville-font" style="color: rgb(109, 109, 255); font-size: 1.5rem;">{{ course.name }}</h4>
+                            <h4 class="baskerville-font" style="color: black; font-size: 1.5rem; font-family: 'Nunito';"><b>{{ course.name }}</b></h4>
                             <h5 class="baskerville-font">{{ course.course_code }}</h5>
                             <p class="baskerville-font">{{ course.description }}</p>
                             <div style="padding-top: 50px;">

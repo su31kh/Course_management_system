@@ -8,12 +8,12 @@
   .button-5 {
     align-items: center;
     background-clip: padding-box;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -22,8 +22,8 @@
     justify-content: center;
     line-height: 1.25;
     margin: 0;
-    min-height: 2rem;
-    padding: calc(.7rem - 1px) calc(1.5rem - 1px);
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
     position: relative;
     text-decoration: none;
     transition: all 250ms;
@@ -31,17 +31,16 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: auto ;
+    width: auto;
   }
   
   .button-5:hover,
   .button-5:focus {
-    background-color: rgb(109, 109, 255);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
   .button-5:hover {
-    background-color: #ecccc5;  
+    background-color: #cc0000;  
     transform: translateY(-1px);
   }
   
@@ -51,16 +50,15 @@
     transform: translateY(0);
   }
 
-
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -83,12 +81,11 @@
   
   .button-3:hover,
   .button-3:focus {
-    background-color: rgb(109, 109, 255);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
   .button-3:hover {
-    background-color: #ecccc5;  
+    background-color: #cc0000;  
     transform: translateY(-1px);
   }
   
@@ -125,7 +122,7 @@
       {% endif %}
       {% if isprof %}
         {% if not q.reply%}
-        <div style="padding-top:15px;"><a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="button-5" role="button">Reply</button></a></div>
+        <div style="padding-top:15px;"><a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="button-3" role="button">Reply</button></a></div>
         {% endif %}
         {% endif %}
     </div>
