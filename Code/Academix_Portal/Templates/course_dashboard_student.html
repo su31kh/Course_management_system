@@ -48,7 +48,7 @@
             }
             
             .button-5:hover {
-              background-color: #ecccc5;  
+              background-color: rgb(130, 130, 255);  
               transform: translateY(-1px);
             }
             
@@ -111,6 +111,11 @@
                 box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
                 transform: translateY(0);
               }
+
+              body{
+                background-image: url("static/images/img_03.jpg");
+                background-size: cover;
+              }
             </style>
     {% endblock %}
 
@@ -129,7 +134,7 @@
             <div class="col-12">
                 <div class="solutions-main" >
                     {% for course in courses %}
-                    <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173);">
+                    <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173); opacity: 0.9;">
                         <h4 class="baskerville-font">{{ course.name }}</h4>
                         <h5 class="baskerville-font">{{ course.course_code }}</h5>
                         <p class="baskerville-font">{{ course.faculty }}</p>

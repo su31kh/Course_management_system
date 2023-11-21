@@ -25,39 +25,39 @@
 </ul>
 {% endif %}
 
-<nav style="background-color: rgb(109, 109, 255);" class="navbar navbar-expand-lg navbar-dark" >
-    <a class="navbar-brand" href="/mycourse" style="background-color: rgb(109, 109, 255);">{{ course.course_code }}</a>
+<nav class="navbar navbar-expand-lg" >
+    <a class="navbar-brand" href="/mycourse" style="color: black; font-size: 1.2rem;">{{ course.course_code }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: rgb(109, 109, 255);">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: black; font-size: 1.2rem;">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}">Announcements<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}" style="color: black; font-size: 1.2rem;">Announcements<span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/materials">Material <span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/materials" style="color: black; font-size: 1.2rem;">Material <span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewassignments">Assignments<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewassignments" style="color: black; font-size: 1.2rem;">Assignments<span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewquery">Query<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewquery" style="color: black; font-size: 1.2rem;">Query<span class="sr-only"></span></a>
         </li>
         {% if not isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback">Feedback<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: black; font-size: 1.2rem;">Feedback<span class="sr-only"></span></a>
         </li>
         {% else %}
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback">Feedback List<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: black; font-size: 1.2rem;">Feedback List<span class="sr-only"></span></a>
         </li>
         {% endif %}
         {% if isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/studentlist">Students List<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/studentlist" style="color: black; font-size: 1.2rem;">Students List<span class="sr-only"></span></a>
         </li>
         {% endif %}
       </ul>

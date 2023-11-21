@@ -3,12 +3,19 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+
+<style>
+  body{
+    background-image: url("/static/images/img_03.jpg");
+    background-size: cover;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
   <div class="list-group container-fluid">
     {% for x in feedback %}
-    <div class="m-3 p-2" style="border-radius: 8px;">
+    <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
       <div class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
             <h6 class="mb-1"><span style="color:rgb(109, 109, 255)"><b>Feedback: </b></span> {{x.fb}}</h6>

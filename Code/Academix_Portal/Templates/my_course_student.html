@@ -46,7 +46,7 @@
             }
             
             .button-5:hover {
-              background-color: #ecccc5;  
+              background-color: rgb(130, 130, 255);  
               transform: translateY(-1px);
             }
             
@@ -67,7 +67,7 @@
             .button-3 {
                 align-items: center;
                 background-clip: padding-box;
-                background-color: rgb(109, 109, 255);
+                background-color: black;
                 border: 1px solid transparent;
                 border-radius: .25rem;
                 box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -95,12 +95,11 @@
               
               .button-3:hover,
               .button-3:focus {
-                background-color: rgb(109, 109, 255);
                 box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
               }
               
               .button-3:hover {
-                background-color: green;  
+                background-color: rgb(80, 80, 80);  
                 transform: translateY(-1px);
               }
               
@@ -109,6 +108,12 @@
                 box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
                 transform: translateY(0);
               }
+
+              body{
+                background-image: url("static/images/img_03.jpg");
+                background-size: cover;
+              }
+
             </style>
     
         
@@ -133,8 +138,8 @@
                 <div class="col-12">
                     <div class="solutions-main">
                         {% for course in enrolled %}
-                        <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173);">
-                            <h4 class="baskerville-font" style="color: rgb(109, 109, 255);">{{ course.name }}</h4>
+                        <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173); opacity: 0.9;">
+                            <h4 class="baskerville-font" style="color: rgb(109, 109, 255); font-size: 1.5rem;">{{ course.name }}</h4>
                             <h5 class="baskerville-font">{{ course.course_code }}</h5>
                             <p class="baskerville-font">{{ course.description }}</p>
                             <div style="padding-top: 50px;">
@@ -198,5 +203,6 @@
                     }    
                 } 
             }
+            
         </script>
         {% endblock %}

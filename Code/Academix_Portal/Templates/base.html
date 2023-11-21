@@ -8,11 +8,11 @@
 
   <title>Academix Portal</title>
 
-  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> {% endcomment %}
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="static/css/course_dashboard_student.css">
+
 
   {% block head %}
   {% endblock %}
@@ -27,8 +27,8 @@
       {% endfor %}
   </ul>
   {% endif %}
-  <nav class="navbar navbar-expand-lg nav" style="background-color: rgb(109, 109, 255);">
-    <a class="navbar-brand" href="/mycourse">{{ student.first_name }}</a>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/mycourse" style="color: black; font-size: 1.2rem;">{{ student.first_name }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -38,25 +38,25 @@
       <ul class="navbar-nav mr-auto">
         {% if isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="addcourses">Add Course <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="addcourses" style="color: black; font-size: 1.2rem;">Add Course <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
 
         {% if not isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="student_profile">Profile <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="student_profile" style="color: black; font-size: 1.2rem;">Profile <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse">MyCourses <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/mycourse" style="color: black; font-size: 1.2rem;">MyCourses <span class="sr-only">(current)</span></a>
         </li>
         {% if not isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="/coursedashboard">Other Courses <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/coursedashboard" style="color: black; font-size: 1.2rem;">Other Courses <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
         <li class="nav-item active">
-          <a class="nav-link" href="logout">Logout<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="logout" style="color: black; font-size: 1.2rem;">Logout<span class="sr-only">(current)</span></a>
         </li>
       </ul>
       {% block search %}

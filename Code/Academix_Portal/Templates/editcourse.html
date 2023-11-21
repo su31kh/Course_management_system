@@ -59,11 +59,16 @@
         box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
         transform: translateY(0);
       }
+
+      body{
+        background-image: url("static/images/img_03.jpg");
+        background-size: cover;
+      }
       </style>
 
 </head>
 
-<body class="backcolor">
+<body>
     <div class="d-flex align-items-center justify-content-center nn" style="padding-top:10%;">
         <form action="/mycourse/{{ record.course_code }}/editcourse" method="post">
             {% csrf_token %}

@@ -97,6 +97,12 @@
     box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
     transform: translateY(0);
   }
+
+  body{
+    background-image: url("/static/images/img_03.jpg");
+    background-size: cover;
+  }
+
   </style>
 {% endblock %}
 
@@ -105,7 +111,7 @@
 
   <div class="list-group container-fluid">
     {% for x in announce %}
-    <div class="m-3 p-2" style="border-radius: 8px;">
+    <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
       <div class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1" style="color:rgb(109, 109, 255)"><b>Title:</b> {{x.title}}</h5>
@@ -126,6 +132,7 @@
     <div style="padding-top:25px; padding-left:25px;"><a href="{{ course.course_code }}/addannouncement"><button class="button-5" role="button">Add Announcements</button></a></div>
 {% endif %}
   </div>
+
 
 
   {% endblock %}
