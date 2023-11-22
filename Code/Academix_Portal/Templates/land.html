@@ -12,374 +12,75 @@
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
 <style>
-  body{
-    margin: 0;
-    overflow: hidden;
-    background: #000;
+  body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, #e6e2d3 3%, #dac292 38%, #b9936c 68%, #c4b7a6 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
     }
-    
-    i{
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      -webkit-animation: 'screen'  infinite;
-      animation: 'screen'  infinite;
+    50% {
+        background-position: 100% 100%;
     }
-    
-    
-    i:nth-child(1){
-      top:20px;
-      left:30px;
-        background: -webkit-radial-gradient(center, ellipse cover,  rgba(2,226,252,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #02e2fc;
-      animation-duration: 5s;
+    100% {
+        background-position: 0% 0%;
     }
-    
-    i:nth-child(2){
-      top:420px;
-      left:30px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(250,160,2,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #faa002;
-      animation-duration: 21s;
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
     }
-    
-    i:nth-child(3){
-      top:550px;
-      left:880px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(20,252,2,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #14fc02;
-      animation-duration: 5s;
+
+    25% {
+        transform: translateX(-25%);
     }
-    
-    i:nth-child(4){
-      top:5px;
-      left:1030px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(252,2,196,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #fc02c4;
-      animation-duration: 4s;
+
+    50% {
+        transform: translateX(-50%);
     }
-    
-    i:nth-child(5){
-      top:280px;
-      left:12px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(139,44,148,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #8b2c94;
-      animation-duration: 5s;
+
+    75% {
+        transform: translateX(-25%);
     }
-    
-    i:nth-child(6){
-      top:550px;
-      left:30px;
-    background: -webkit-radial-gradient(center, ellipse cover,  rgba(251,184,41,0.65) 0%,rgba(0,0,0,0) 100%);
-    box-shadow:0px 0px 5px 0px #FBB829; 
-      animation-duration: 6s;
+
+    100% {
+        transform: translateX(1);
     }
-    
-    i:nth-child(7){
-      top:650px;
-      left:50px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(195,255,104,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #C3FF68; 
-      animation-duration: 15s;
-    }
-    
-    i:nth-child(8){
-      top:20px;
-      left:860px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,102,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #FF0066; 
-      animation-duration: 5s;
-    }
-    i:nth-child(9){
-      top:896px;
-      left:132px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,0,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #FFFF00; 
-      animation-duration: 13s;
-    }
-    
-    i:nth-child(10){
-      top:578px;
-      left:357px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(127,175,27,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #7FAF1B; 
-      animation-duration: 4s;
-    }
-    
-    i:nth-child(11){
-      top:380px;
-      left:230px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(1,210,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #01D2FF; 
-      animation-duration: 5s;
-    }
-    
-    i:nth-child(12){
-      top:570px;
-      left:1100px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(237,247,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #EDF7FF; 
-      animation-duration: 6s;
-    }
-    
-    i:nth-child(13){
-      top:600px;
-      left:600px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,255,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #00FFFF; 
-      animation-duration: 7s;
-    }
-    
-    i:nth-child(14){
-      top:200px;
-      left:520px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #0000FF; 
-      animation-duration: 14s;
-    }
-    
-    i:nth-child(15){
-      top:370px;
-      left:500px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(16,225,228,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #10e1e4; 
-      animation-duration: 9s;
-    }
-    
-    i:nth-child(16){
-      top:620px;
-      left:730px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,51,0,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow:0px 0px 5px 0px #FF3300; 
-      animation-duration: 3s;
-    }
-    i:nth-child(17){
-      top:62px;
-      left:330px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,234,232,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FFEAE8;
-      animation-duration: 4s;
-    }
-    
-    i:nth-child(18){
-      top:0px;
-      left:250px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,229,0,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FFE500;
-      animation-duration: 5s;
-    }
-    
-    i:nth-child(19){
-      top:600px;
-      left:180px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,102,153,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FF6699;
-      animation-duration: 6s;
-    }
-    
-    i:nth-child(20){
-      top:987px;
-      left:13px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(84,156,204,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #549CCC;
-      animation-duration: 7s;
-    }
-    
-    i:nth-child(21){
-      top:120px;
-      left:930px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(184,175,3,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #B8AF03;
-      animation-duration: 8s;
-    }
-    
-    i:nth-child(22){
-      top:80px;
-      left:700px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(171,250,249,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #ABFAF9;
-      animation-duration: 5s;
-    }
-    
-    i:nth-child(23){
-      top:350px;
-      left:720px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(127,15,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #7F0FFF;
-      animation-duration: 2s;
-    }
-    
-    i:nth-child(24){
-      top:997px;
-      left:678px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(48,128,0,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #308000;
-      animation-duration: 3s;
-    }
-    
-    i:nth-child(25){
-      top:714px;
-      left:246px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,38,38,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FF2626;
-      animation-duration: 4s;
-    }
-    
-    i:nth-child(26){
-      top:0px;
-      left:480px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(15,29,215,0.65) 0%,rgba(0,0,0,0) 100%);
-    box-shadow: 0px 0px 5px 0px #0F1DD7;
-      animation-duration: 5s;
-    }
-    
-    i:nth-child(27){
-      top:456px;
-      left:1000px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(51,102,153,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #336699;
-      animation-duration: 6s;
-    }
-    
-    i:nth-child(28){
-      top:350px;
-      left:865px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(70,172,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #46ACFF;
-      animation-duration: 7s;
-    }
-    
-    i:nth-child(29){
-      top:100px;
-      left:100px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(222,4,5,0.65) 0%,rgba(0,0,0,0) 100%);
-    box-shadow: 0px 0px 5px 0px #DE0405;
-      animation-duration: 8s;
-    }
-    
-    i:nth-child(30){
-      top:1087px;
-      left:722px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(77,254,21,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #4DFE15;
-      animation-duration: 9s;
-    }
-    
-    i:nth-child(31){
-      width:200px;
-      height:200px;
-      top:795px;
-      left:605px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(243,10,70,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #F30A46;
-      animation-duration: 1s;
-    }
-    
-    i:nth-child(32){
-      top:234px;
-      left:678px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(245,253,45,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #F5FD2D;
-      animation-duration: 2s;
-    }
-    
-    i:nth-child(33){
-      top:270px;
-      left:1230px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(178,0,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #B200FF;
-      animation-duration: 3s;
-    }
-    i:nth-child(34){
-      width:200px;
-      height:200px;
-      top:1126px;
-      left:332px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(102,204,255,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #66CCFF;
-      webkit-animation-duration: 4s;
-    }
-    
-    i:nth-child(35){
-      top:407px;
-      left:83px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(20,243,175,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #14F3AF;
-      animation-duration: 5s;
-    }
-    
-    i:nth-child(36){
-      width:200px;
-      height:200px;
-      top:176px;
-      left:297px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(100,245,102,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #64F566;
-      animation-duration: 6s;
-    }
-    
-    i:nth-child(37){
-      width:300px;
-      height:300px;
-      top:820px;
-      right:10px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(236,218,65,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #ECDA41;
-      animation-duration: 7s;
-    }
-    
-    i:nth-child(38){
-      top:500px;
-      left:500px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,61,45,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FF3D2D;
-      animation-duration: 8s;
-    }
-    
-    
-    i:nth-child(39){
-      top:20px;
-      right:26px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(74,73,235,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #4A49EB;
-      animation-duration: 9s;
-    }
-    
-    i:nth-child(40){
-      width:200px;
-      height:200px;
-      top:251px;
-      left:1053px;
-      background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,72,0,0.65) 0%,rgba(0,0,0,0) 100%);
-      box-shadow: 0px 0px 5px 0px #FF4800;
-      animation-duration: 10s;
-    }
-    
-    
-    @keyframes screen {
-      from {
-        opacity: 0;
-      }
-    
-      25%{
-        opacity: 0.3;
-        transform: scale3d(3, 3, 4);
-      }
-    
-      50%{
-        opacity: 0.75;
-      }
-    
-      75%{
-        opacity: 1;
-    
-      }
-    
-      to{
-        opacity: 0;
-      }
-    }
+}
 
 
     @media only screen and (min-width : 766px)
@@ -401,6 +102,7 @@
   #great1{
     box-shadow: 5px 5px 10px rgb(87, 87, 87);
   }
+
   .baseclass{
     align-items: center;
     justify-content: center;
@@ -420,6 +122,7 @@
     background-image: url('/static/images/img_03.jpg');
     opacity: 0.8;
     background-size: cover;
+    padding-bottom: 10px;
   }
 
   #great2{
@@ -451,85 +154,99 @@
     {
       padding-top: 500px;
     }
+    .pd{
+      padding-bottom: 50px;
+    }
     
   } 
+
+  .button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #cccc00;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-5:hover {
+    background-color: #999900;  
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+
+  
 
 </style>
 
 </head>
 
 <body>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
-  <i></i>
+  <div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+ </div>
 
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <h1 class="navbar-brand" style="color: white; font-size: 3rem">ACADEMIX PORTAL</h1>
+      <h1 class="navbar-brand" style="color: black; font-size: 3rem">ACADEMIX PORTAL</h1>
     </div>
 </nav>
 
 <div class="container myclass">
-  <div class="row align-middle baseclass" >
+  <div class="row align-middle baseclass">
   
-    <div id = "mycard" class="col-md-5 col-lg-5 column mycard">
-      <div id = "great1" class="card gr-1 ">
+    <div id = "mycard" class="col-md-5 col-lg-5 mycard pd">
+      <div id = "great1" class="card gr-1 text-center">
         <div class="txt" style="color: black">
-          <h1 style="color: purple; font-weight: 500; font-size: xx-large; font-family: 'Nunito';"><b>Student</b><br><b>Login</b></h1>
+          <h1 style="color: purple; font-weight: 500; font-size: xx-large; font-family: 'Nunito';"><b>STUDENT</b><br><b>LOGIN</b></h1>
         </div>
-        <a href="/login/student"><button class="btn btn-success align-items-center justify-content-center" style="width: 6rem; font-size: 25px; ">Login</button></a>
-        <div class="ico-card" style="height: 200px;">
-        <i class="fa fa-rebel"></i>
+        <hr>
+        <div class="d-flex justify-content-center" style="padding-right: 30%;">
+          <a href="/login/student"><button class="button-5">Login</button></a>
+        </div>
       </div>
-      </div>
+      
     </div>
     
-    <div class="col-md-5 col-lg-5 column mycard">
-      <div id = "great2" class="card gr-2" style="height: 500px; border-radius: 5px;">
-        <div class="txt">
-          <h1 style="color: purple; font-weight: 700; font-size: xx-large; font-family: 'Nunito';"><b>Faculty</b><br><b>Login</b></h1>
-        </div>
-        <a href="/login/student"><button class="btn btn-success align-items-center justify-content-center" style="width: 6rem; font-size: 25px; ">Login</button></a>
-      <div class="ico-card">
-        <i class="fa fa-codepen"></i>
-      </div>
+    <div class="col-md-5 col-lg-5  mycard">
+      <div id = "great2" class="card gr-2 text-center" style="height: 500px; border-radius: 5px;">
+          <h1 style="color: purple; font-weight: 700; font-size: xx-large; font-family: 'Nunito';"><b>FACULTY</b><br><b>LOGIN</b></h1>
+          <hr>
+          <div class="d-flex justify-content-center" style="padding-right: 30%;">
+            <a href="/login/student"><button class="button-5" >Login</button></a>
+            </div>
       </div>
     </div>
     
