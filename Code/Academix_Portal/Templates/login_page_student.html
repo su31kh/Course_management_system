@@ -185,13 +185,16 @@ button{
     function switchCard() {
       const loginCard = document.querySelector('#log');
       const registerCard = document.querySelector('#reg');
+      const style=document.querySelector('.shape:last-child');
     
       if (loginCard.style.display === 'none') {
         loginCard.style.display = 'block';
         registerCard.style.display = 'none';
+        style.style.bottom='-80px';
       } else {
         loginCard.style.display = 'none';
         registerCard.style.display = 'flex';
+        style.style.bottom='-780px';
       }
     }
     
