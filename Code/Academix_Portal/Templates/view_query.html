@@ -53,7 +53,7 @@
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #ff0000;
+    background-color: #cccc00;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -85,7 +85,7 @@
   }
   
   .button-3:hover {
-    background-color: #cc0000;  
+    background-color: #999900;  
     transform: translateY(-1px);
   }
   
@@ -98,6 +98,8 @@
   body{
     background-image: url("/static/images/img_03.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
   }
   </style>
 {% endblock%}
@@ -129,7 +131,7 @@
     </div>
     {% endfor %}  
     {% if not isprof %}
-    <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/addquery"><button class="button-5" role="button">Raise Query</button></a></div>
+    <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/addquery"><button class="button-3" role="button">Raise Query</button></a></div>
 {% endif %}
   </div>
 

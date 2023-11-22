@@ -7,7 +7,7 @@
   .button-5 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #ff0000;
+    background-color: #cccc00;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -39,7 +39,7 @@
   }
   
   .button-5:hover {
-    background-color: #cc0000;  
+    background-color: #999900;  
     transform: translateY(-1px);
   }
   
@@ -52,7 +52,7 @@
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #ff0000;
+    background-color: #cccc00;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -84,7 +84,7 @@
   }
   
   .button-3:hover {
-    background-color: #cc0000;  
+    background-color: #999900;  
     transform: translateY(-1px);
   }
   
@@ -94,10 +94,12 @@
     transform: translateY(0);
   }
 
-body{
-  background-image: url("/static/images/img_03.jpg");
-  background-size: cover;
-}
+  body{
+    background-image: url("/static/images/img_03.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+  }
 </style>
 {% endblock %} 
 

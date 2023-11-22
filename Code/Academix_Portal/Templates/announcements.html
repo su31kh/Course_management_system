@@ -4,6 +4,9 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
 <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <style>
   .button-5 {
     align-items: center;
@@ -54,7 +57,7 @@
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #ff0000;
+    background-color: #cccc00;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -86,7 +89,7 @@
   }
   
   .button-3:hover {
-    background-color: #cc0000;  
+    background-color: #999900;  
     transform: translateY(-1px);
   }
   
@@ -97,9 +100,11 @@
   }
 
   body{
-    background-image: url("/static/images/img_03.jpg");
-    background-size: cover;
-  }
+  background-image: url("/static/images/img_03.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
 
   </style>
 {% endblock %}

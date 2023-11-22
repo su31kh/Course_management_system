@@ -19,7 +19,7 @@
       .button-3 {
         align-items: center;
         background-clip: padding-box;
-        background-color: #ff0000;
+        background-color: #cccc00;
         border: 1px solid transparent;
         border-radius: .25rem;
         box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -51,7 +51,7 @@
       }
       
       .button-3:hover {
-        background-color: #cc0000;  
+        background-color: #999900;  
         transform: translateY(-1px);
       }
       
@@ -73,7 +73,7 @@
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
         <form action="/addcourses" method="post" style="background-color: rgb(254, 254, 254); border-radius: 5px; opacity: 0.9;">
           {% csrf_token %}
-          <div class="container">
+          <div class="container-fluid">
                  <div class="form-group">
                   <label for="coursename" style="font-family: 'Nunito';"><b>Course Name :</b></label>
                   <input type="text" id="coursename" class="form-control" name="coursename" value="{{record.name}}">
