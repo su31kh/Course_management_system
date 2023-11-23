@@ -17,7 +17,7 @@
         <div class="container-fluid text-center">
                <div class="form-group">
                 <label for="feedback"><b>Feedback description : </b></label><br>
-                <textarea class="wh" name="feedback"></textarea>
+                <textarea required class="wh" name="feedback"></textarea>
                 {% csrf_token %}
               </div>
               <button type="submit" class="btn btn-primary" style="line-height: 1.2rem;">Submit</button>

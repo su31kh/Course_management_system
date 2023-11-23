@@ -126,27 +126,27 @@ body{
               {% csrf_token %}
             <div class="text-center mt-3">
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>First Name: </b>
-                <input name="first_name" value="{{student.first_name}}">
+                <input required name="first_name" value="{{student.first_name}}">
               </div>
 
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Middle Name: </b>
-                <input name="middle_name" value="{{student.middle_name}}">
+                <input required name="middle_name" value="{{student.middle_name}}">
               </div>
 
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Last Name: </b>
-                <input name="last_name" value="{{student.last_name}}">
+                <input requierd name="last_name" value="{{student.last_name}}">
               </div>
 
               <div class=" mt-1">
-                <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Batch: </b><input name="batch" value="{{student.batch}}"></p>
+                <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Batch: </b><input required name="batch" value="{{student.batch}}"></p>
             </div>
 
             <div class=" mt-1">
-              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Branch: </b><input name="branch" value="{{student.branch}}"> </p>
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Branch: </b><input required name="branch" value="{{student.branch}}"> </p>
             </div>
 
             <div class=" mt-1">
-              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Program: </b><input name="program" value="{{student.program}}"></p>
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Program: </b><input required name="program" value="{{student.program}}"></p>
             </div>
                 
                 

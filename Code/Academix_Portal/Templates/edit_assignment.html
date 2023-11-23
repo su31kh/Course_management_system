@@ -70,34 +70,34 @@
             <div class="container">
                    <div class="form-group">
                     <label for="name" >Assignment Name :</label>
-                    <input type="text" class="form-control" name="name" value="{{record.name}}">
+                    <input required  type="text" class="form-control" name="name" value="{{record.name}}">
                   </div>
 
                   <div class="form-group">
                     <label for="description" >Description :  </label>
-                    <textarea type="text" class="form-control" name="description">{{record.description}}</textarea>
+                    <textarea required type="text" class="form-control" name="description">{{record.description}}</textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="duedate" >Due-Date : </label>
-                    <input type="datetime-local" id="duedate" class="form-control"  value="{{record.duedate}}" name="duedate">
+                    <input required type="datetime-local" id="duedate" class="form-control"  value="{{record.duedate}}" name="duedate">
                   </div>
 
                   <div class="form-group">
                     <label for="max_grade" >Max-Grade :</label>
-                    <input type="number" class="form-control" name="max_grade" value="{{record.max_grade}}">
+                    <input required type="number" class="form-control" name="max_grade" value="{{record.max_grade}}">
                   </div>   
 
                   <div class="form-group">
                     <label for="attachment" >File URL :</label>
-                    <input type="url" class="form-control" name="attachment" value="{{record.attachment}}">
+                    <input required type="url" class="form-control" name="attachment" value="{{record.attachment}}">
                   </div>
                 
                     <button type="submit" class="button-5" style="float:right" >Submit</button>
               </div> 
         </form>
     </div>
-1
+
 
     <script>
         
