@@ -135,49 +135,54 @@ button{
       <div class="shape"></div>
       <div class="shape"></div>
   </div>
-        <form id="log" action = '/login/student' method = "POST">
+        <form id="log" action = '/login/student' method = "POST" onsubmit="return checklog(this)">
            {% csrf_token %}
            <h3>Student Login</h3>
+           {% if messages %}
+              {% for msg in messages %}
+              <h6 style="color: green;">{{ msg }}</h6>
+              {% endfor %}
+              {% endif %}
           <label for="user">Username</label>
-          <input name="user" type="text" id="user" placeholder="Enter your username">
+          <input required name="user" type="email" id="user" placeholder="Enter your username">
     
           <label for="password">Password</label>
-          <input name="pass1" type="password" id="pass1" placeholder="Enter your password">
+          <input required name="pass1" type="password" id="pass1" placeholder="Enter your password">
     
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
           <div class="switch">Don't have an account? <a href="#" onclick="switchCard()">Register here</a></div>
         </form>
 
-        <form  id="reg" action="/register" method="POST">
+        <form  id="reg" action="/register" method="POST" onsubmit="return checkreg(this)">
           {% csrf_token %}
           <h3>Student Register Form</h3>
           <label for="first_name">First Name</label>
-          <input type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+          <input required type="text" name="first_name" id="first_name" placeholder="Enter your first name">
 
           <label for="middle_name">Middle Name</label>
-          <input type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
+          <input required type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
 
           <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" id="last_name" placeholder="Enter your last name">
+          <input required type="text" name="last_name" id="last_name" placeholder="Enter your last name">
     
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email">
+          <input required type="email" id="email" name="email" placeholder="Enter your email">
 
           <label for="batch">Batch</label>
-          <input type="number" name="batch" id="batch" placeholder="Enter your batch year">
+          <input required type="number" name="batch" id="batch" placeholder="Enter your batch year">
 
           <label for="branch">Branch</label>
-          <input type="text" name="branch" id="branch" placeholder="Enter your branch name">
+          <input required type="text" name="branch" id="branch" placeholder="Enter your branch name">
 
           <label for="program">Program</label>
-          <input type="text" name="program" id="program" placeholder="Enter your program name">
+          <input required type="text" name="program" id="program" placeholder="Enter your program name">
     
           <label for="pass1">Enter Password</label>
-          <input type="password" name="pass1" id="pass1" placeholder="Enter your new password">
+          <input required type="password" name="pass1" id="pass1" placeholder="Enter your new password">
 
           <label for="pass1">Confirm Password</label>
-          <input type="password" name="pass2" id="pass2" placeholder="Confirm password">
-    
+          <input required type="password" name="pass2" id="pass2" placeholder="Confirm password">
+
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Register</button>
           <div class="switch">Already have an account? <a href="#" onclick="switchCard()">Login here</a></div>
 
@@ -199,6 +204,43 @@ button{
         registerCard.style.display = 'flex';
         style.style.bottom='-780px';
       }
+    }
+
+    function checklog(form){
+      const checkmail=form.user.value;
+      const checkpass=form.pass1.value;  
+
+      if(checkmail.slice(-13)!="@daiict.ac.in"){
+        alert("Please enter a valid DAIICT email address");
+        return false;
+      }   
+      else if(checkpass.length<8 ){
+        alert("Password must be greater than 8 characters");
+        return false;
+      }
+      return true;
+    }
+      
+    function checkreg(form){
+      const checkmail=form.email.value;
+      const checkpass=form.pass1.value;
+      const checkpass2=form.pass2.value;
+      // console.log(checkmail,checkpass);
+      // console.log("Newww");
+      if(checkmail.slice(-13)!="@daiict.ac.in"){
+        alert("Please enter a valid DAIICT email address");
+        return false;
+      }
+      else if(checkpass.length<8){
+        alert("Password must be greater than 8 characters");
+        return false;
+        
+      } 
+      else if(checkpass!=checkpass2 && con==0){
+        alert("Passwords do not match");
+        return false;
+      }   
+      return true;
     }
     
     

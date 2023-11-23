@@ -134,14 +134,19 @@ button{
       <div class="shape"></div>
       <div class="shape"></div>
   </div>
-        <form action = '/login/faculty' method = "POST">
+        <form action = '/login/faculty' method = "POST" onsubmit="return checklog(this)">
           <h3>Faculty Login</h3>
            {% csrf_token %}
+           {% if messages %}
+              {% for msg in messages %}
+              <h6 style="color: green;">{{ msg }}</h6>
+              {% endfor %}
+              {% endif %}
           <label for="user">Username</label>
-          <input name="user" type="text" id="user" placeholder="Enter your username">
+          <input required name="user" type="text" id="user" placeholder="Enter your username">
     
           <label for="password">Password</label>
-          <input name="pass" type="password" id="pass" placeholder="Enter your password">
+          <input required name="pass" type="password" id="pass" placeholder="Enter your password">
     
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
         </form>
@@ -162,6 +167,19 @@ button{
       }
     }
     
-    
+    function checklog(form){
+      const checkmail=form.user.value;
+      const checkpass=form.pass.value;  
+
+      if(checkmail.slice(-13)!="@daiict.ac.in"){
+        alert("Please enter a valid DAIICT email address");
+        return false;
+      }   
+      else if(checkpass.length<8 ){
+        alert("Password must be greater than 8 characters");
+        return false;
+      }
+      return true;
+    }
   </script>
 </html>
