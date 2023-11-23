@@ -62,8 +62,8 @@ body{
     bottom: -80px;
 }
 form{
-      /* height: 510px;
-      width: 400px; */
+      /* height: 510px;*/
+      width: 400px; 
     background-color: rgba(255,255,255,0.13);
     transform: translate(-50%,-50%);
     top: 50%;
@@ -125,6 +125,10 @@ button{
   transform: translate(-50%,-20%);
   height: 1180px;
 }
+#error{
+  text-align: center;
+  margin-top: 10px;
+}
 
 </style> 
   </head>
@@ -139,9 +143,10 @@ button{
            {% csrf_token %}
            {% if messages %}
               {% for msg in messages %}
-              <h6 style="color: green;">{{ msg }}</h6>
+              <h6 style="color: #ff512f;">{{ msg }}</h6>
               {% endfor %}
               {% endif %}
+              <h6 id="error" style="color: #ff512f; display: none;"></h6>
           <label for="user">Username</label>
           <input required name="user" type="text" id="user" placeholder="Enter your username">
     
@@ -169,16 +174,21 @@ button{
     
     function checklog(form){
       const checkmail=form.user.value;
-      const checkpass=form.pass.value;  
+      const checkpass=form.pass.value;
 
       if(checkmail.slice(-13)!="@daiict.ac.in"){
-        alert("Please enter a valid DAIICT email address");
+        // alert("Please enter a valid DAIICT email address");
+        document.getElementById("error").innerHTML="Please enter a valid DAIICT email address";
+        document.getElementById("error").style.display="block";
         return false;
       }   
       else if(checkpass.length<8 ){
-        alert("Password must be greater than 8 characters");
+        // alert("Password must be greater than 8 characters");
+        document.getElementById("error").innerHTML="Password must be greater than 8 characters";
+        document.getElementById("error").style.display="block";
         return false;
       }
+      document.getElementById("error").style.display="none";
       return true;
     }
   </script>

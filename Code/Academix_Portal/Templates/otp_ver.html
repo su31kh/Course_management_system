@@ -140,6 +140,11 @@
   <form id="reg" action="/otp_ver" method="POST">
     {% csrf_token %}
     <h3>Student Register Form</h3>
+    {% if messages %}
+              {% for msg in messages %}
+              <h6 style="color: green;">{{ msg }}</h6>
+              {% endfor %}
+              {% endif %}
     <label for="first_name">First Name</label>
     <input type="text" name="first_name" id="first_name" value="{{ first_name }}" readonly>
 
