@@ -139,6 +139,11 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12">
+                    {% if messages %}
+              {% for msg in messages %}
+              <h6 style="color: green;">{{ msg }}</h6>
+              {% endfor %}
+              {% endif %}
                     <div class="solutions-main">
                         {% for course in enrolled %}
                         <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173); opacity: 0.9;">

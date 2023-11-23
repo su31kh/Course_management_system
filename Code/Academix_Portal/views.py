@@ -311,15 +311,16 @@ def add_course_to_user(request, course_id):
         course = Course.objects.get(course_code = course_id)
         print(course)
         if course.studentlist.filter(user = current_user).exists():
-            return JsonResponse({'error': 'User is already enrolled in this course'}, status=400)
+            messages.error(request , 'User is already enrolled in this course')
+            return redirect('mycourse')
         studentuser = student_profile.objects.get(user = current_user)
         course.studentlist.add(studentuser)
         studentuser.student_courses.add(course)
 
         course.save()
         studentuser.save()
-
-        return JsonResponse({'message': 'User successfully enrolled in the course'})
+        messages.success(request , 'User successfully enrolled in the course')
+        return redirect('mycourse')
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
