@@ -148,26 +148,28 @@ def login_func(request, loginid):
 
     if request.method == "POST":
         username = request.POST.get('user')
-        passwrd = request.POST.get('pass')
+        passwrd = request.POST.get('pass1')
         user = authenticate(request , username=username, password=passwrd)
         if user is None:
             messages.warning(request, "Please Enter the correct Credentials.")
-            # print("1")
             return redirect('/login/student')
         if loginid == "faculty":
-            context = {'user':user}
-            login(request, user)
-            print("2")
-            # return render(request, 'home.html', context)
-            return redirect('/mycourse')
+            try:
+                faculty = faculty_profile.objects.get(user=user)
+                login(request, user)
+                return redirect('/mycourse')
+            except:
+                messages.warning(request, "Please Enter the correct Credentials.")
+                return redirect('/login/faculty')
         elif loginid == "student":
-            context = {'user':user}
-            print(user)
-            login(request, user)
-            # print("3")
-            return redirect('/mycourse')
+            try:
+                student = student_profile.objects.get(user=user)
+                login(request, user)
+                return redirect('/mycourse')
+            except:
+                messages.warning(request, "Please Enter the correct Credentials.")
+                return redirect('/login/student')
     else:
-        # print("4")
         if loginid == "student":
             return render(request , 'login_page_student.html')
         else:
@@ -188,6 +190,7 @@ def register(request):
         program = request.POST.get('program')
         code = random.randint(1000,9999)
         request.session['code'] = code
+        request.session['password'] = password
         send_email_to_client(email, code)
         dict = {'email':email,'password':password,'first_name':first_name,'middle_name':middle_name,'last_name':last_name,'batch':batch,'branch':branch,'program':program }
         return render(request,'otp_ver.html',dict)
@@ -201,7 +204,7 @@ def verifyRegistration(request):
     if request.method == "POST":
         code = request.session.get('code', None)
         email = request.POST['email']
-        password = request.POST.get('pass1')
+        password = request.session.get('password', None)
         first_name = request.POST.get('first_name')
         middle_name = request.POST.get('middle_name')
         last_name = request.POST.get('last_name')
@@ -210,16 +213,19 @@ def verifyRegistration(request):
         program = request.POST.get('program')
         code = str(code)
         ver_code = request.POST.get('ver_code')
+        print(email)
+        print(password)
         if User.objects.filter(email=email).exists():
             messages.warning(request, "Enter correct Email")
             return redirect('/register')
         if code == ver_code:
             user = User.objects.create_user(username=email, email=email, password=password)
+            user.set_password(password)
             my_profile = student_profile.objects.create(user=user, first_name=first_name, middle_name=middle_name, last_name=last_name, batch=batch, branch=branch, program=program)
             my_profile.save()
             user = authenticate(request, username=email, password=password)
             login(request,user)
-            return render(request,'home.html')
+            return redirect('/mycourse')
         else:
             messages.error("PLEASE ENTER CORRECT OTP")
             return render(request,'register.html')
