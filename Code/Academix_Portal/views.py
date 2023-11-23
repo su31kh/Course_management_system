@@ -152,7 +152,7 @@ def login_func(request, loginid):
         user = authenticate(request , username=username, password=passwrd)
         if user is None:
             messages.warning(request, "Please Enter the correct Credentials.")
-            return redirect('/login/student')
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
         if loginid == "faculty":
             try:
                 faculty = faculty_profile.objects.get(user=user)
