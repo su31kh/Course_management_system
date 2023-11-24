@@ -78,6 +78,17 @@ def addmaterial(request,course_id):
         return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
+    thiscourse = Course.objects.get(course_code = course_id)
+    try:
+        student_user = student_profile.objects.get(user = request.user)
+        
+        thiscourse = student_user.student_courses.get(course_code = course_id)
+
+    except Exception as e:
+        messages.error(request , 'You are not authorized to view this Course')
+        return redirect('/mycourse')
+
+
     isprof = True
     try:
         prof = faculty_profile.objects.get(user=request.user)
@@ -343,7 +354,8 @@ def add_course_to_user(request, course_id):
         return redirect('mycourse')
 
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        messages.error(request , "You are not authorized to enroll a Course")
+        return redirect('mycourse')
 
 def coursedashboard(request):
     try:
