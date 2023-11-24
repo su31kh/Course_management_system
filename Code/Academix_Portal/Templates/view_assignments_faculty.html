@@ -108,6 +108,15 @@
 
 {% block body %}
     <div class="list-group container-fluid">
+      <div class="col-12">
+        {% if messages %}
+  {% for msg in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ msg }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
         {% for x in assign %}
         <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
           <div class="list-group-item list-group-item-action">
@@ -126,6 +135,7 @@
         </div>
         </div>
         {% endfor %}
+      </div>
 
         <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/createassignment"><button class="button-3" role="button">Create Assignment</button></a></div>
 
