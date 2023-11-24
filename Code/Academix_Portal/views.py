@@ -269,6 +269,20 @@ def edit_course(request, course_id):
         return render(request, 'editcourse.html', params)
     return redirect('mycourse')
 
+def unenroll(request , course_id):
+
+    student_user = request.user
+    thiscourse = Course.objects.get(course_code = course_id)
+
+    student = student_profile.objects.get(user = student_user)
+
+    thiscourse.studentlist.remove(student)
+    student.student_courses.remove(thiscourse)
+    thiscourse.save()
+    student.save()
+
+    return redirect('mycourse')
+
 def student_list(request , course_id):
     isprof = True
     try:
