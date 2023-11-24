@@ -7,10 +7,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     
+    path('error',views.error, name="error"),
     path('', views.home, name="HomePage"),
     path('login/<str:loginid>', views.login_func, name="login_func"),
     path('register', views.register, name="Register"),
-    path('admindashboard', views.admindashboard, name="admindashboard"),
 
     path('mycourse', views.mycourse, name="mycourse"),
     path('mycourse/search', views.mycourse_search, name="mycourse_search"),
@@ -45,8 +45,6 @@ urlpatterns = [
     path('mycourse/<str:course_id>/feedback', views.fb_response, name="feedback"),
     path('coursedashboard',views.coursedashboard,name="coursedashboard"),
     path('coursedashboard/search',views.coursedashboard_search,name="coursedashboard_search"),
-    path('actions', views.actions, name="actions"),
-    path('actions_student', views.actions_student, name="actions_student"),
     path('otp_ver', views.verifyRegistration, name="otp_ver"),
     path('addcourses' , views.addcourse , name = "Add_course"),
     path('enroll/<str:course_id>' , views.add_course_to_user , name="enroll"),
