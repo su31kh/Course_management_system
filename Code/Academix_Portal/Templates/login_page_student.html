@@ -149,19 +149,19 @@ button{
               {% endif %}
               <h6 id="error" style="color: #ff512f; display: none;"></h6>
           <label for="user">Username</label>
-          <input required name="user" type="email" id="user" placeholder="Enter your username">
+          <input class="form-control" required name="user" type="email" id="user" placeholder="Enter your username">
     
           <label for="password">Password</label>
-          <input required name="pass1" type="password" id="pass1" placeholder="Enter your password">
+          <input class="form-control" required name="pass1" type="password" id="pass1" placeholder="Enter your password">
     
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
-          <div class="forgot-pass mb-4">
+          <div class="forgot-pass mb-4" style="padding-top: 10px; font-size: small;">
             <a href="{% url 'reset_password' %}" class="forgot-pwd-btn" style="text-decoration: none;">Forgot password?</a><br />
           </div>
           <div class="switch">Don't have an account? <a href="#" onclick="switchCard()">Register here</a></div>
         </form>
 
-        <form  id="reg" action="/register" method="POST" onsubmit="return checkreg(this)">
+        <form id="reg" action="/register" method="POST" onsubmit="return checkreg(this)">
           {% csrf_token %}
           <h3>Student Register Form</h3>
           {% if messages %}
@@ -171,31 +171,31 @@ button{
               {% endif %}
               <h6 id="error" style="color: #ff512f; display: none;"></h6>
           <label for="first_name">First Name</label>
-          <input required type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+          <input class="form-control" required type="text" name="first_name" id="first_name" placeholder="Enter your first name">
 
           <label for="middle_name">Middle Name</label>
-          <input  type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
+          <input class="form-control" type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name">
 
           <label for="last_name">Last Name</label>
-          <input required type="text" name="last_name" id="last_name" placeholder="Enter your last name">
+          <input class="form-control" required type="text" name="last_name" id="last_name" placeholder="Enter your last name">
     
           <label for="email">Email</label>
-          <input required type="email" id="email" name="email" placeholder="Enter your email">
+          <input class="form-control" required type="email" id="email" name="email" placeholder="Enter your email">
 
           <label for="batch">Batch</label>
-          <input required type="number" name="batch" id="batch" placeholder="Enter your batch year">
+          <input class="form-control" required type="number" name="batch" id="batch" placeholder="Enter your batch year">
 
           <label for="branch">Branch</label>
-          <input required type="text" name="branch" id="branch" placeholder="Enter your branch name">
+          <input class="form-control" required type="text" name="branch" id="branch" placeholder="Enter your branch name">
 
           <label for="program">Program</label>
-          <input required type="text" name="program" id="program" placeholder="Enter your program name">
+          <input class="form-control" required type="text" name="program" id="program" placeholder="Enter your program name">
     
           <label for="pass1">Enter Password</label>
-          <input required type="password" name="pass1" id="pass1" placeholder="Enter your new password">
+          <input class="form-control" required type="password" name="pass1" id="pass1" placeholder="Enter your new password">
 
           <label for="pass1">Confirm Password</label>
-          <input required type="password" name="pass2" id="pass2" placeholder="Confirm password">
+          <input class="form-control" required type="password" name="pass2" id="pass2" placeholder="Confirm password">
 
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Register</button>
           <div class="switch">Already have an account? <a href="#" onclick="switchCard()">Login here</a></div>
@@ -250,19 +250,23 @@ button{
         document.getElementById("error").style.display="block";
         return false;
       }
-      else if(checkpass.length<8){
-        // alert("Password must be greater than 8 characters");
+      if(checkpass.length<8){
         document.getElementById("error").innerHTML="Password must be greater than 8 characters";
         document.getElementById("error").style.display="block";
         return false;
-        
-      } 
+      }
       else if(checkpass!=checkpass2){
-        // alert("Passwords do not match");
         document.getElementById("error").innerHTML="Passwords do not match";
         document.getElementById("error").style.display="block";
         return false;
-      }   
+      }
+      // const regex = /[^A-Za-z0-9]/; 
+      // let ans=checkpass.match(/[A-Z]/)&&checkpass.match(/[a-z]/)&&checkpass.match(/[1-9]/)&&regex.test(checkpass)?1:0;
+      // if(ans==0){
+      //   document.getElementById("error").innerHTML="Password must contain atleast one uppercase, one lowercase, one digit and one special character";
+      //   document.getElementById("error").style.display="block";
+      //   return false;
+      // }   
       document.getElementById("error").style.display="none";
       return true;
     }
