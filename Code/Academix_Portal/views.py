@@ -227,7 +227,7 @@ def verifyRegistration(request):
             login(request,user)
             return redirect('/mycourse')
         else:
-            messages.error("PLEASE ENTER CORRECT OTP")
+            messages.error(request , "PLEASE ENTER CORRECT OTP")
             return render(request,'register.html')
     else:
         return redirect('/')
