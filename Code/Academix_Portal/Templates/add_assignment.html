@@ -13,11 +13,65 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+    <style>
+      .button-3 {
+        align-items: center;
+        background-clip: padding-box;
+        background-color: #cccc00;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        box-sizing: border-box;
+        color: black;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 2rem;
+        padding: calc(.5rem - 1px) calc(1rem - 1px);
+        position: relative;
+        text-decoration: none;
+        transition: all 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: auto;
+      }
+      
+      .button-3:hover,
+      .button-3:focus {
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      }
+      
+      .button-3:hover {
+        background-color: #999900;  
+        transform: translateY(-1px);
+      }
+      
+      .button-3:active {
+        background-color: rgb(109, 109, 255);
+        box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+        transform: translateY(0);
+      }
+
+      body{
+        background-image: url("/static/images/img_03.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+      }
+    </style>
+
 </head>
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/mycourse/{{courseid}}/addassignment" method="post">
+        <form action="/mycourse/{{courseid}}/addassignment" method="post" style="border-radius: 10px; padding: 10px">
             {% csrf_token %}
             <div class="container">
                    <div class="form-group">
@@ -45,7 +99,7 @@
                     <input required type="url" class="form-control" name="attachment">
                   </div>
                   <div>
-                    <button type="submit" class="btn btn-primary" style="float:right; border-color: black;">Add</button>
+                    <button type="submit" class="button-3" style="float:right;">Add</button>
                   </div>
               </div> 
         </form>
