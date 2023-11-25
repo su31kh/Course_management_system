@@ -103,12 +103,20 @@
       background-repeat: no-repeat;
       background-attachment: fixed; 
     }
+    .ww {
+  box-shadow: 5px;
+
+}
+.ww:hover{
+  box-shadow: 5px 5px 10px ;
+}
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="list-group container-fluid">
       <div class="col-12">
+        <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/createassignment"><button class="button-3 text-white" role="button" style="background-color: #004574">Create Assignment<i class="fa-regular fa-square-plus fa-lg " style="padding-left: 10px;"></i></button></a></div>
         {% if messages %}
   {% for msg in messages %}
   <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -119,25 +127,28 @@
   {% endif %}
         {% for x in assign %}
         <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
-          <div class="list-group-item list-group-item-action" style="background-color: #ede0af">
+          <div class="list-group-item list-group-item-action ww" >
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" style="color:black"><b>Assignment Name:</b> {{x.name}}</h5>
+                <h5 class="mb-1" style="color:black"><i class="fa-regular fa-file-lines fa-lg" style="padding-right:10px ;"></i><b> {{x.name}}</b></h5>
                 <small><b>Due-Date: </b>{{x.duedate}}</small>
             </div>
-            <a href="/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment"><button role="button" class="button-3" style="float:right;">Remove</button></a>
-            <p class="mb-1" style="padding-top: 25px; color:black;"><b>Description: </b>{{x.description}}</p>
+            
+            <hr class="my-2 border">
+            <button onclick="location.href='/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment'"role="button" class="button-3 text-white" style="float:right; background-color: #004574;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i></button>
+
+            <p class="mb-1" style="padding-top: 5px; color:black;"><b>Description: </b>{{x.description}}</p>
             <p class="mb-1" style="padding-top: 5px; color:black;"><b>Max-Grade: </b>{{x.max_grade}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}">Attachment</a></b>
+            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}" style="color: #004574;">Attachment</a></b>
             <div style="padding: 10px; padding-top: 25px;">
-                <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button class="button-3" role="button">Edit Assignment</button></a>
-                    <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button class="button-3" role="button">View Students Submission</button></a>
+                <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Edit Assignment<i class="fa-regular fa-pen-to-square fa-lg" style="padding-left: 10px;"></i></button></a>
+                    <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button role="button" class="button-3 text-white" style=" background-color: #004574;">View Students Submission<i class="fa-regular fa-address-card fa-lg" style="padding-left: 10px;"></i></button></a>
                 </div>
         </div>
         </div>
         {% endfor %}
       </div>
 
-        <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/createassignment"><button class="button-3" role="button">Create Assignment</button></a></div>
+        
 
     </div>
 

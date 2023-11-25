@@ -103,6 +103,13 @@
     background-repeat: no-repeat;
     background-attachment: fixed; 
   }
+  .ww {
+  box-shadow: 5px;
+
+}
+.ww:hover{
+  box-shadow: 5px 5px 10px;
+}
 </style>
 {% endblock %} 
 
@@ -119,12 +126,12 @@
 <ol class="list-group container-fluid list-group-flush">
   {% for student in students %}
   <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
+  <li class="list-group-item d-flex justify-content-between align-items-start ww">
     <div class="ms-2 me-auto">
-      <div class="fw"><b>Student Name: </b>{{student.first_name}} {{student.last_name}}</div>
-      <b>Username: </b>{{ student.user.email}}
+      <div class="fw"><b>{{student.first_name}} {{student.last_name}}</b></div>
+      {{ student.user.email}}
     </div>
-    <span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button class="button-3" role="button">View Profile</button></a></span>
+    <span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button role="button" class="button-3 text-white" style=" background-color: #004574;">View Profile<i class="fa-regular fa-address-card fa-lg" style="padding-left: 15px;"></i></button></a></span>
   </li>
   </div>
   {% endfor %}

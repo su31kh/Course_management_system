@@ -17,39 +17,40 @@
   
 <body>
 
-<nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="/mycourse" style="color: black; font-size: 1.2rem;">{{ course.course_code }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg text-white" style="background-color: #004574;">
+  <i class="fa-solid fa-graduation-cap fa-lg  "></i>
+    <a class="navbar-brand" href="/mycourse" style="padding-left:10px; color: white; font-size: 1.2rem;">{{ course.course_code }}</a>
+    <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-lg"></i></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: black; font-size: 1.2rem;">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}" style="color: black; font-size: 1.2rem;">Announcements<span class="sr-only"></span></a>
+    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent" style="color: white; font-size: 1.2rem;">
+      <ul class="navbar-nav mr-auto  text-white">
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}" style="color: white; font-size: 1.2rem;">Announcements<span class="sr-only"></span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/materials" style="color: black; font-size: 1.2rem;">Material <span class="sr-only"></span></a>
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/materials" style="color: white; font-size: 1.2rem;">Material <span class="sr-only"></span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewassignments" style="color: black; font-size: 1.2rem;">Assignments<span class="sr-only"></span></a>
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewassignments" style="color: white; font-size: 1.2rem;">Assignments<span class="sr-only"></span></a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewquery" style="color: black; font-size: 1.2rem;">Query<span class="sr-only"></span></a>
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{ course.course_code }}/viewquery" style="color: white; font-size: 1.2rem;">Query<span class="sr-only"></span></a>
         </li>
         {% if not isprof %}
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: black; font-size: 1.2rem;">Feedback<span class="sr-only"></span></a>
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: white; font-size: 1.2rem;">Feedback<span class="sr-only"></span></a>
         </li>
         {% else %}
-        <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: black; font-size: 1.2rem;">Feedback List<span class="sr-only"></span></a>
+        <li class="nav-item active text-white">
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/feedback" style="color: white; font-size: 1.2rem;">Feedback List<span class="sr-only"></span></a>
         </li>
         {% endif %}
         {% if isprof %}
         <li class="nav-item active">
-          <a class="nav-link" href="/mycourse/{{course.course_code}}/studentlist" style="color: black; font-size: 1.2rem;">Students List<span class="sr-only"></span></a>
+          <a class="nav-link" href="/mycourse/{{course.course_code}}/studentlist" style="color:white ; font-size: 1.2rem;">Students List<span class="sr-only"></span></a>
         </li>
         {% endif %}
       </ul>
@@ -74,7 +75,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://kit.fontawesome.com/962d62ec79.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </body>
 
 </html>

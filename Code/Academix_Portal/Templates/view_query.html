@@ -104,6 +104,14 @@
     background-repeat: no-repeat;
     background-attachment: fixed; 
   }
+
+  .ww {
+  box-shadow: 5px;
+
+}
+.ww:hover{
+  box-shadow: 5px 5px 10px ;
+}
   </style>
 {% endblock%}
 
@@ -112,30 +120,32 @@
 
 
 <div class="list-group container-fluid">
+  {% if not isprof %}
+    <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/addquery"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Raise Query <i class="fa-solid fa-plus fa-lg" style="padding-left: 15px;"></i></button></a></div>
+{% endif %}
     {% for q in Query %}
     <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
-      <div class="list-group-item list-group-item-action">
+      
+      <div class="list-group-item list-group-item-action ww">
       <div class="d-flex w-100 justify-content-between">
-        <p class="mb-1"><b>{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}</p>
+        <p class="mb-1"><b style="color: #004574;">{{q.user.first_name}} {{q.user.last_name}}</b> : {{q.qry}}</p>
         <small>{{s.timestamp}}</small>
       </div>
       {% if q.reply %}
       <div class="d-flex w-100 justify-content-between">
-        <p class="mb-1"><b>{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}</p>
+        <p class="mb-1"><b style="color: #004574;">{{course.faculty.first_name}} {{course.faculty.last_name}}</b> : {{q.reply}}</p>
         <small>{{s.timestamp}}</small>
       </div>
       {% endif %}
       {% if isprof %}
         {% if not q.reply%}
-        <div style="padding-top:15px;"><a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button class="button-3" role="button">Reply</button></a></div>
+        <div style="padding-top:15px;"><a href="/mycourse/{{ course.course_code }}/replyquery/{{q.id}}"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Reply<i class="fa-solid fa-reply fa-lg" style="padding-left: 15px;"></i></button></a></div>
         {% endif %}
         {% endif %}
     </div>
     </div>
     {% endfor %}  
-    {% if not isprof %}
-    <div style="padding-top:25px; padding-left:25px;"><a href="/mycourse/{{ course.course_code }}/addquery"><button class="button-3" role="button">Raise Query</button></a></div>
-{% endif %}
+    
   </div>
 
 {% endblock %}

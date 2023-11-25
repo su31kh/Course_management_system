@@ -14,6 +14,13 @@
   .list-group {
         display: contents;
       }
+      .ww {
+  box-shadow: 5px;
+
+}
+.ww:hover{
+  box-shadow: 5px 5px 10px #4b6d78;;
+}
 </style>
 {% endblock %}
 
@@ -21,9 +28,9 @@
   <div class="list-group container-fluid">
     {% for x in feedback %}
     <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
-      <div class="list-group-item list-group-item-action">
+      <div class="list-group-item list-group-item-action ww">
         <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-1"><span style="color:black"><b>Feedback: </b></span> {{x.fb}}</h6>
+            <h6 class="mb-1"><span style="color:black"><b style="color: #004574;">Feedback: </b></span> {{x.fb}}</h6>
             <small>{{x.timestamp}}</small>
         </div>  
         </div>
