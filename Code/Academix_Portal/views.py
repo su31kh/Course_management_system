@@ -310,6 +310,26 @@ def unenroll(request , course_id):
     except:
         return redirect('/error')
 
+def deletecourse(request , course_id):
+
+    try:
+        try:
+            prof = faculty_profile.objects.get(user=request.user)
+        except:
+            messages.error(request, "You are not authorized to delete a Course")
+            return redirect('/mycourse')
+        
+        thiscourse = Course.objects.get(course_code = course_id)
+        if(thiscourse.faculty == prof):
+            Course.objects.filter(course_code = course_id).delete()
+        else:
+            messages.error(request, "You are not authorized to delete this Course")
+            return redirect('/mycourse')
+        
+        return redirect('mycourse')
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
 def student_list(request , course_id):
     try:
         isprof = True
