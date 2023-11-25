@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="{% static 'css/my_course_student.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="static/css/course_dashboard_student.css">  
 
         <style>
@@ -138,6 +136,7 @@
     <section class="solutions-section" id="oursolutions">
         <div class="container">
             <div class="row mb-4">
+
                 <div class="col-12">
                     {% if messages %}
               {% for msg in messages %}
@@ -147,6 +146,7 @@
               </div>
               {% endfor %}
               {% endif %}
+              
                     <div class="solutions-main">
                         {% for course in enrolled %}
                         <div class="solutions-box container-fluid" style="background-color: rgb(254, 254, 254);  border: solid 1px; border-color: rgb(173, 173, 173); opacity: 0.9;">
