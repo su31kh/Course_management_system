@@ -71,7 +71,7 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/mycourse/{{courseid}}/addassignment" method="post" style="border-radius: 10px; padding: 10px">
+        <form action="/mycourse/{{courseid}}/addassignment" method="post" enctype="multipart/form-data" style="border-radius: 10px; padding: 10px">
             {% csrf_token %}
             <div class="container">
                    <div class="form-group">

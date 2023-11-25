@@ -117,7 +117,7 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/mycourse/{{ course.course_code }}/addmaterial" method="post" style="border-radius: 10px; padding: 10px">
+        <form action="/mycourse/{{ course.course_code }}/addmaterial" method="post" enctype="multipart/form-data" style="border-radius: 10px; padding: 10px">
             {% csrf_token %}
             <div class="container">
                    <div class="form-group">
@@ -132,7 +132,7 @@
 
                   <div class="form-group">
                     <label for="income">File :</label>
-                    <input required type="file" class="form-control" name="file">
+                    <input required type="file" class="form-control" name="myfile">
                   </div>
                   <div>
                     <button type="submit" class="button-3" style="float:right;">Add</button>

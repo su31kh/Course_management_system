@@ -65,7 +65,7 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/mycourse/{{ course.course_code}}/{{record.name}}/editassignment" method="post">
+        <form action="/mycourse/{{ course.course_code}}/{{record.name}}/editassignment" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container">
                    <div class="form-group">

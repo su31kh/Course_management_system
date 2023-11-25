@@ -79,7 +79,7 @@ class Material(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=20, null=False)
     description = models.CharField(max_length=100, null=True)
-    material_file = models.FileField(upload_to='')
+    material_file = models.FileField(upload_to='materials')
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

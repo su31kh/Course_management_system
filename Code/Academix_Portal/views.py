@@ -58,27 +58,24 @@ def materials(request,course_id):
 
 def addmaterial(request,course_id):
     try:
-        try:
-            prof = faculty_profile.objects.get(user=request.user)
-        except:
-            messages.error(request, "You cannot Post Material here.")
-            return redirect('/mycourse/'+course_id+'/materials')
-        if request.method == "POST":
-            course = Course.objects.get(course_code=course_id)
-            title = request.POST.get('title')
-            desc = request.POST.get('description')
-            file = request.POST.get('file')
-            material_files = Material.objects.create(title=title,description=desc, course=course, material_file=file)
-            material_files.save()
-            return redirect('/mycourse/'+course_id+"/materials")
-        else:
-            course = Course.objects.get(course_code=course_id)
-            context = {
-                'course':course
-            }
-            return render(request , 'add_material.html', context)
+        prof = faculty_profile.objects.get(user=request.user)
     except:
-        return redirect('/error')
+        messages.error(request, "You cannot Post Material here.")
+        return redirect('/mycourse/'+course_id+'/materials')
+    if request.method == "POST"  and request.FILES['myfile']:
+        course = Course.objects.get(course_code=course_id)
+        title = request.POST.get('title')
+        desc = request.POST.get('description')
+        file =request.FILES['myfile']  
+        material_files = Material.objects.create(title=title,description=desc, course=course, material_file=file)
+        material_files.save()
+        return redirect('/mycourse/'+course_id+"/materials")
+    else:
+        course = Course.objects.get(course_code=course_id)
+        context = {
+            'course':course
+        }
+        return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
     try:
@@ -478,12 +475,12 @@ def add_assignment(request, course_id):
             messages.error(request,"You cannot post an announcement")
         else:
             course = Course.objects.get(course_code = course_id)
-            if(request.method == 'POST'):
+            if(request.method == 'POST' and request.FILES['attachment']):
                 assignmentname = request.POST.get('name')
                 description = request.POST.get('description')
                 duedate = request.POST.get('duedate')
                 max_grade = request.POST.get('max_grade')
-                attachment = request.POST.get('attachment')
+                attachment = request.FILES['attachment']
                 assignment = Assignment.objects.create(name = assignmentname, description = description, duedate = duedate, max_grade=max_grade, attachment = attachment, assignment_course = course)
 
                 assignment.save()
@@ -529,14 +526,14 @@ def edit_assignment(request, course_id, name):
         except:
             messages.error(request, "You are not authorized to add a Course")
             return redirect('/mycourse/'+course_id+'/viewassignments')
-        if request.method == 'POST':
+        if request.method == 'POST' and request.FILES['attachment']:
             course = Course.objects.get(course_code = course_id)
             editassignment = Assignment.objects.get(assignment_course=course, name=name)
             editassignment.name = request.POST.get('name')
             editassignment.description = request.POST.get('description')
             editassignment.duedate = request.POST.get('duedate')
             editassignment.max_grade = request.POST.get('max_grade')
-            editassignment.attachment = request.POST.get('attachment')
+            editassignment.attachment = request.FILES['attachment']
             editassignment.save()
         else:
             course = Course.objects.get(course_code = course_id)
@@ -569,8 +566,8 @@ def add_submission(request, course_id, name):
     try:
         student = student_profile.objects.get(user = request.user)
         assignment = Assignment.objects.get(name = name)
-        if(request.method == 'POST'):
-            work = request.POST.get('work')
+        if(request.method == 'POST' and request.FILES['work']):
+            work = request.FILES['work']
             submission = Submission.objects.create(student = student, assignment = assignment, work = work)
             submission.save()
 
@@ -585,11 +582,11 @@ def add_submission(request, course_id, name):
 
 def edit_submission(request, course_id, name):
     try:
-        if(request.method == 'POST'):
+        if(request.method == 'POST' and request.FILES['work']):
             student = student_profile.objects.get(user = request.user)
             assignment = Assignment.objects.get(name = name)
             editsubmission = Submission.objects.get(student = student, assignment = assignment)
-            editsubmission.work = request.POST.get('work')
+            editsubmission.work = request.FILES['work']
             editsubmission.save()
             if(editsubmission.timestamp <= assignment.duedate):
                 editsubmission.feedback='Turned in'
