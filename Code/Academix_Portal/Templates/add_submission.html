@@ -11,7 +11,7 @@
     <div>
         <form action="mycourses/CT-304/assignment2/add_submission" method="post">
             {% csrf_token %}
-            <input required type="url" id="work" name="work">
+            <input required type="file" id="work" name="work">
             <br>
             <input required type="submit" value="Add">
         </form>

@@ -127,7 +127,7 @@
             <a href="/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment"><button role="button" class="button-3" style="float:right;">Remove</button></a>
             <p class="mb-1" style="padding-top: 25px; color:black;"><b>Description: </b>{{x.description}}</p>
             <p class="mb-1" style="padding-top: 5px; color:black;"><b>Max-Grade: </b>{{x.max_grade}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b>Attachment: </b>{{x.attachment}}</p>
+            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}">Attachment</a></b>
             <div style="padding: 10px; padding-top: 25px;">
                 <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button class="button-3" role="button">Edit Assignment</button></a>
                     <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button class="button-3" role="button">View Students Submission</button></a>

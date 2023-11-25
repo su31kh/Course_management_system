@@ -44,7 +44,7 @@ class Assignment(models.Model):
     description = models.TextField(null=True, blank=True)
     duedate = models.DateTimeField()
     max_grade = models.IntegerField()
-    attachment = models.URLField()
+    attachment =models.FileField(upload_to='attachments')
     assignment_course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -57,7 +57,7 @@ class Submission(models.Model):
     student = models.ForeignKey(student_profile, on_delete=models.CASCADE)
     graded = models.BooleanField(default=False)
     grade = models.IntegerField(null=True)
-    work = models.URLField()
+    work = models.FileField(upload_to='submissions')
     feedback = models.CharField(max_length=20, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
@@ -79,7 +79,7 @@ class Material(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=20, null=False)
     description = models.CharField(max_length=100, null=True)
-    material_file = models.URLField()
+    material_file = models.FileField(upload_to='')
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

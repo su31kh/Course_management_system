@@ -122,7 +122,7 @@
             </div>
             <p class="mb-1" style="padding-top: 25px; color:black"><b>Description: </b>{{x.description}}</p>
             <p class="mb-1" style="padding-top: 5px; color:black"><b>Max-Grade: </b>{{x.max_grade}}</p>
-            <p class="mb-1" style="padding-top: 5px; color:black"><b>Attachment: </b>{{x.attachment}}</p>
+            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}">Attachment</a></b>
             {% if y %}
             <p class="mb-1" style="padding-top: 5px;"><b>Status: </b>{{y.0.feedback}}</p>
             {% if y.0.graded %}
@@ -135,14 +135,14 @@
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post">
                 {% csrf_token %}<div style="padding-bottom:15px;">
                 <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission File : </b></p></label>
-                <input type="url" id="work" name="work" required="True"> 
+                <input type="file" id="work" name="work" required="True"> 
                 <button class="button-3" style="float: right;" role="button">Submit</button>
             </div></form>
             {% else %}
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post">
                 {% csrf_token %}<div style="padding-bottom:15px;">
                 <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson File : </b></p></label>
-                <input type="url" id="work" name="work" required="True" value="{{y.0.work}}"> 
+                <input type="file" id="work" name="work" required="True" value="{{y.0.work}}"> 
                 <button class="button-3" style="float: right;" role="button">Edit Submission</button>
             </div></form>
             {% endif %}
