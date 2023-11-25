@@ -150,7 +150,7 @@ def fb_response(request, course_id):
                     context = {
                         'course':course
                     }
-                    return render(request , 'feedback_student.html',context)
+                    return render(request , 'add_feedback.html',context)
     except:
         return redirect('/error')
 

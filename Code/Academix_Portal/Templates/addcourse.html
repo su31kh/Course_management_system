@@ -64,6 +64,8 @@
       body{
         background-image: url("/static/images/img_03.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
       }
       </style>
 
@@ -71,7 +73,7 @@
 
 <body>
     <div class="d-flex align-items-center justify-content-center" style="padding-top:10%;">
-        <form action="/addcourses" method="post" style="background-color: rgb(254, 254, 254); border-radius: 5px; opacity: 0.9;">
+        <form action="/addcourses" method="post" style="order-radius: 5px; opacity: 0.9;">
           {% csrf_token %}
           <div class="container-fluid">
                  <div class="form-group">
