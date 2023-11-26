@@ -78,22 +78,30 @@ def addmaterial(request,course_id):
         return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
+    thiscourse = Course.objects.get(course_code = course_id)
     try:
-        isprof = True
-        try:
-            prof = faculty_profile.objects.get(user=request.user)
-        except:
-            isprof = False
-        course = Course.objects.get(course_code=course_id)
-        announce = Announcements.objects.filter(course=course)
-        context = {
-            "course":course,
-            "announce":announce,
-            'isprof':isprof
-        }
-        return render(request , 'announcements.html', context)
+        student_user = student_profile.objects.get(user = request.user)
+
+        thiscourse = student_user.student_courses.get(course_code = course_id)
+
+    except Exception as e:
+        messages.error(request , 'You are not authorized to view this Course')
+        return redirect('/mycourse')
+
+
+    isprof = True
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
     except:
-        return redirect('/error')
+        isprof = False
+    course = Course.objects.get(course_code=course_id)
+    announce = Announcements.objects.filter(course=course)
+    context = {
+        "course":course,
+        "announce":announce,
+        'isprof':isprof
+    }
+    return render(request , 'announcements.html', context)
 
 def addannouncement(request,course_id):
     try:
@@ -395,7 +403,8 @@ def add_course_to_user(request, course_id):
             return redirect('mycourse')
 
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
+            messages.error(request , "You are not authorized to enroll a Course")
+            return redirect('mycourse')
     except:
         return redirect('/error')
 
