@@ -1,19 +1,68 @@
 {% extends 'navbar.html' %}
 {% load static %}
 {% block head %}
+
+<!-- <link rel="stylesheet" href="{% static 'css/announcements.css' %}"> -->
+<link rel="stylesheet" href="{% static 'css/stylish.css' %}"> 
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 <style>
-  .list-group {
-        display: contents;
-      }
   .button-5 {
     align-items: center;
     background-clip: padding-box;
-    background-color: rgb(109, 109, 255);
+    background-color: #ff0000;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-5:hover,
+  .button-5:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-5:hover {
+    background-color: #cc0000;  
+    transform: translateY(-1px);
+  }
+  
+  .button-5:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+
+
+  .button-3 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #d43b75;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
     cursor: pointer;
     display: inline-flex;
     font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -23,7 +72,7 @@
     line-height: 1.25;
     margin: 0;
     min-height: 2rem;
-    padding: calc(.7rem - 1px) calc(1.5rem - 1px);
+    padding: calc(.5rem - 1px) calc(1rem - 1px);
     position: relative;
     text-decoration: none;
     transition: all 250ms;
@@ -31,31 +80,53 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: 5rem;
+    width: auto;
   }
   
-  .button-5:hover,
-  .button-5:focus {
-    background-color: rgb(109, 109, 255);
+  .button-3:hover,
+  .button-3:focus {
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   }
   
-  .button-5:hover {
-    background-color: #ecccc5; 
+  .button-3:hover {
+    background-color: #c92865;  
     transform: translateY(-1px);
   }
   
-  .button-5:active {
+  .button-3:active {
     background-color: rgb(109, 109, 255);
     box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
     transform: translateY(0);
   }
+
+  body{
+  background-image: url("/static/images/img_03.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
+
+.ww {
+  /* background-color: #afe6ed;  */
+  box-shadow:5px ;
+
+}
+.ww:hover{
+  /* background-color: #6fdbea;  */
+  box-shadow: 5px 5px 10px ;
+}
+.list-group {
+        display: contents;
+      }
+  
+
+      
   </style>
 {% endblock %}
 
 {% block body %}
 
-  <div class="list-group container-fluid">
+  <!-- <div class="list-group container-fluid">
     {% for s in submission %}
     <div class="m-3 p-2" style="border-radius: 8px;">
       <div class="list-group-item list-group-item-action">
@@ -87,6 +158,64 @@
     </div>
     {% endfor %}
 
+</div> -->
+
+
+
+
+
+
+
+
+
+<div class="list-group container-fluid">
+  <div class="col-12">
+  {% for s in submission %}
+  <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
+    <div class="list-group-item list-group-item-action ww" >
+      
+    <div class="d-flex w-100 justify-content-between" style="padding-top: 10px;">
+      <h5 class="mb-1" style="color:black; font-family:'Nunito'; font-weight: 700; font-size: 1.4rem;"><i class="fa-regular fa-file-lines fa-lg" style="padding-right:10px ;"></i> {{s.student.first_name}} {{s.student.last_name}}'s Submission</h5>
+      <h6 class="mb-1"><b>Submission Link: </b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{s.work}}" style="color: #004574;">Link</a></small>
+    </div>
+    <hr class="border">
+    <p class="mb-1" style="padding-top: 10px; color: black;"><b>Status: </b>{{s.feedback}}</p>
+    {% if s.graded %}
+      <p class="mb-1" style="padding-top: 5px; color: black;"><b>Grade Obtained: </b>{{s.grade}}</p>
+      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+        {% csrf_token %}
+        <label>
+          <p class='mb-1' style="color: black; padding-top: 10px;"><b>Update Grade: </b></p></label>
+        <input type="number" id="grade" name="grade">
+        <div style="padding-top: 10px;">
+          <button role="button" class="button-3 text-white" style=" background-color: #004574;">Update
+            <i class="fa-solid fa-pen" style="float: right; padding-left: 15px;"></i>
+          </button>
+      </div>
+      
+      </form>
+    {% else %}
+      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+        {% csrf_token %}
+        <label>
+          <p class='mb-1' style="padding-top: 10px; color: black;"><b>Grade: </b></p></label>
+        <input type="number" id="grade" name="grade">
+        <div style="padding-top: 10px;">
+          <button role="button" class="button-3 text-white" style=" background-color: #004574;">Grade
+            <i class="fa-solid fa-plus fa-lg" style="float: right; padding-left: 15px;"></i>
+          </button>
+        </div>
+      </form>
+    {% endif %}
+    
+    
+  </div>
+  </div>
+  {% endfor %}
 </div>
+  
+</div>
+
+
 
 {% endblock %}

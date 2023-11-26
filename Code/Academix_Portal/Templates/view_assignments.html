@@ -141,21 +141,25 @@
             {% endif %}
             {% if not y %}
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post" enctype="multipart/form-data">
-                {% csrf_token %}<div>
-                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission File : </b></p></label>
-                <input type="file" id="work" name="work" required="True"> 
-                <button role="button" class="button-3 text-white" style=" background-color: #004574;">Submit<i class="fa-solid fa-plus fa-lg" style="padding-left: 15px;"></i></button>
-            </div></form>
+                {% csrf_token %}<div class="row">
+                <div class="col-sm-10 col-12 d-flex"><label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission :</b></p></label>
+                <input type="file" id="work" name="work" required="True"> </div>
+                <div class="col-sm-2 col-12 d-flex justify-content-end p-md-0 py-3"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Submit<i class="fa-solid fa-plus fa-lg" style="float: right; padding-left: 15px;"></i></button>
+              </div></div></form>
             {% else %}
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post" enctype="multipart/form-data">
-                {% csrf_token %}<div style="padding-bottom: 15px;">
+                {% csrf_token %}<div  style="padding-bottom: 15px;">
                   <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{y.0.work}}" style="color: #004574;">Your Work</a></b></p>
-                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson File : </b></p></label>
+                  <div class="row">
+                <div class="col-sm-9 col-12 ">
+                  
+                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson :</b></p></label>
                 
-                <input type="file" id="work" name="work" required="True" value="{{y.0.work}}" style="padding-top: 5px;"> 
+                <input type="file" id="work" name="work" required="True" value="{{y.0.work}}" style="padding-top: 5px;"> </div>
 
-                <button role="button" class="button-3 text-white" style=" background-color: #004574;">Edit Submission<i class="fa-regular fa-pen-to-square fa-lg" style="padding-left: 10px;"></i></button>
-            </div></form>
+                <div class="col-sm-3 col-12 d-flex justify-content-end p-md-0 py-3"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Edit Submission<i class="fa-regular fa-pen-to-square fa-lg" style="float:right; padding-left: 10px;"></i></button>
+              </div>
+            </div></div></form>
             {% endif %}
             </div>
         </div>
