@@ -79,21 +79,24 @@ def addmaterial(request,course_id):
 
 def announcements(request , course_id):
     thiscourse = Course.objects.get(course_code = course_id)
-    try:
-        student_user = student_profile.objects.get(user = request.user)
-
-        thiscourse = student_user.student_courses.get(course_code = course_id)
-
-    except Exception as e:
-        messages.error(request , 'You are not authorized to view this Course')
-        return redirect('/mycourse')
-
+    
 
     isprof = True
     try:
         prof = faculty_profile.objects.get(user=request.user)
     except:
         isprof = False
+    
+    if not isprof:
+        try:
+            student_user = student_profile.objects.get(user = request.user)
+
+            thiscourse = student_user.student_courses.get(course_code = course_id)
+    
+        except Exception as e:
+            messages.error(request , 'You are not authorized to view this Course')
+            return redirect('/mycourse')
+
     course = Course.objects.get(course_code=course_id)
     announce = Announcements.objects.filter(course=course)
     context = {
