@@ -1,11 +1,85 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academix Portal</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(315deg, #e6e2d3 3%, #dac292 38%, #b9936c 68%, #c4b7a6 98%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .light {
+      position: relative;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.2); /* Semi-transparent white with glassmorphism */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .light-item {
+      margin: auto;
+      border-radius: 29px;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(164, 184, 202, 0.42), rgba(210, 210, 210, 0.06));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(241, 228, 228, 0.3);
+      width: 80%; /* Adjusted for responsiveness */
+      padding: 3rem;
+      box-sizing: border-box;
+    }
+
+    .go-back-home {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #285497; /* Blue text for contrast */
+      background: linear-gradient(90deg, #FFC107, #FFCA28); /* Gradient background on hover */
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase; /* Aesthetic choice for button text */
+      transition: background 0.3s ease;
+      margin-top: 1rem; /* Space between button and text */
+    }
+
+    .go-back-home:hover {
+      background: linear-gradient(90deg, #FFCA28, #FFD54F); /* Lighter gradient on hover */
+    }
+
+    .div {
+      font-size: 6rem; /* Adjusted size */
+      font-weight: 800;
+      color: #285497;
+      -webkit-text-stroke: 1px #285497;
+      margin-bottom: 1rem;
+    }
+
+    .ooopspage-not-found {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #19345e;
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="light">
+    <div class="light-item">
+      <div class="div">404</div>
+      <div class="ooopspage-not-found">Ooops!...Page not found.</div>
+      <div onclick="window.location.href='{% url 'HomePage' %}'" class="go-back-home">Go Back Home</div>
+
+    </div>
+  </div>
 </body>
 </html>
