@@ -5,12 +5,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1, width=device-width" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" />
+  
   <style>
     body {
+      background-image: url("/static/images/img_03.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(315deg, #e6e2d3 3%, #dac292 38%, #b9936c 68%, #c4b7a6 98%);
+      /* background: linear-gradient(315deg, #e6e2d3 3%, #dac292 38%, #b9936c 68%, #c4b7a6 98%); */
+      /* background-color: #6ac0fa; */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -21,7 +27,9 @@
     .light {
       position: relative;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.2); /* Semi-transparent white with glassmorphism */
+      /* background: rgba(255, 255, 255, 0.2); Semi-transparent white with glassmorphism */
+      /* background-color: rgb(217, 238, 253); */
+      background-color: #004574;
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
       padding: 2rem;
@@ -31,55 +39,60 @@
     .light-item {
       margin: auto;
       border-radius: 29px;
-      background: radial-gradient(50% 50% at 50% 50%, rgba(164, 184, 202, 0.42), rgba(210, 210, 210, 0.06));
+      /* background: radial-gradient(50% 50% at 50% 50%, rgba(164, 184, 202, 0.42), rgba(210, 210, 210, 0.06)); */
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(241, 228, 228, 0.3);
-      width: 80%; /* Adjusted for responsiveness */
+      /* border: 1px solid rgba(241, 228, 228, 0.3); */
+      width: 80%;
       padding: 3rem;
       box-sizing: border-box;
     }
 
     .go-back-home {
-      font-size: 1.25rem;
+      font-size: 1.25rem; 
       font-weight: 800;
-      color: #285497; /* Blue text for contrast */
-      background: linear-gradient(90deg, #FFC107, #FFCA28); /* Gradient background on hover */
+      color: white; /* Blue text for contrast */
+      background: white; /* Gradient background on hover */
+      background-color: white;
       border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
       cursor: pointer;
       text-transform: uppercase; /* Aesthetic choice for button text */
-      transition: background 0.3s ease;
+      /* transition: background 0.3s ease; */
       margin-top: 1rem; /* Space between button and text */
     }
-
+/* 
     .go-back-home:hover {
-      background: linear-gradient(90deg, #FFCA28, #FFD54F); /* Lighter gradient on hover */
-    }
+      background-color: white;
+      color: #004574;
+    } */
 
     .div {
-      font-size: 6rem; /* Adjusted size */
+      font-size: 6rem; 
       font-weight: 800;
-      color: #285497;
-      -webkit-text-stroke: 1px #285497;
+      color: white;
+      -webkit-text-stroke: 1px white;
       margin-bottom: 1rem;
     }
 
     .ooopspage-not-found {
-      font-size: 2rem;
+      font-size: 2rem; 
       font-weight: 500;
-      color: #19345e;
+      color: white;
     }
+    
+
   </style>
 </head>
 <body>
-  <div class="light">
+  <div class="light sm-10">
     <div class="light-item">
       <div class="div">404</div>
-      <div class="ooopspage-not-found">Ooops!...Page not found.</div>
-      <div onclick="window.location.href='{% url 'HomePage' %}'" class="go-back-home">Go Back Home</div>
+      <div class="ooopspage-not-found">Ooops! ...Page not found.</div>
+      <div onclick="window.location.href='{% url 'HomePage' %}'" class="go-back-home" style="background-color: white; color: #004574;">Go Back Home <i class="fa-solid fa-house fa-lg" style="padding-left: 15px;"></i></div>
 
     </div>
   </div>
 </body>
+<script src="https://kit.fontawesome.com/962d62ec79.js" crossorigin="anonymous"></script>
 </html>
