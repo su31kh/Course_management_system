@@ -142,7 +142,7 @@
             {% if not y %}
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/addsubmission"  method="post" enctype="multipart/form-data">
                 {% csrf_token %}<div class="row">
-                <div class="col-sm-10 col-12 d-flex"><label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission :</b></p></label>
+                <div class="col-sm-10 col-12 d-flex"><label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submission</b></p></label>
                 <input type="file" id="work" name="work" required="True"> </div>
                 <div class="col-sm-2 col-12 d-flex justify-content-end p-md-0 py-3"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Submit<i class="fa-solid fa-plus fa-lg" style="float: right; padding-left: 15px;"></i></button>
               </div></div></form>
@@ -153,7 +153,7 @@
                   <div class="row">
                 <div class="col-sm-9 col-12 ">
                   
-                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson :</b></p></label>
+                <label for="work"><p class="mb-1" style="padding-top: 5px;"><b>Submisson</b></p></label>
                 
                 <input type="file" id="work" name="work" required="True" value="{{y.0.work}}" style="padding-top: 5px;"> </div>
 
