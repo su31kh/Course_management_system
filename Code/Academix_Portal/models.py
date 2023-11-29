@@ -23,7 +23,6 @@ class faculty_profile(models.Model):
     first_name = models.CharField(max_length=20, null=False)
     middle_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20, null=False)
-
     faculty_courses = models.ManyToManyField('Course', related_name='facultylist', blank=True)
 
     def __str__(self):

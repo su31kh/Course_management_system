@@ -56,6 +56,19 @@ def materials(request,course_id):
     except:
         return redirect('/error')
 
+def deletematerial(request, course_id, id):
+    try:
+        student = student_profile.objects.get(user=request.user)
+        return redirect('/mycourse/'+course_id)
+    except:
+        prof = faculty_profile.objects.get(user=request.user)
+        course = Course.objects.get(course_code=course_id)
+        if course.faculty != prof:
+            return redirect('/mycourse/'+course_id)
+        mat = Material.objects.get(id=id)
+        mat.delete()
+        return redirect('/mycourse/'+course_id+'/materials')
+
 def addmaterial(request,course_id):
     try:
         prof = faculty_profile.objects.get(user=request.user)

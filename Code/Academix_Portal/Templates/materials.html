@@ -139,8 +139,8 @@
       </div>
       <hr class="border">
       {% if isprof %}
-      <button role="button" class="button-3 text-white" style="float:right; background-color: #004574;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
-      </button>
+      <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button role="button" class="button-3 text-white" style="float:right; background-color: #004574;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+      </button></a>
       {% endif %}
       <div>
       <p class="mb-1" style="color:black">{{x.description}}</p>
