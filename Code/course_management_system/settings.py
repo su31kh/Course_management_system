@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'storages',
+    # 'storages',
     'adminlte3',
     'adminlte3_theme',
     'django.contrib.admin',
@@ -142,11 +142,11 @@ EMAIL_HOST_PASSWORD = "szyi wevf orvx wffd"
 
 # S3- BUCKET CONFIGURATION
 
-AWS_ACCESS_KEY_ID = 'AKIAXYLN2QLBK65EL3BY'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'cms-it314-bucket'
-# STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# AWS_ACCESS_KEY_ID = 'AKIAXYLN2QLBK65EL3BY'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'cms-it314-bucket'
+# # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
