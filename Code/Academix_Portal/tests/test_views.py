@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from Academix_Portal.models import student_profile,faculty_profile,Course,Assignment,Submission,query,Announcements,Material,feedback
 from datetime import datetime
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class TestViews(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.user_student = User.objects.create_user(username='shrikar', password='shrikar123')
-        self.user_faculty = User.objects.create_user(username='aakash', password='aakash123')
+        self.user_student = User.objects.create_user(email='shrikar@daiict.ac.in', username='shrikar@daiict.ac.in', password='shrikar123')
+        self.user_faculty = User.objects.create_user(email='aakash@daiict.ac.in', username='aakash', password='aakash123')
 
         self.faculty = faculty_profile.objects.create(
             user=self.user_faculty,
@@ -46,6 +47,7 @@ class TestViews(TestCase):
 
         
         self.my_course_url = reverse('mycourse')
+        self.otp_ver = reverse('otp_ver')
         self.view_assignments_url = reverse('view_assignments', args=['CS101'])
         self.profile_url = reverse('students_profile')
         self.view_announcements_url = reverse('announcements', args=['CS101'])
@@ -172,3 +174,58 @@ class TestViews(TestCase):
 
         response = self.client.post(self.add_submission_url, data)
         self.assertEquals(response.status_code, 302)
+
+    def test_get_registerPage(self):
+        response = self.client.get(reverse('login_func',args=['student']))
+
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'login_page_student.html')
+
+
+    def test_user_registration(self):
+        data = {
+            'email':'test@daiict.ac.in',
+            'password':'abcd1234',
+            'first_name':'test1',
+            'middle_name':'test2',
+            'last_name':'test3',
+            'batch':'1234',
+            'branch':'test4',
+            'program':'test5'
+        }
+        response = self.client.post(reverse('otp_ver'), data=data)
+
+        self.assertEqual(response.status_code, 200) 
+        self.assertTemplateUsed(response, 'register.html')
+
+    def test_register_existing_email(self):
+        User.objects.create_user(username='test@example.com', password='Password123')
+        data = {
+            'email':'test@daiict.ac.in',
+            'password':'abcd1234',
+            'first_name':'test1',
+            'middle_name':'test2',
+            'last_name':'test3',
+            'batch':'1234',
+            'branch':'test4',
+            'program':'test5'
+        }
+
+        response = self.client.post(reverse('otp_ver'), data=data)
+
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'register.html')
+
+    def test_log_out(self):
+        self.client.login(username='shrikar@daiict.ac.in', password='shrikar123')
+        response = self.client.get(reverse('log_out'))
+
+        self.assertEqual(response.status_code,302)
+        self.assertRedirects(response, reverse('HomePage'))
+
+    
+    def test_log_out_evenif_logged_Out(self):
+        response = self.client.get(reverse('log_out'))
+
+        self.assertEqual(response.status_code,302)
+        self.assertRedirects(response, reverse('HomePage'))

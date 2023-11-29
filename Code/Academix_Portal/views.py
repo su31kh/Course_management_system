@@ -215,6 +215,7 @@ def register(request):
             code = random.randint(1000,9999)
             request.session['code'] = code
             request.session['password'] = password
+            request.session['email'] = email
             send_email_to_client(email, code)
             dict = {'email':email,'password':password,'first_name':first_name,'middle_name':middle_name,'last_name':last_name,'batch':batch,'branch':branch,'program':program }
             return render(request,'otp_ver.html',dict)
@@ -230,7 +231,7 @@ def verifyRegistration(request):
 
         if request.method == "POST":
             code = request.session.get('code', None)
-            email = request.POST['email']
+            email = request.session.get('email', None)
             password = request.session.get('password', None)
             first_name = request.POST.get('first_name')
             middle_name = request.POST.get('middle_name')
@@ -240,10 +241,8 @@ def verifyRegistration(request):
             program = request.POST.get('program')
             code = str(code)
             ver_code = request.POST.get('ver_code')
-            print(email)
-            print(password)
             if User.objects.filter(email=email).exists():
-                messages.warning(request, "Enter correct Email")
+                messages.warning(request, "Account already exists")
                 return redirect('/register')
             if code == ver_code:
                 user = User.objects.create_user(username=email, email=email, password=password)
