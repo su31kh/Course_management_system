@@ -1,16 +1,20 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.urls import reverse
 from Academix_Portal.models import student_profile,faculty_profile,Course,Assignment,Submission,query,Announcements,Material,feedback
 from datetime import datetime
 from django.core.files.uploadedfile import SimpleUploadedFile
+from Academix_Portal import views
+
 
 class TestViews(TestCase):
 
     def setUp(self):
+        self.factory = RequestFactory()
         self.client = Client()
         self.user_student = User.objects.create_user(email='shrikar@daiict.ac.in', username='shrikar', password='shrikar123')
         self.user_faculty = User.objects.create_user(email='aakash@daiict.ac.in', username='aakash', password='aakash123')
+        self.user = User.objects.create_user(username='testuser', password='password')
 
         self.faculty = faculty_profile.objects.create(
             user=self.user_faculty,
@@ -226,3 +230,10 @@ class TestViews(TestCase):
 
         self.assertEqual(response.status_code,302)
         self.assertRedirects(response, reverse('HomePage'))
+
+    def test_redirect_if_authenticated(self):
+            request = self.factory.get('/otp_ver')
+            request.user = self.user
+            response = views.verifyRegistration(request)
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(response.url, '/mycourse')
