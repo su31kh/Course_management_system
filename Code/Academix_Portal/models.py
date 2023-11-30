@@ -31,7 +31,7 @@ class faculty_profile(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=25, unique=True)
     course_code = models.CharField(max_length=25, unique=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(max_length=30, blank=True, null=True)
     faculty = models.ForeignKey(faculty_profile, on_delete=models.CASCADE)
     studentlist = models.ManyToManyField('student_profile', related_name='course', blank=True)
 
@@ -40,7 +40,7 @@ class Course(models.Model):
     
 class Assignment(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(max_length=100, null=True, blank=True)
     duedate = models.DateTimeField()
     max_grade = models.IntegerField()
     attachment =models.FileField(upload_to='attachments')

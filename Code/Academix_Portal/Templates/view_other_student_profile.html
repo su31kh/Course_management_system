@@ -1,192 +1,224 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block head %}
 
-<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academix Portal</title>
 
-<style>
-         
-.card{
-    border:none;
+  <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
-    position:relative;
-    overflow:hidden;
-    border-radius:8px;
-    cursor:pointer;
-}
+  <link rel="stylesheet" href="static/css/course_dashboard_student.css"> 
 
-.card:before{
-    
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:4px;
-    height:100%;
-    background-color:rgb(217, 217, 255);
-    transform:scaleY(1);
-    transition:all 0.5s;
-    transform-origin: bottom
-}
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-.card:after{
-    
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:4px;
-    height:100%;
-    background-color: #ff0000;
-    transform:scaleY(0);
-    transition:all 0.5s;
-    transform-origin: bottom
-}
-
-.card:hover::after{
-    transform:scaleY(1);
-}
-
-
-.fonts{
-    font-size:11px;
-}
-
-body{
-  background-image: url("static/images/img_03.jpg");
-  background-size: cover;
-}
-
-.button-3 {
-  align-items: center;
-  background-clip: padding-box;
-  background-color: #ff0000;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: black;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(.5rem - 1px) calc(1rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
-
-.button-3:hover,
-.button-3:focus {
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-
-.button-3:hover {
-  background-color: #cc0000;  
-  transform: translateY(-1px);
-}
-
-.button-3:active {
-  background-color: rgb(109, 109, 255);
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-  transform: translateY(0);
-}
-body{
-  background-image: url("/static/images/img_03.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-}
-
-
-        </style>
-    {% endblock %}
-
-
-{% block body %}
-<div class="container mt-5">
-    
-  <div class="row d-flex justify-content-center">
-      
-      <div class="col-md-7">
-          
-          <div class="card p-3 py-4" style="opacity: 0.8">
-              
-              
-              <div class="text-center mt-3">
-                  <span class="p-1  rounded" style="font-size: 2.5rem; color: black; font-family: 'Nunito';"><b>Student</b></span>
-                  <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</div>
-
-                  <div style="padding-top: 20px; font-size: 1.5rem; font-family: 'Nunito';">
-                    <div><b>Email: </b>{{student.user.email}}</div>
-                  </div>
-
-                  <div class=" mt-1">
-                      <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Batch: </b>{{student.batch}}</p>
-                  </div>
-
-                  <div class=" mt-1">
-                    <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Branch: </b>{{student.branch}} </p>
-                  </div>
-
-                  <div class=" mt-1">
-                    <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Program: </b>{{student.program}} </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-<script>
-  function enroll(id) {
-    document.getElementById(id).innerHTML = "Enrolled";
-
-    const button = document.querySelector(id);
-
-    const disableButton = () => {
-      button.disabled = true;
-    };
-
-    button.addEventListener("click", disableButton);
+  <style> 
+    .card{
+      border:none;
+  
+      position:relative;
+      overflow:hidden;
+      border-radius:8px;
+      cursor:pointer;
   }
+  
+  .card:before{
+      
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:4px;
+      height:100%;
+      background-color:rgb(217, 217, 255);
+      transform:scaleY(1);
+      transition:all 0.5s;
+      transform-origin: bottom
+  }
+  
+  .card:after{
+      
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      width:4px;
+      height:100%;
+      background-color: #004574;
+      transform:scaleY(0);
+      transition:all 0.5s;
+      transform-origin: bottom
+  }
+  
+  .card:hover::after{
+      transform:scaleY(1);
+  }
+  
+  
+  .fonts{
+      font-size:11px;
+  }
+  
+  body{
+    background-image: url("static/images/img_03.jpg");
+    background-size: cover;
+  }
+  
+  .button-3 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #ff0000;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.5rem - 1px) calc(1rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-3:hover,
+  .button-3:focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  
+  .button-3:hover {
+    background-color: #cc0000;  
+    transform: translateY(-1px);
+  }
+  
+  .button-3:active {
+    background-color: rgb(109, 109, 255);
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+  }
+  body{
+    background-image: url("/static/images/img_03.jpg");
+    background-size: cover;
+  }
+  .ww {
+    box-shadow: 5px;
+  
+  }
+  .ww:hover{
+    box-shadow: 5px 5px 10px #4b6d78;
+  }
+  
+  </style>
+</head>
+<body>
 
-  function search_courses() {
-    let input = document.getElementById("searchbar").value;
-    input = input.toLowerCase();
+  <nav class="navbar navbar-expand-lg text-white" style="background-color: #004574;">
+    <i class="fa-solid fa-graduation-cap fa-lg"></i>
+      <a class="navbar-brand" href="/mycourse/{{course.course_code}}/studentlist" style="padding-left:10px; color: white; font-size: 1.2rem;">{{ course.course_code }}</a>
+      <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+        <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-lg"></i></span>
+      </button>
+  
+      
+        </ul>
+        {% block search %}
+        {% endblock %}
+      </div>
+    </nav> 
 
-    let cour = document.getElementsByClassName("card-title");
 
-    for (i = 0; i < cour.length; i++) {
-      console.log(cour[i]);
-      var par = cour[i].closest(".card");
-      if (!cour[i].innerHTML.toLowerCase().includes(input)) {
-        par.style.display = "none";
-      } else {
-        par.style.display = "block";
+
+  <div class="container mt-5">
+    
+    <div class="row d-flex justify-content-center">
+        
+        <div class="col-md-7">
+            
+            <div class="card p-3 py-4 ww" style="opacity: 0.8">
+                
+                
+                <div class="text-center mt-3">
+                    <span class="p-1  rounded" style="font-size: 2.5rem; color: black; font-family: 'Nunito';"><b>Student</b></span>
+                    <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Name: </b>{{student.first_name}} {{student.middle_name}} {{student.last_name}}</div>
+  
+                    <div style="padding-top: 20px; font-size: 1.5rem; font-family: 'Nunito';">
+                      <div><b>Email: </b>{{student.user.email}}</div>
+                    </div>
+  
+                    <div class=" mt-1">
+                        <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Batch: </b>{{student.batch}}</p>
+                    </div>
+  
+                    <div class=" mt-1">
+                      <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Branch: </b>{{student.branch}} </p>
+                    </div>
+  
+                    <div class=" mt-1">
+                      <p class="fonts" style="padding-top: 10px; font-size: 1.5rem; font-family: 'Nunito';"><b>Program: </b>{{student.program}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+  <script>
+    function enroll(id) {
+      document.getElementById(id).innerHTML = "Enrolled";
+  
+      const button = document.querySelector(id);
+  
+      const disableButton = () => {
+        button.disabled = true;
+      };
+  
+      button.addEventListener("click", disableButton);
+    }
+  
+    function search_courses() {
+      let input = document.getElementById("searchbar").value;
+      input = input.toLowerCase();
+  
+      let cour = document.getElementsByClassName("card-title");
+  
+      for (i = 0; i < cour.length; i++) {
+        console.log(cour[i]);
+        var par = cour[i].closest(".card");
+        if (!cour[i].innerHTML.toLowerCase().includes(input)) {
+          par.style.display = "none";
+        } else {
+          par.style.display = "block";
+        }
       }
     }
-  }
-</script>
+  </script>
+  
+  
+</body>
+</html>
 
-{% endblock %}

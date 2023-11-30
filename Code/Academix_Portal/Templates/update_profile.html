@@ -1068,7 +1068,7 @@ a{
     top:0;
     width:4px;
     height:100%;
-    background-color: #ff0000;
+    background-color: #004574;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -1138,6 +1138,15 @@ body{
   background-size: cover;
 }
 
+.ww {
+  box-shadow: 5px;
+
+}
+.ww:hover{
+  box-shadow: 5px 5px 10px #4b6d78;
+}
+
+
 
         </style>
     {% endblock %}
@@ -1151,22 +1160,22 @@ body{
       
       <div class="col-md-7">
           
-          <div class="card p-3 py-4" style="opacity: 0.6">
+          <div class="card p-3 py-4 ww" style="opacity: 0.6">
               
               
             <form action="/student_profile/change" method="POST">
               {% csrf_token %}
             <div class="text-center mt-3">
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>First Name: </b>
-                <input required name="first_name" value="{{student.first_name}}">
+                <input required name="first_name" value="{{student.first_name}}" maxlength="20">
               </div>
 
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Middle Name: </b>
-                <input required name="middle_name" value="{{student.middle_name}}">
+                <input required name="middle_name" value="{{student.middle_name}}" maxlength="20">
               </div>
 
               <div class="mt-2 mb-0" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Last Name: </b>
-                <input requierd name="last_name" value="{{student.last_name}}">
+                <input requierd name="last_name" value="{{student.last_name}}" maxlength="20">
               </div>
 
               <div class=" mt-1">
@@ -1174,11 +1183,11 @@ body{
             </div>
 
             <div class=" mt-1">
-              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Branch: </b><input required name="branch" value="{{student.branch}}"> </p>
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Branch: </b><input required name="branch" value="{{student.branch}}" maxlength="50"> </p>
             </div>
 
             <div class=" mt-1">
-              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Program: </b><input required name="program" value="{{student.program}}"></p>
+              <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Program: </b><input required name="program" value="{{student.program}}" maxlength="50"></p>
             </div>
                 
                 

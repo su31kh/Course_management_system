@@ -164,13 +164,13 @@ margin-top: 10px;
       <h3>Add Course</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>
      <label for="coursename">Course Name :</label>
-     <input required type="text" id="coursename" class="form-control" name="coursename" value="{{record.name}}" placeholder="Enter Course Name">
+     <input required type="text" id="coursename" class="form-control" name="coursename" value="{{record.name}}" placeholder="Enter Course Name" maxlength="25">
 
      <label for="courseid">Course ID : </label>
-     <input required type="text" id="courseid" class="form-control" name="courseid" value="{{record.course_code}}" placeholder="Enter Course ID">
+     <input required type="text" id="courseid" class="form-control" name="courseid" value="{{record.course_code}}" placeholder="Enter Course ID" maxlength="25">
 
       <label for="description">Description :</label>
-      <textarea required type="text" id="description" class="form-control" name="description" value="{{record.description}}" placeholder="Enter Description"></textarea>
+      <textarea required type="text" id="description" class="form-control" name="description" value="{{record.description}}" placeholder="Enter Description" maxlength="30"></textarea>
   
      <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Add</button>
    </form>
