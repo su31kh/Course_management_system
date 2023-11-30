@@ -148,7 +148,7 @@ margin-top: 10px;
     </form>
 </div> -->
 
-<form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method = "POST">
+<form action="/mycourse/{{course.course_code}}/replyquery/{{SQuery.id}}" method = "POST" onsubmit="return check(this)">
   {% csrf_token %}
   <h3>Reply Query</h3>   
   <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -159,7 +159,21 @@ margin-top: 10px;
 </form>
 
 <script>
-        
+  function check(form)
+  {
+    var reply = form.reply.value;
+    if(reply.trim() == "")
+    {
+      document.getElementById("error").innerHTML = "Please enter reply";
+      document.getElementById("error").style.display = "block";
+      return false;
+    }
+    else
+    {
+      document.getElementById("error").style.display="none";
+      return true;
+    }
+  }
 </script>
 </body>
 </html>

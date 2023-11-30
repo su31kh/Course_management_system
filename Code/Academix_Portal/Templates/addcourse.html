@@ -159,7 +159,7 @@ margin-top: 10px;
         </form>
     </div> -->
 
-    <form action="/addcourses" method = "POST">
+    <form action="/addcourses" method = "POST" onsubmit="return check(this)">
       {% csrf_token %}
       <h3>Add Course</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -177,7 +177,21 @@ margin-top: 10px;
 
 
     <script>
-        
+      function check(form){
+        var coursename=document.getElementById("coursename").value;
+        var courseid=document.getElementById("courseid").value;
+        // var description=document.getElementById("description").value;
+        var error=document.getElementById("error");
+        if(coursename.trim()=="" || courseid.trim()==""){
+          error.innerHTML="Please fill all the fields";
+          error.style.display="block";
+          return false;
+        }
+        else{
+          document.getElementById("error").style.display="none";
+          return true;
+        }
+      }
     </script>
 </body>
 </html>

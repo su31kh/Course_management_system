@@ -126,9 +126,17 @@ button{
   transform: translate(-50%,-20%);
   height: 1280px;
 }
-#error{
+#error1{
   text-align: center;
   margin-top: 10px;
+  color: #ff512f;
+  display: none;
+}
+#error2{
+  text-align: center;
+  margin-top: 10px;
+  color: #ff512f;
+  display: none;
 }
 
 </style>  
@@ -147,12 +155,13 @@ button{
               <h6 style="color: #ff512f;">{{ msg }}</h6>
               {% endfor %}
               {% endif %}
-              <h6 id="error" style="color: #ff512f; display: none;"></h6>
+           
+              <h6 id="error1"></h6>
           <label for="user">Email</label>
           <input class="form-control" required name="user" type="email" id="user" placeholder="Enter your email">
     
           <label for="password">Password</label>
-          <input class="form-control" required name="pass1" type="password" id="pass1" placeholder="Enter your password">
+          <input class="form-control" required name="pass1" type="password" id="pass3" placeholder="Enter your password">
     
           <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Login</button>
           <div class="forgot-pass mb-4" style="padding-top: 10px; font-size: small;">
@@ -169,7 +178,7 @@ button{
               <h6 style="color: #ff512f;">{{ msg }}</h6>
               {% endfor %}
               {% endif %}
-              <h6 id="error" style="color: #ff512f; display: none;"></h6>
+              <h6 id="error2"></h6>
           <label for="first_name">First Name</label>
           <input class="form-control" required type="text" name="first_name" id="first_name" placeholder="Enter your first name">
 
@@ -208,66 +217,92 @@ button{
       const loginCard = document.querySelector('#log');
       const registerCard = document.querySelector('#reg');
       const style=document.querySelector('.shape:last-child');
+      const error1=document.getElementById("error1");
+      const error2=document.getElementById("error2");
     
       if (loginCard.style.display === 'none') {
         loginCard.style.display = 'block';
         registerCard.style.display = 'none';
-        style.style.bottom='-80px';
+        style.style.bottom='-80px'; 
+        error1.style.display="none";
+        error2.style.display="none";
       } else {
         loginCard.style.display = 'none';
         registerCard.style.display = 'flex';
         style.style.bottom='-780px';
+        error1.style.display="none";
+        error2.style.display="none";
       }
     }
 
     function checklog(form){
       const checkmail=form.user.value;
-      const checkpass=form.pass1.value;  
+      const checkpass=document.getElementById("pass3").value;  
+      console.log(checkmail,checkpass);
 
       if(checkmail.slice(-13)!="@daiict.ac.in"){
         // alert("Please enter a valid DAIICT email address");
-        document.getElementById("error").innerHTML="Please enter a valid DAIICT email address";
-        document.getElementById("error").style.display="block";
+        document.getElementById("error1").style.display="block";
+        document.getElementById("error1").innerHTML="Please enter a valid DAIICT email address";
+        
         return false;
       }   
-      else if(checkpass.length<8 ){
-        // alert("Password must be greater than 8 characters");
-        document.getElementById("error").innerHTML="Password must be greater than 8 characters";
-        document.getElementById("error").style.display="block";
-        return false;
-      }
-      document.getElementById("error").style.display="none";
+      // else if(checkpass.length<8 ){
+      //   // alert("Password must be greater than 8 characters");
+      //   document.getElementById("error1").innerHTML="Password must be greater than 8 characters";
+      //   document.getElementById("error1").style.display="block";
+      //   return false;
+      // }
+      document.getElementById("error1").style.display="none";
       return true;
     }
       
     function checkreg(form){
       const checkmail=form.email.value;
-      const checkpass=form.pass1.value;
-      const checkpass2=form.pass2.value;
-      if(checkmail.slice(-13)!="@daiict.ac.in"){
-        // alert("Please enter a valid DAIICT email address");
-        document.getElementById("error").innerHTML="Please enter a valid DAIICT email address";
-        document.getElementById("error").style.display="block";
+      const checkpass=document.getElementById("pass1").value.trim();
+      const checkpass2=document.getElementById("pass2").value.trim();
+      const checkbatch=form.batch.value.trim();
+      const checkbranch=form.branch.value.trim();
+      const checkprogram=form.program.value.trim();
+      const checkfname=form.first_name.value.trim();
+      const checklname=form.last_name.value.trim();
+      const checkmname=form.middle_name.value.trim();
+
+      if(checkbatch==""||checkbranch==""||checkprogram==""||checkfname==""||checklname==""||checkmname==""){
+        document.getElementById("error2").innerHTML="Please fill all the details";
+        document.getElementById("error2").style.display="block";
+        window.scrollTo(0,0);
         return false;
       }
-      if(checkpass.length<8){
-        document.getElementById("error").innerHTML="Password must be greater than 8 characters";
-        document.getElementById("error").style.display="block";
+      else if(checkmail.slice(-13)!="@daiict.ac.in"){
+        // alert("Please enter a valid DAIICT email address");
+        document.getElementById("error2").innerHTML="Please enter a valid DAIICT email address";
+        document.getElementById("error2").style.display="block";
+        window.scrollTo(0,0);
+        return false;
+      }
+      else if(checkpass.length<8){
+        document.getElementById("error2").innerHTML="Password must be greater than 8 characters";
+        document.getElementById("error2").style.display="block";
+        window.scrollTo(0,0);
         return false;
       }
       else if(checkpass!=checkpass2){
-        document.getElementById("error").innerHTML="Passwords do not match";
-        document.getElementById("error").style.display="block";
+        document.getElementById("error2").innerHTML="Passwords do not match";
+        document.getElementById("error2").style.display="block";
+        window.scrollTo(0,0);
         return false;
       }
-      // const regex = /[^A-Za-z0-9]/; 
-      // let ans=checkpass.match(/[A-Z]/)&&checkpass.match(/[a-z]/)&&checkpass.match(/[1-9]/)&&regex.test(checkpass)?1:0;
-      // if(ans==0){
-      //   document.getElementById("error").innerHTML="Password must contain atleast one uppercase, one lowercase, one digit and one special character";
-      //   document.getElementById("error").style.display="block";
-      //   return false;
-      // }   
-      document.getElementById("error").style.display="none";
+      
+      const regex = /[^A-Za-z0-9]/; 
+      let ans=checkpass.match(/[A-Z]/)&&checkpass.match(/[a-z]/)&&checkpass.match(/[1-9]/)&&regex.test(checkpass)?1:0;
+      if(ans==0){
+        document.getElementById("error2").innerHTML="Password must contain atleast one uppercase, one lowercase, one digit and one special character";
+        document.getElementById("error2").style.display="block";
+        window.scrollTo(0,0);
+        return false;
+      }   
+      document.getElementById("error2").style.display="none";
       return true;
     }
     

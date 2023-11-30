@@ -161,7 +161,7 @@ margin-top: 10px;
         </form>
     </div> -->
 
-    <form action="/mycourse/{{ course.course_code }}/addmaterial" method = "POST" enctype="multipart/form-data">
+    <form action="/mycourse/{{ course.course_code }}/addmaterial" method = "POST" enctype="multipart/form-data" onsubmit="return check(this)">
       {% csrf_token %}
       <h3>Add Material</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -179,7 +179,20 @@ margin-top: 10px;
 
 
     <script>
-        
+        function check(form){
+          var materialname = form.title.value;
+          var description = form.description.value;
+          var myfile = form.myfile.value;
+          if(materialname.trim() == ""|| description.trim() == "" || myfile.trim() == ""){
+            document.getElementById("error").innerHTML = "Please fill all the fields";
+            document.getElementById("error").style.display = "block";
+            return false;
+          }
+          else{
+            document.getElementById("error").style.display="none";
+            return true;
+          }
+        }
     </script>
 </body>
 </html>

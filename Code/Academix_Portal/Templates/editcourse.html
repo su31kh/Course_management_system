@@ -160,18 +160,18 @@ margin-top: 10px;
         </form>
     </div> -->
 
-    <form action="/mycourse/{{ record.course_code }}/editcourse" method = "POST">
+    <form action="/mycourse/{{ record.course_code }}/editcourse" method = "POST" onsubmit="return check(this)">
       {% csrf_token %}
       <h3>Edit Course</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>
      <label for="coursename">Course Name :</label>
-     <input required type="text" id="coursename" class="form-control" name="coursename" placeholder="{{record.name}}">
+     <input required type="text" id="coursename" class="form-control" name="coursename" placeholder="{{record.name}}" value="{{record.name}}">
 
      <label for="courseid">Course ID : </label>
-     <input required type="text" id="courseid" class="form-control" name="courseid" placeholder="{{record.course_code}}">
+     <input required type="text" id="courseid" class="form-control" name="courseid" placeholder="{{record.course_code}}" value="{{record.course_code}}">
 
       <label for="description">Description :</label>
-      <textarea required type="text" id="description" class="form-control" name="description" placeholder="{{record.description}}"></textarea>
+      <textarea required type="text" id="description" class="form-control" name="description" placeholder="{{record.description}}" value="{{record.description}}"></textarea>
   
      <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Edit</button>
 
@@ -181,7 +181,20 @@ margin-top: 10px;
 
 
     <script>
-        
+        function check(form){
+          var coursename = form.coursename.value;
+          var courseid = form.courseid.value;
+          var description = form.description.value;
+          if(coursename.trim() == ""|| courseid.trim() == "" || description.trim() == ""){
+            document.getElementById("error").innerHTML = "Please fill all the fields";
+            document.getElementById("error").style.display = "block";
+            return false;
+          }
+          else{
+            document.getElementById("error").style.display="none";
+            return true;
+          }
+        }
     </script>
 </body>
 </html>

@@ -152,7 +152,7 @@ margin-top: 10px;
   </form>
 </div> -->
 
-<form action="/mycourse/{{course.course_code}}/addquery" method = "POST">
+<form action="/mycourse/{{course.course_code}}/addquery" method = "POST" onsubmit="return check(this)">
   {% csrf_token %}
   <h3>Raise Query</h3>   
   <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -161,6 +161,17 @@ margin-top: 10px;
 
  <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Add</button>
 </form>
-
+<script>
+  function check(form){
+    var qry = form.qry.value;
+    if(qry.trim() == ""){
+      document.getElementById("error").innerHTML = "Please fill all the fields";
+      document.getElementById("error").style.display = "block";
+      return false;
+    }
+    document.getElementById("error").style.display="none";
+    return true;
+  }
+</script>
 </body>
 </html>

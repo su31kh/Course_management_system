@@ -161,13 +161,6 @@
 </div> -->
 
 
-
-
-
-
-
-
-
 <div class="list-group container-fluid">
   <div class="col-12">
   {% for s in submission %}
@@ -186,7 +179,7 @@
         {% csrf_token %}
         <label>
           <p class='mb-1' style="color: black; padding-top: 10px;"><b>Update Grade: </b></p></label>
-        <input type="number" id="grade" name="grade">
+        <input type="number" id="grade" name="grade" required>
         <div style="padding-top: 10px;">
           <button role="button" class="button-3 text-white" style=" background-color: #004574;">Update
             <i class="fa-solid fa-pen" style="float: right; padding-left: 15px;"></i>
@@ -199,7 +192,7 @@
         {% csrf_token %}
         <label>
           <p class='mb-1' style="padding-top: 10px; color: black;"><b>Grade: </b></p></label>
-        <input type="number" id="grade" name="grade">
+        <input type="number" id="grade" name="grade" required>
         <div style="padding-top: 10px;">
           <button role="button" class="button-3 text-white" style=" background-color: #004574;">Grade
             <i class="fa-solid fa-plus fa-lg" style="float: right; padding-left: 15px;"></i>

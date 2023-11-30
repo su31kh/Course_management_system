@@ -171,7 +171,7 @@ margin-top: 10px;
         </form>
     </div> -->
 
-    <form action="/mycourse//{{courseid}}/addassignment" method = "post" enctype="multipart/form-data">
+    <form action="/mycourse//{{courseid}}/addassignment" method = "post" enctype="multipart/form-data" onsubmit="return check(this)">
       {% csrf_token %}
       <h3>Add Assignments</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -194,7 +194,23 @@ margin-top: 10px;
    </form>
 
     <script>
-        
+        function check(form){
+            var assignmentname = form.name.value;
+            var description = form.description.value;
+            var duedate = form.duedate.value;
+            var max_grade = form.max_grade.value;
+            var attachment = form.attachment.value;
+            if(assignmentname.trim() == ""|| description.trim() == "" || duedate.trim() == "" || max_grade.trim() == "" || attachment.trim() == ""){
+                document.getElementById("error").innerHTML = "Please fill all the fields";
+                document.getElementById("error").style.display = "block";
+                window.scrollTo(0, 0);
+                return false;
+            }
+            else{
+              document.getElementById("error").style.display="none";
+                return true;
+            }
+        }
     </script>
 </body>
 </html>

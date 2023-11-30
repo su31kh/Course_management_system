@@ -158,7 +158,7 @@ margin-top: 10px;
   </form>
   </div> -->
 
-  <form action="/mycourse/{{ course.course_code }}/addannouncement" method = "POST">
+  <form action="/mycourse/{{ course.course_code }}/addannouncement" method = "POST" onsubmit="return check(this)">
     {% csrf_token %}
     <h3>Add Announcements</h3>   
     <h6 id="error" style="color: #ff512f; display: none;"></h6>
@@ -170,6 +170,21 @@ margin-top: 10px;
 
    <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Add</button>
  </form>
+ <script>
+  function check(form){
+    var announcementname = form.title.value;
+    var description = form.desc.value;
+    if(announcementname.trim() == ""|| description.trim() == ""){
+      document.getElementById("error").innerHTML = "Please fill all the fields";
+      document.getElementById("error").style.display = "block";
+      return false;
+    }
+    else{
+      document.getElementById("error").style.display="none";
+      return true;
+    }
+  }
+ </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
