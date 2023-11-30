@@ -175,6 +175,11 @@
                                 <a href = "/mycourse/{{ course.course_code }}/unenrollcourse"><button class="button-5">Unenroll</button></a>   
                             </div>
                             {% endif %}
+                            {% if isprof %}
+                            <div style="padding-top: 15px;">
+                                <a href = "/mycourse/{{ course.course_code }}/deletecourse"><button class="button-5">Delete Course</button></a>   
+                            </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>

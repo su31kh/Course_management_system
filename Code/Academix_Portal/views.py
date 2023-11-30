@@ -347,8 +347,9 @@ def deletecourse(request , course_id):
             return redirect('/mycourse')
         
         return redirect('mycourse')
+    
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return redirect('/error')
 
 def student_list(request , course_id):
     try:
