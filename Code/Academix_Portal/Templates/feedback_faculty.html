@@ -3,6 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
 <style>
   body{
@@ -30,7 +31,7 @@
     <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
       <div class="list-group-item list-group-item-action ww">
         <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-1"><span style="color:black"><b style="color: #004574;">Feedback: </b></span> {{x.fb}}</h6>
+            <div class="mb-1" style="font-family: 'Nunito'; font-size: 1.1rem;"><span style="color:black;"><b style="color: #004574; font-family: 'Nunito'; font-size: 1.2rem;">Feedback: </b></span> {{x.fb}}</div>
             <small>{{x.timestamp}}</small>
         </div>  
         </div>

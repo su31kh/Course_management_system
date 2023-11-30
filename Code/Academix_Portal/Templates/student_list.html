@@ -3,6 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/student_list.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 <style>
   .list-group {
         display: contents;
@@ -55,7 +56,7 @@
   .button-3 {
     align-items: center;
     background-clip: padding-box;
-    background-color: #cccc00;
+    background-color: white;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -87,7 +88,7 @@
   }
   
   .button-3:hover {
-    background-color: #999900;  
+    background-color: #e7e797;  
     transform: translateY(-1px);
   }
   
@@ -117,7 +118,7 @@
   <form class="form-inline my-2 my-lg-0" action="/mycourse/{{course.course_code}}/studentlist/search" method="POST">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: black; border-color: white; background-color: white;">Search</button>
+    <button class="button-3" type="submit" style="color: black; border-color: white;">Search</button>
   </form>
 {% endblock %}
 
@@ -129,7 +130,7 @@
   <li class="list-group-item ww">
     <div class="row ">
     <div class="ms-2 me-auto col-sm-9 col-12">
-      <div class="fw"><b>{{student.first_name}} {{student.last_name}}</b></div>
+      <div class="fw" style="font-family: 'Nunito'; font-size: 1.2rem;"><b>{{student.first_name}} {{student.last_name}}</b></div>
       {{ student.user.email}}
     </div>
     <div class="col-sm-3 col-12 d-flex justify-content-end"><span><a href="/mycourse/{{course.course_code}}/studentlist/{{student.id}}/viewprofile" style="color: white;"><button role="button" class="button-3 text-white" style=" background-color: #004574;">View Profile<i class="fa-regular fa-address-card fa-lg" style="padding-left: 15px;"></i></button></a></span>

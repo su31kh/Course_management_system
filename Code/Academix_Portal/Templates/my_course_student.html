@@ -76,12 +76,12 @@
             .button-3 {
                 align-items: center;
                 background-clip: padding-box;
-                background-color: #404040;
+                background-color: white;
                 border: 1px solid transparent;
                 border-radius: .25rem;
                 box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
                 box-sizing: border-box;
-                color: #fff;
+                color: black;
                 cursor: pointer;
                 display: inline-flex;
                 font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -108,7 +108,7 @@
               }
               
               .button-3:hover {
-                background-color: rgb(80, 80, 80);  
+                background-color: white;  
                 transform: translateY(-1px);
               }
               
@@ -136,7 +136,7 @@
   <form class="form-inline my-2 my-lg-0" action="/mycourse/search" method="POST">
     {% csrf_token %}
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
-    <button class="button-3" type="submit" style="color: white; border-color: white;">Search</button>
+    <button class="button-3" type="submit" style="color: black; border-color: white; background-color: white;">Search</button>
   </form>
     {% endblock %}
 

@@ -4,6 +4,7 @@
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'css/announcements.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 <style>
   .list-group {
         display: contents;
@@ -134,7 +135,7 @@
       
       <div class="list-group-item list-group-item-action ww">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1" style="color:black"><i class="fa-regular fa-file fa-lg" style="padding-right: 10px;"></i>{{x.title}}</h5>
+        <div class="mb-1" style="color:black; font-family: 'Nunito'; font-size: 1.3rem;"><i class="fa-regular fa-file fa-lg" style="padding-right: 10px;"></i>{{x.title}}</div>
         <small>{{x.timestamp}}</small>
       </div>
       <hr class="border">
@@ -143,7 +144,7 @@
       </button></a>
       {% endif %}
       <div>
-      <p class="mb-1" style="color:black">{{x.description}}</p>
+      <p class="mb-1" style="color:black; font-family: 'Nunito'; font-size: 1.1rem;">{{x.description}}</p>
       <p class="mb-1"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.material_file}}" style="color: #004574;">Material</a></b></p>
       </div>
     </div>
