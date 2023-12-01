@@ -182,7 +182,7 @@ margin-top: 10px;
      <textarea required class="form-control" required name="description" type="text" placeholder="Enter Description" maxlength="100"></textarea>
 
      <label for="duedate">Due-Date : </label>
-      <input required type="datetime-local" id="duedate" class="form-control" name="duedate">
+      <input required type="datetime-local" id="duedate" class="form-control" name="duedate" oninput="checkDate(this)">
 
       <label for="max_grade">Max-Grade :</label>
       <input required type="number" class="form-control" name="max_grade" placeholder="Enter Max-Grade">
@@ -210,6 +210,22 @@ margin-top: 10px;
               document.getElementById("error").style.display="none";
                 return true;
             }
+
+    }
+    function checkDate(input) {
+        var selectedTimestamp = Date.parse(input.value);
+        var currentTimestamp = Date.now();
+
+        if (selectedTimestamp < currentTimestamp) {
+            document.getElementById("error").innerHTML = "Due date cannot be in the past";
+            document.getElementById("error").style.display = "block";
+            window.scrollTo(0, 0);
+            input.setCustomValidity("Due date cannot be in the past");
+        } else {
+            document.getElementById("error").style.display = "none";
+            input.setCustomValidity(""); // Reset validation message
+        }
+
         }
     </script>
 </body>
