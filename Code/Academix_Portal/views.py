@@ -97,6 +97,7 @@ def addmaterial(request,course_id):
         return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
+    
     isprof = True
     try:
         thiscourse = Course.objects.get(course_code = course_id)
@@ -672,19 +673,19 @@ def grade_student_submission(request,course_id,name,sub_id):
         return redirect('/error')
 
 def view_query(request, course_id):
-    # try:
-    prof = faculty_profile.objects.get(user=request.user)
-    course = Course.objects.get(course_code=course_id)
-    Query = query.objects.filter(course = course)
-    if course.faculty != prof:
-        messages.error(request, "You cannot View this Course's Query.")
-        return redirect('/mycourse')
-    # if prof.exists():
-    isprof=True
-    params = {'course' : course, 'Query' : Query, 'isprof' : isprof}
-    return render(request, 'view_query.html', params)
-    # except:
-    #     return redirect('/error')
+    try:
+        prof = faculty_profile.objects.get(user=request.user)
+        course = Course.objects.get(course_code=course_id)
+        Query = query.objects.filter(course = course)
+        if course.faculty != prof:
+            messages.error(request, "You cannot View this Course's Query.")
+            return redirect('/mycourse')
+        # if prof.exists():
+        isprof=True
+        params = {'course' : course, 'Query' : Query, 'isprof' : isprof}
+        return render(request, 'view_query.html', params)
+    except:
+        return redirect('/error')
 
 def add_query(request, course_id):
     try:
