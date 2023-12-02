@@ -39,10 +39,14 @@ def students_profile(request):
         return render(request , 'student_profile.html', context)
 
 def materials(request,course_id):
+    thiscourse = Course.objects.get(course_code=course_id)
     try:
         isprof = True
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            if prof != thiscourse.faculty:
+                messages.error(request, "You cannot View this course Material.")
+                return redirect('/mycourse')
         except:
             isprof = False
         course = Course.objects.get(course_code=course_id)
@@ -72,6 +76,7 @@ def deletematerial(request, course_id, id):
 def addmaterial(request,course_id):
     try:
         prof = faculty_profile.objects.get(user=request.user)
+        thiscourse = Course.objects.get(course_code=course_id,faculty=prof)
     except:
         messages.error(request, "You cannot Post Material here.")
         return redirect('/mycourse/'+course_id+'/materials')
@@ -92,11 +97,11 @@ def addmaterial(request,course_id):
 
 def announcements(request , course_id):
     thiscourse = Course.objects.get(course_code = course_id)
-    
-
     isprof = True
     try:
         prof = faculty_profile.objects.get(user=request.user)
+        if prof != thiscourse.faculty:
+            isprof = False
     except:
         isprof = False
     
@@ -123,9 +128,10 @@ def addannouncement(request,course_id):
     try:
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            thiscourse = Course.objects.get(course_code=course_id,faculty=prof)
         except:
-            messages.error(request, "You cannot Post Material here.")
-            return redirect('/mycourse/'+course_id+'/materials')
+            messages.error(request, "You cannot Post Announcement here.")
+            return redirect('/mycourse/'+course_id)
         if request.method == "POST":
             title = request.POST.get('title')
             desc = request.POST.get('desc')
@@ -147,15 +153,20 @@ def fb_response(request, course_id):
         course = Course.objects.get(course_code=course_id)
         try:
             prof = faculty_profile.objects.get(user=request.user)
-            fb = feedback.objects.filter(course=course)
-            isprof = True
-            context = {
-                'prof':prof,
-                'feedback':fb,
-                'isprof':isprof,
-                'course':course
-            }
-            return render(request, 'feedback_faculty.html', context)
+            try:
+                thiscourse = Course.objects.get(course_code=course_id,faculty=prof)
+                fb = feedback.objects.filter(course=course)
+                isprof = True
+                context = {
+                    'prof':prof,
+                    'feedback':fb,
+                    'isprof':isprof,
+                    'course':course
+                }
+                return render(request, 'feedback_faculty.html', context)
+            except:
+                messages.error(request, "You cannot view the Feedback form for this course")
+                return redirect('/mycourse/'+course_id)
         except:
             try:
                 fb = feedback.objects.get(user=request.user, course=course)
@@ -297,6 +308,7 @@ def edit_course(request, course_id):
     try:
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            thiscourse = Course.objects.get(course_code=course_id,faculty=prof)
         except:
             messages.error(request, "You are not authorized to edit a Course")
             return redirect('/mycourse')
@@ -331,10 +343,10 @@ def unenroll(request , course_id):
         return redirect('/error')
 
 def deletecourse(request , course_id):
-
     try:
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            course = Course.objects.get(course_code=course_id,faculty=prof)
         except:
             messages.error(request, "You are not authorized to delete a Course")
             return redirect('/mycourse')
@@ -356,6 +368,10 @@ def student_list(request , course_id):
         isprof = True
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            current_course = Course.objects.get(course_code = course_id)
+            if current_course.faculty != prof:
+                messages.error(request, "You cannot view the stduent list.")
+                return redirect('/mycourse')
         except:
             isprof = False
         current_course = Course.objects.get(course_code = course_id)
@@ -372,7 +388,8 @@ def student_list(request , course_id):
 
 def view_profile(request, course_id, id):
     try:
-        student = student_profile.objects.get(id = id)
+        user = request.user
+        student = student_profile.objects.get(id = id, user=user)
         current_course = Course.objects.get(course_code = course_id)
         context = {'student':student, 'course':current_course}
         return render(request , 'view_other_student_profile.html', context)
@@ -403,9 +420,7 @@ def add_course_to_user(request, course_id):
     try:
         try:
             current_user = request.user
-            print(current_user)
             course = Course.objects.get(course_code = course_id)
-            print(course)
             if course.studentlist.filter(user = current_user).exists():
                 messages.error(request , 'User is already enrolled in this course')
                 return redirect('mycourse')
@@ -431,7 +446,6 @@ def coursedashboard(request):
             current_user = request.user
             student = student_profile.objects.get(user = current_user)
             myenroll = student.student_courses.all()
-
             final = course.difference(myenroll)
             isprof = False
             context = {
@@ -443,8 +457,7 @@ def coursedashboard(request):
             course = Course.objects.all()
             current_user = request.user
             prof = faculty_profile.objects.get(user = current_user)
-            myenroll = Course.objects.filter(faculty=prof)
-
+            myenroll = Course.objects.filter(faculty=prof) 
             final = course.difference(myenroll)
             isprof = True
             context = {
@@ -462,9 +475,7 @@ def mycourse(request):
         isprof=False
         try:
             student = student_profile.objects.get(user = current_user)
-            # print(student)
             myenroll = student.student_courses.all()
-            # print((myenroll))
             context = {
                 'enrolled': myenroll,
                 'student':student,
@@ -496,8 +507,9 @@ def add_assignment(request, course_id):
     try:
         user = request.user
         prof = faculty_profile.objects.filter(user=user)
-        if prof is None:
-            messages.error(request,"You cannot post an announcement")
+        thiscourse = Course.objects.get(course_code=course_id)
+        if prof is None or prof != thiscourse.faculty:
+            messages.error(request,"You cannot post an Assignment")
         else:
             course = Course.objects.get(course_code = course_id)
             if(request.method == 'POST' and request.FILES['attachment']):
@@ -519,6 +531,9 @@ def view_assignments(request,course_id):
         prof = faculty_profile.objects.filter(user=request.user)
         course = Course.objects.get(course_code=course_id)
         assign = Assignment.objects.filter(assignment_course=course)
+        if course.faculty != prof:
+            messages.error(request, "You cannot view the assignment")
+            return redirect('/mycourse/')
         if prof.exists():
             isprof=True
             param = {
@@ -548,8 +563,9 @@ def edit_assignment(request, course_id, name):
     try:
         try:
             prof = faculty_profile.objects.get(user=request.user)
+            thiscourse = Course.objects.get(course_code=course_id)
         except:
-            messages.error(request, "You are not authorized to add a Course")
+            messages.error(request, "You are not authorized to edit the assignment")
             return redirect('/mycourse/'+course_id+'/viewassignments')
         if request.method == 'POST' and request.FILES['attachment']:
             course = Course.objects.get(course_code = course_id)
@@ -571,7 +587,8 @@ def edit_assignment(request, course_id, name):
 
 def delete_assignment(request , course_id , name):
     try:
-        course = Course.objects.get(course_code = course_id)
+        prof = faculty_profile.objects.get(user = request.user)
+        course = Course.objects.get(course_code = course_id, faculty=prof)
         Assignment.objects.filter(assignment_course = course , name = name).delete()
         view_assignments(request , course_id)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
@@ -580,6 +597,8 @@ def delete_assignment(request , course_id , name):
 
 def delete_announcement(request , course_id , ann_id):
     try:
+        prof = faculty_profile.objects.get(user = request.user)
+        course = Course.objects.get(course_code = course_id, faculty=prof)
         Announcements.objects.filter(id = ann_id).delete()
         announcements(request , course_id)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
@@ -653,9 +672,12 @@ def grade_student_submission(request,course_id,name,sub_id):
 
 def view_query(request, course_id):
     try:
-        course = Course.objects.get(course_code=course_id)
         Query = query.objects.filter(course = course)
         prof = faculty_profile.objects.filter(user=request.user)
+        course = Course.objects.get(course_code=course_id)
+        if course.faculty != prof:
+            messages.error(request, "You cannot View this Course's Query.")
+            return redirect('/mycourse')
         isprof=False
         if prof.exists():
             isprof=True
