@@ -21,35 +21,35 @@
 
 <body>
   
-  <nav class="navbar navbar-expand-lg" style="background-color: #004574;">
+  <nav class="navbar navbar-expand-lg text-white" style="background-color: #004574;">
     <a class="navbar-brand" href="/mycourse" style="color: white; font-size: 1.2rem;">{{ student.first_name }}</a>
     <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+      <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-lg"></i></span>
     </button>
 
-    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto text-white">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
         {% if isprof %}
-        <li class="nav-item active text-white">
+        <li class="nav-item active ">
           <a class="nav-link" href="addcourses" style="color: white; font-size: 1.2rem;">Add Course <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
 
         {% if not isprof %}
-        <li class="nav-item active text-white">
+        <li class="nav-item active ">
           <a class="nav-link" href="student_profile" style="color: white; font-size: 1.2rem;">Profile <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
-        <li class="nav-item active text-white">
+        <li class="nav-item active ">
           <a class="nav-link" href="/mycourse" style="color: white; font-size: 1.2rem;">MyCourses <span class="sr-only">(current)</span></a>
         </li>
         {% if not isprof %}
-        <li class="nav-item active text-white">
+        <li class="nav-item active ">
           <a class="nav-link" href="/coursedashboard" style="color: white; font-size: 1.2rem;">Other Courses <span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
-        <li class="nav-item active text-white">
+        <li class="nav-item active ">
           <a class="nav-link" href="logout" style="color: white; font-size: 1.2rem;">Logout<span class="sr-only">(current)</span></a>
         </li>
       </ul>

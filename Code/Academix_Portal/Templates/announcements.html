@@ -136,14 +136,16 @@
     <div style="padding-top:25px; padding-left:25px;"><a href="{{ course.course_code }}/addannouncement"><button class="button-3 text-white" role="button" style="background-color: #004574">Add Announcements &nbsp;
       <i class="fa-regular fa-square-plus fa-lg"></i>  </button></a></div>
 {% endif %} 
+
 {% if messages %}
 {% for msg in messages %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>{{ msg }}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {% comment %} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> {% endcomment %}
 </div>
 {% endfor %}
 {% endif %}
+
     {% for x in announce %}
     <div class="m-3 p-2" style="border-radius: 8px; opacity: 0.9;">
       <div class="list-group-item list-group-item-action ww" >

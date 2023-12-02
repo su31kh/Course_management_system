@@ -171,7 +171,7 @@ margin-top: 10px;
         </form>
     </div> -->
 
-    <form action="/mycourse//{{courseid}}/addassignment" method = "post" enctype="multipart/form-data" onsubmit="return check(this)">
+    <form action="/mycourse/{{courseid}}/addassignment" method = "post" enctype="multipart/form-data" onsubmit="return check(this)">
       {% csrf_token %}
       <h3>Add Assignments</h3>   
       <h6 id="error" style="color: #ff512f; display: none;"></h6>

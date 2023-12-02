@@ -10,6 +10,7 @@
   <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
   <link rel="stylesheet" href="static/css/course_dashboard_student.css"> 
+  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
 
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -124,18 +125,15 @@
   
   </style>
 </head>
+
 <body>
 
   <nav class="navbar navbar-expand-lg text-white" style="background-color: #004574;">
-    <i class="fa-solid fa-graduation-cap fa-lg"></i>
-      <a class="navbar-brand" href="/mycourse/{{course.course_code}}/studentlist" style="padding-left:10px; color: white; font-size: 1.2rem;">{{ course.course_code }}</a>
+      <a class="navbar-brand" href="/mycourse/{{course.course_code}}/studentlist" style="padding-left:10px; color: white; font-size: 1.2rem;">Student List</a>
       <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
         <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-lg"></i></span>
       </button>
-  
-      
-        </ul>
         {% block search %}
         {% endblock %}
       </div>
