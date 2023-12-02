@@ -39,10 +39,11 @@ def students_profile(request):
         return render(request , 'student_profile.html', context)
 
 def materials(request,course_id):
-    thiscourse = Course.objects.get(course_code=course_id)
+    
     try:
         isprof = True
         try:
+            thiscourse = Course.objects.get(course_code=course_id)
             prof = faculty_profile.objects.get(user=request.user)
             if prof != thiscourse.faculty:
                 messages.error(request, "You cannot View this course Material.")
@@ -96,9 +97,9 @@ def addmaterial(request,course_id):
         return render(request , 'add_material.html', context)
 
 def announcements(request , course_id):
-    thiscourse = Course.objects.get(course_code = course_id)
     isprof = True
     try:
+        thiscourse = Course.objects.get(course_code = course_id)
         prof = faculty_profile.objects.get(user=request.user)
         if prof != thiscourse.faculty:
             isprof = False
