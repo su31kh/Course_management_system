@@ -506,7 +506,7 @@ def createassignment(request, course_id):
 def add_assignment(request, course_id):
     try:
         user = request.user
-        prof = faculty_profile.objects.filter(user=user)
+        prof = faculty_profile.objects.get(user=user)
         thiscourse = Course.objects.get(course_code=course_id)
         if prof is None or prof != thiscourse.faculty:
             messages.error(request,"You cannot post an Assignment")
@@ -527,14 +527,14 @@ def add_assignment(request, course_id):
         return redirect('/error')
 
 def view_assignments(request,course_id):
+    course = Course.objects.get(course_code=course_id)
+    assign = Assignment.objects.filter(assignment_course=course)
     try:
-        prof = faculty_profile.objects.filter(user=request.user)
-        course = Course.objects.get(course_code=course_id)
-        assign = Assignment.objects.filter(assignment_course=course)
-        if course.faculty != prof:
-            messages.error(request, "You cannot view the assignment")
-            return redirect('/mycourse/')
-        if prof.exists():
+        try:
+            prof = faculty_profile.objects.get(user=request.user)
+            if course.faculty != prof:
+                messages.error(request, "You cannot view the assignment")
+                return redirect('/mycourse')
             isprof=True
             param = {
                 'course':course,
@@ -542,7 +542,8 @@ def view_assignments(request,course_id):
                 'isprof':isprof
             }
             return render(request, 'view_assignments_faculty.html', param)
-        else:
+        except:
+            print("HII")
             student_prof = student_profile.objects.get(user=request.user)
             submit=[]
             for x in assign:
@@ -567,14 +568,13 @@ def edit_assignment(request, course_id, name):
         except:
             messages.error(request, "You are not authorized to edit the assignment")
             return redirect('/mycourse/'+course_id+'/viewassignments')
-        if request.method == 'POST' and request.FILES['attachment']:
+        if request.method == 'POST':
             course = Course.objects.get(course_code = course_id)
             editassignment = Assignment.objects.get(assignment_course=course, name=name)
             editassignment.name = request.POST.get('name')
             editassignment.description = request.POST.get('description')
             editassignment.duedate = request.POST.get('duedate')
             editassignment.max_grade = request.POST.get('max_grade')
-            editassignment.attachment = request.FILES['attachment']
             editassignment.save()
         else:
             course = Course.objects.get(course_code = course_id)
@@ -671,20 +671,19 @@ def grade_student_submission(request,course_id,name,sub_id):
         return redirect('/error')
 
 def view_query(request, course_id):
-    try:
-        Query = query.objects.filter(course = course)
-        prof = faculty_profile.objects.filter(user=request.user)
-        course = Course.objects.get(course_code=course_id)
-        if course.faculty != prof:
-            messages.error(request, "You cannot View this Course's Query.")
-            return redirect('/mycourse')
-        isprof=False
-        if prof.exists():
-            isprof=True
-        params = {'course' : course, 'Query' : Query, 'isprof' : isprof}
-        return render(request, 'view_query.html', params)
-    except:
-        return redirect('/error')
+    # try:
+    prof = faculty_profile.objects.get(user=request.user)
+    course = Course.objects.get(course_code=course_id)
+    Query = query.objects.filter(course = course)
+    if course.faculty != prof:
+        messages.error(request, "You cannot View this Course's Query.")
+        return redirect('/mycourse')
+    # if prof.exists():
+    isprof=True
+    params = {'course' : course, 'Query' : Query, 'isprof' : isprof}
+    return render(request, 'view_query.html', params)
+    # except:
+    #     return redirect('/error')
 
 def add_query(request, course_id):
     try:

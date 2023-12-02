@@ -179,16 +179,13 @@ margin-top: 10px;
      <input required type="text" class="form-control" name="name" placeholder="{{record.name}}" value="{{record.name}}">
   
      <label for="description">Description :</label>
-     <textarea required class="form-control" required name="description" type="text" placeholder="{{record.description}}" value="{{record.description}}"></textarea>
+     <textarea required class="form-control" required name="description" type="text" placeholder="{{record.description}}" >{{record.description}}</textarea>
 
      <label for="duedate">Due-Date : </label>
       <input required type="datetime-local" id="duedate" class="form-control" name="duedate" placeholder="{{record.duedate}}" value="{{record.duedate}}">
 
       <label for="max_grade">Max-Grade :</label>
       <input required type="number" class="form-control" name="max_grade" placeholder="{{record.max_grade}}" value="{{record.max_grade}}">
-
-      <label for="attachment">File:</label>
-      <input required type="file" class="form-control" name="attachment" placeholder="{{record.attachment}}" value="{{record.attachment}}">
   
      <button class="btn btn-primary" type="submit" style="margin-top: 15px; background-color: #004574;">Edit</button>
    </form>
