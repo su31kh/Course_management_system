@@ -5,9 +5,9 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class student_profile(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=False, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, null=False)
-    middle_name = models.CharField(max_length=20)
+    middle_name = models.CharField(max_length=20, null = True, blank= True)
     last_name = models.CharField(max_length=20, null=False)
     batch = models.IntegerField(null=False)
     branch = models.CharField(max_length=50, null=False)
@@ -19,9 +19,9 @@ class student_profile(models.Model):
 
 
 class faculty_profile(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE) 
+    user = models.OneToOneField(User, null=True, blank=False, on_delete=models.CASCADE) 
     first_name = models.CharField(max_length=20, null=False)
-    middle_name = models.CharField(max_length=20)
+    middle_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=False)
     faculty_courses = models.ManyToManyField('Course', related_name='facultylist', blank=True)
 
