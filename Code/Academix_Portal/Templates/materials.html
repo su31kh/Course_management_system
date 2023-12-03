@@ -112,6 +112,23 @@
 .ww:hover{
   box-shadow: 5px 5px 10px ;
 }
+#id1{
+        float: right;
+      }
+  
+      #id2{
+        display: none;
+      }
+
+      @media only screen and (max-width: 600px) {
+    #id1{
+        display: none;
+      }
+      #id2{
+        display: block;
+      }
+      
+  } 
   </style>
 {% endblock %}
 
@@ -140,13 +157,18 @@
       </div>
       <hr class="border">
       {% if isprof %}
-      <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button role="button" class="button-3 text-white" style="float:right; background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+      <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button role="button" id="id1" class="button-3 text-white" style="float:right; background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
       </button></a>
       {% endif %}
       <div>
       <p class="mb-1" style="color:black; font-family: 'Nunito'; font-size: 1.1rem;">{{x.description}}</p>
       <p class="mb-1" style="padding-top: 10px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.material_file}}" style="color: #004574;"><button role="button" class="button-3 text-white" style=" background-color: #28A745;">Material<i class="fa-solid fa-lg fa-book-open" style="padding-left: 10px;"></i></button></a></b></p>
       </div>
+      {% if isprof %}
+      <div style="padding-top: 15px;">
+        <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button id="id2" role="button" class="button-3 text-white" style="background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+        </button></a></div>
+      {% endif %}
     </div>
     </div>
     {% endfor %}

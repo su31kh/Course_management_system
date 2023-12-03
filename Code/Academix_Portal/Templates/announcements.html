@@ -120,9 +120,23 @@
 .list-group {
         display: contents;
       }
+      #id1{
+        float: right;
+      }
   
+      #id2{
+        display: none;
+      }
 
+      @media only screen and (max-width: 600px) {
+    #id1{
+        display: none;
+      }
+      #id2{
+        display: block;
+      }
       
+  }   
   </style>
 {% endblock %}
 
@@ -152,17 +166,23 @@
         
       <div class="d-flex w-100 justify-content-between" style="padding-top: 10px;">
         <h5 class="mb-1" style="color:black; font-family:'Nunito'; font-weight: 700; font-size: 1.4rem;"><i class="fa-regular fa-circle-user fa-lg" style="padding-right: 10px;"></i> {{x.title}}</h5>
-        <small>{{x.timestamp}}</small>
+        <small id="id3">{{x.timestamp}}</small>
       </div>
       <hr class="border">
       {% if isprof %}
-      <a href="{{ course.course_code }}/deleteannouncement/{{ x.id }}"><button role="button" class="button-3 text-white" style="float:right; background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+      <a href="{{ course.course_code }}/deleteannouncement/{{ x.id }}"><button id="id1" role="button" class="button-3 text-white" style=" background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
       </button></a>
       {% endif %}
       <div>
       <p class="mb-1" style="color:black; font-family:'Nunito'; font-size: 1.1rem;">{{x.description}}</p>
       <small>{{x.user}}</small>
+      {% if isprof %}
+      <div style="padding-top: 15px;">
+        <a href="{{ course.course_code }}/deleteannouncement/{{ x.id }}"><button id="id2" role="button" class="button-3 text-white" style="background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+        </button></a></div>
+        {% endif %}
       </div>
+      
       
     </div>
     </div>
