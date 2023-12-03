@@ -207,7 +207,7 @@
         <a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{s.work}}" style="color: rgb(0, 255, 30);"><button role="button" class="button-3 text-white" style=" background-color: #28A745;">Submission<i class="fa-solid fa-lg fa-book-open" style="padding-left: 10px;"></i></button></a></small>
     </div>
     <hr class="border">
-    <h6 id="id1" style="display: none; color: red;">Please enter a valid grade</h6>
+    <h6 id="id10" style="display: none; color: red;">Please enter a valid grade</h6>
     <p class="mb-1" style="padding-top: 10px; color: black;"><b>Max Grade: </b>{{assignment.max_grade}}</p>
     <p class="mb-1" style="padding-top: 10px; color: black;"><b>Status: </b>{{s.feedback}}</p>
     {% if s.graded %}
@@ -252,13 +252,14 @@
   function check1(form) {
     // var max_grade = form.max_grade.value;
     var max_grade = {{assignment.max_grade}};
+    console.log(max_grade);
     if (form.grade.value > max_grade) {
-      document.getElementById("id1").style.display = "block";
+      document.getElementById("id10").style.display = "block";
       return false;
     }
     else if (form.grade.value < 0) {
       // alert("Grade cannot be negative");
-      document.getElementById("id1").style.display = "block";
+      document.getElementById("id10").style.display = "block";
       return false;
     }
     else {
