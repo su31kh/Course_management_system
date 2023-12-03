@@ -1146,6 +1146,28 @@ body{
   box-shadow: 5px 5px 10px #4b6d78;
 }
 
+@media only screen and (min-width: 378px) and (max-width: 455px) {
+  .card {
+    align: middle;
+    margin: auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 325px;
+  }
+} 
+
+ @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .card {
+    align: middle;
+    margin: auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 70vh;
+  }
+}  
+
 
 
         </style>
@@ -1181,7 +1203,7 @@ body{
               <div class=" mt-1">
                 {% comment %} <input required name="batch" value="{{student.batch}}"> {% endcomment %}
                 <p class="fonts" style="padding-top: 10px; font-size: 1.3rem; font-family: 'Nunito';"><b>Batch: </b>
-                  <input required name="batch" value="{{student.batch}}"/>
+                  <input required name="batch" type="number" value="{{student.batch}}"/>
                   
                 </p>
             </div>
