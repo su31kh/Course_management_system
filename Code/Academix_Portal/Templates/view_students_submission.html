@@ -172,15 +172,17 @@
       <h6 class="mb-1"><b>Submission Link: </b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{s.work}}" style="color: #004574;">Link</a></small>
     </div>
     <hr class="border">
+    <h6 id="id1" style="display: none; color: red;">Please enter a valid grade</h6>
     <p class="mb-1" style="padding-top: 10px; color: black;"><b>Max Grade: </b>{{assignment.max_grade}}</p>
     <p class="mb-1" style="padding-top: 10px; color: black;"><b>Status: </b>{{s.feedback}}</p>
     {% if s.graded %}
       <p class="mb-1" style="padding-top: 5px; color: black;"><b>Grade Obtained: </b>{{s.grade}}</p>
-      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post" onsubmit="return check1(this)">
         {% csrf_token %}
         <label>
           <p class='mb-1' style="color: black; padding-top: 10px;"><b>Update Grade: </b></p></label>
         <input type="number" id="grade" name="grade" required>
+        <!-- <input type="hidden" name="max_grade" value="{{assignment.max_grade}}"> -->
         <div style="padding-top: 10px;">
           <button role="button" class="button-3 text-white" style=" background-color: #004574;">Update
             <i class="fa-solid fa-pen" style="float: right; padding-left: 15px;"></i>
@@ -189,11 +191,12 @@
       
       </form>
     {% else %}
-      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post">
+      <form action="/mycourse/{{course.course_code}}/{{assignment.name}}/viewstudentssubmission/{{s.id}}/grade" method="post" onsubmit="return check1(this)">
         {% csrf_token %}
         <label>
           <p class='mb-1' style="padding-top: 10px; color: black;"><b>Grade: </b></p></label>
         <input type="number" id="grade" name="grade" required>
+        <!-- <input type="hidden" name="max_grade" value="{{assignment.max_grade}}"> -->
         <div style="padding-top: 10px;">
           <button role="button" class="button-3 text-white" style=" background-color: #004574;">Grade
             <i class="fa-solid fa-plus fa-lg" style="float: right; padding-left: 15px;"></i>
@@ -210,6 +213,39 @@
   
 </div>
 
+<script>
+  function check1(form) {
+    // var max_grade = form.max_grade.value;
+    var max_grade = {{assignment.max_grade}};
+    if (form.grade.value > max_grade) {
+      document.getElementById("id1").style.display = "block";
+      return false;
+    }
+    else if (form.grade.value < 0) {
+      // alert("Grade cannot be negative");
+      document.getElementById("id1").style.display = "block";
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  // function check2(form) {
+  //   const max_grade = form.max_grade.value;
+  //   if (form.grade.value > max_grade) {
+  //     document.getElementById("id1").style.display = "block";
+  //     return false;
+  //   }
+  //   else if (form.grade.value < 0) {
+  //     // alert("Grade cannot be negative");
+  //     document.getElementById("id1").style.display = "block";
+  //     return false;
+  //   }
+  //   else {
+  //     return true;
+  //   }
+  // }
+</script>
 
 
 {% endblock %}

@@ -8,11 +8,15 @@
 
   <title>Academix Portal</title>
 
-  {% comment %} <link rel="stylesheet" href="{% static 'css/stylish.css' %}"> {% endcomment %}
-
+  <link rel="stylesheet" href="{% static 'css/stylish.css' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+<style>
+  #navbar-toggler{
+    border: none;
+    background-color: #004574;
+  }
+</style>
 
   {% block head %}
   {% endblock %}
@@ -23,12 +27,12 @@
   
   <nav class="navbar navbar-expand-lg text-white" style="background-color: #004574;">
     <a class="navbar-brand" href="/mycourse" style="color: white; font-size: 1.2rem;">{{ student.first_name }}</a>
-    <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+    <button id="navbar-toggler" class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fa-solid fa-bars fa-lg"></i></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-white" id="navbarSupportedContent" style="color: white; font-size: 1.2rem;">
       <ul class="navbar-nav mr-auto ">
         {% if isprof %}
         <li class="nav-item active ">
