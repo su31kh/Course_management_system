@@ -140,12 +140,12 @@
       </div>
       <hr class="border">
       {% if isprof %}
-      <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button role="button" class="button-3 text-white" style="float:right; background-color: #004574;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
+      <a href="/mycourse/{{course.course_code}}/deletemat/{{x.id}}"><button role="button" class="button-3 text-white" style="float:right; background-color: red">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i>
       </button></a>
       {% endif %}
       <div>
       <p class="mb-1" style="color:black; font-family: 'Nunito'; font-size: 1.1rem;">{{x.description}}</p>
-      <p class="mb-1"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.material_file}}" style="color: #004574;">Material</a></b></p>
+      <p class="mb-1" style="padding-top: 10px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.material_file}}" style="color: #004574;"><button role="button" class="button-3 text-white" style=" background-color: #28A745;">Material<i class="fa-solid fa-lg fa-book-open" style="padding-left: 10px;"></i></button></a></b></p>
       </div>
     </div>
     </div>

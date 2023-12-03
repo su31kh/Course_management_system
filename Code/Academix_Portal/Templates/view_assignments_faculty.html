@@ -134,12 +134,12 @@
             </div>
             
             <hr class="my-2 border">
-            <button onclick="location.href='/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment'"role="button" class="button-3 text-white" style="float:right; background-color: #004574;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i></button>
+            <button onclick="location.href='/mycourse/{{ course.course_code }}/{{x.name}}/deleteassignment'"role="button" class="button-3 text-white" style="float:right; background-color: red;">Remove &nbsp;<i class="fa-regular fa-trash-can fa-lg"></i></button>
 
             <p class="mb-1" style="padding-top: 5px; color:black;"><b>Description: </b>{{x.description}}</p>
             <p class="mb-1" style="padding-top: 5px; color:black;"><b>Max-Grade: </b>{{x.max_grade}}</p>
-            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}" style="color: #004574;">Attachment</a></b>
-            <div style="padding: 10px; padding-top: 25px;">
+            <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{x.attachment}}" style="color: #004574;"><button role="button" class="button-3 text-white" style=" background-color: #8ec2d2;">Attachment<i class="fa-solid fa-lg fa-paperclip" style="padding-left: 10px;"></i></button></a></b>
+            <div style="padding-top: 25px;">
                 <a href="/mycourse/{{ course.course_code }}/{{x.name}}/editassignment"><button role="button" class="button-3 text-white" style=" background-color: #004574;">Edit Assignment<i class="fa-regular fa-pen-to-square fa-lg" style="padding-left: 10px;"></i></button></a>
                     <a href="/mycourse/{{ course.course_code }}/{{x.name}}/viewstudentssubmission"><button role="button" class="button-3 text-white" style=" background-color: #004574;">View Students Submission<i class="fa-regular fa-address-card fa-lg" style="padding-left: 10px;"></i></button></a>
                 </div>
