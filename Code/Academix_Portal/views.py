@@ -196,7 +196,7 @@ def fb_response(request, course_id):
     except:
         return redirect('/error')
 
-@login_required(login_url='/')
+
 def login_func(request, loginid):
     try:
         if request.user.is_authenticated:
