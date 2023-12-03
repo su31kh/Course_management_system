@@ -390,8 +390,7 @@ def student_list(request , course_id):
 
 def view_profile(request, course_id, id):
     try:
-        user = request.user
-        student = student_profile.objects.get(id = id, user=user)
+        student = student_profile.objects.get(id = id)
         current_course = Course.objects.get(course_code = course_id)
         context = {'student':student, 'course':current_course}
         return render(request , 'view_other_student_profile.html', context)
@@ -704,10 +703,7 @@ def add_query(request, course_id):
             qry = request.POST.get('qry')
             Query = query.objects.create(course=course, user = student, qry=qry)
             Query.save()
-            QueryList = query.objects.filter(course = course)
-            isprof = False
-            params2 = {'course' : course, 'Query' : QueryList, 'isprof' : isprof}
-            return render(request, 'view_query.html', params2)
+            return redirect('/mycourse/'+course_id+'/viewquery')
         return render(request, 'add_query.html', params)
     except:
         return redirect('/error')
