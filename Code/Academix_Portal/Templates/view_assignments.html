@@ -143,6 +143,13 @@
             {% else %}
             <p class="mb-1" style="padding-top: 5px; color: black;"><b>Graded: </b>Not Yet</p>
             {% endif %}
+            <p class="mb-1" style="padding-top: 5px;"><b>
+              <a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{y.0.work}}" style="color: #004574;">
+                <button role="button" class="button-3 text-white" style=" background-color: #8ec2d2;">Your Work
+                  <i class="fa-regular fa-lg fa-square-check" style="padding-left: 10px;"></i>
+                </button>
+              </a></b>
+            </p>
             {% endif %}
             
             {% if not y %}
@@ -157,7 +164,7 @@
             {% else %}
             <form action="/mycourses/{{ course.course_code}}/{{x.name}}/editsubmission"  method="post" enctype="multipart/form-data">
                 {% csrf_token %}<div  style="padding-bottom: 15px;">
-                  <p class="mb-1" style="padding-top: 5px;"><b><a href="https://cms-it314-bucket.s3.ap-south-1.amazonaws.com/{{y.0.work}}" style="color: #004574;"><button role="button" class="button-3 text-white" style=" background-color: #8ec2d2;">Your Work<i class="fa-regular fa-lg fa-square-check" style="padding-left: 10px;"></i></button></a></b></p>
+                  
                   <hr>
                   <div class="row">
                 <div class="col-sm-9 col-12 ">
