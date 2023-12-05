@@ -1,7 +1,7 @@
 <div align="center">
    
 # Course Management System 🎓
-![2](https://github.com/srikarpadaliya/Course_management_system/assets/122224886/31f8dc64-0ee1-4ede-bf01-cf602388706b)
+![2](https://i.imgur.com/Ae2mdkj.png)
 Elevate learning with streamlined course delivery and dynamic educational engagement.
 
 </div>
